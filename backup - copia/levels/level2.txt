@@ -1,0 +1,32 @@
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaa                                                                                                                                                                 aaa
+aaa                                                                                                                                                                 aaa
+aaa                                                        b                                                                                                        aaa
+aaa                                                        b                                                                                                        aaa
+aaa                                                        b      bbb                                                                                               aaa
+aaa                                                        b          bbb                                                                                           aaa
+aaa                                                        b              bbb                                                                                         <
+aaa                                                        b                   bbbbb   bbbbb   bbbbb   aaaaaaaaaaaaaaaaaaaaaaa    bbbb   bbbb   bbbb                  <
+aaa                                                               b                                       aaaaaaaaaaaaaaaaa                                aaaaaaaaaaaa
+aaa                                                               b                                                                                                 aaa
+aaa                                                               b                                                                                                 aaa
+aaa                                                               b                                                                                                 aaa
+aaa                                                               b                                                                                                 aaa
+aaa                                                        b                                                                                                        aaa
+aaa   @                                                    b                                                                                                        aaa
+aaaaaaaaaa                                                 b                                                                                                        aaa
+aaa                                                        b                                                                                                        aaa
+aaa                                                        b                                                                                                        aaa
+aaa                                                               b                                                                                                 aaa
+aaa                                                               b                                                                                                 aaa
+aaa                                                               b                                                                                                 aaa
+aaa                               bbbbb                           b                                                                                                 aaa
+aaa                       bbbbb           bbbbb                   b                                                                                                 aaa
+aaa               bbbbb                           bbbbb                                                                                                             aaa
+aaa       bbbbb                                          bbbbb                                                                                                      aaa
+aaa                                                                                                                                                                 aaa
+aaaaaaaaalllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+-
+levels//test.txt
+fondoDesierto

@@ -1,0 +1,24 @@
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aa                   aaaaaaaaaaa            aaaaaaaaaaa                                       aaaaaaaaa
+aa                   aaaaaaaaaa             aaaaaaaaaaa                                       aaaaaaaaa
+aa                              %                                                                aaaaaa
+aa                                                                               &                  aaa
+aa                                                                F   Q   F                          <<
+aa                                                                                                   <<
+aa                                                                             aaaaaaaaaaaaaaaaaaaaaaaa
+aa                                                                             aaaaaaaaaaaaaaaaaaaaaaaa
+aa                                                   O-----B                   aaaaaaaaaaaaaaaaaaaaaaaa
+aa                                                                             aaaaaaaaaaaaaaaaaaaaaaaa
+aa                                       O-----G                                   aaaaaaaaaaaaaaaaaaaa
+aa                                                                                 aaaaaaaaaaaaaaaaaaaa
+aa                           O-----B                                               a                 aa
+aa                                                                                 a                 aa
+aa               O-----G                                                           a                 aa
+aa                                                                                 a                 aa
+aa    @                                                                            a                 aa
+aaaaaaaaaaaaallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaaaaaaaaaaaaaaaaaaaa
+-
+levels//testreal3.txt
+fondoDesierto

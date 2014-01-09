@@ -1,0 +1,39 @@
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaa                                                 aaaa
+aaa                                                 aaaa
+aaa                                                 aaaa
+aaa                                                 aaaa
+aaa                                                 aaaa
+aaa               aaa aaa                           aaaa
+aaa               a     a                           aaaa
+aaa             aaa     aa                          aaaa
+aaa             a        a                          aaaa
+aaa           aaa        aa                         aaaa
+aaa           a           a                         aaaa
+aaa         aaa           aa                        <aaa
+aaa         a              a                        <aaa
+aaa       aaa              aa                       aaaa
+aaa       a                 a                       aaaa
+aaa    aaa                  aa                      aaaa
+aaa               @                                 aaaa
+aaaaa         aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaa       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaa                                             aaaa
+aaaaaaa                                             aaaa
+aaaaaaaaa     O--G                                  aaaa
+aaaaaaaaa                                           aaaa
+aaaaaaaaaaa                                         aaaa
+aaa  aaaaaa                                         aaaa
+aaa  aaaaaaa                                        aaaa
+aaa  a aaaaa                                        aaaa
+aaa  a aaaaaaa                                      aaaa
+aaa  a    aaaa                                      aaaa
+aaa  a    aaaasss                                   aaaa
+aaa  a       aaaa                                   aaaa
+aaa  a       aaaaaa                                 aaaa
+aaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+-
+levels//castle.txt
+fondoDesierto

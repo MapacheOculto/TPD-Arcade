@@ -1,0 +1,20 @@
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a                                           aaaaaaaaaaaa
+a                                               aaaaaaaa
+<                                                  aaaaa
+<                                                    aaa
+a @                                                   aa
+aaaa                                                  aa
+a  a                                                  aa
+a  aaaa                                               aa
+a  a  a                                               aa
+a  a  aaaa                                             a
+a  a  a  a                                             a
+a  a  a  a                                             <
+a  a  a  a                                             <
+aaaaaaaaaaaaaP---GaaaaaO---BaaaaP---Gaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaalllllaaaaalllllaaaawwwwwaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+-
+levels//testreal2.txt
+fondoDesierto

@@ -1,0 +1,23 @@
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a                                                                                                aa
+a                                                                                                aa
+a                                                                                                aa
+a         aaaa         aaaaaaaaaa     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa          aa         aa
+a         aaaaa    aaaaaaaaaaaaaaa    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa          aa      @  aa
+a  aaa    aaaaaaaaaaaaaaaaaaaaaaaaa                                                   aaaaaaaaaaaaa
+a                                                                                              aaaa
+a                                                                                              aaaa
+a                                                                                              aaaa
+aaaa    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa        aaaaaaaaaaa
+aa                                                                          aaaaaa          aaaaaaa
+aa                                                                             aaaaa          aaaaa
+aaaaaaaa                                aaaaaaaaaaaaaaaaa                        aaaaa          aaa
+aaaaaaaa                                 aaaaaaaaaaaaaaa                                        aaa
+<<                                                                                               aa
+<<                                                                             aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+-
+levels//castle.txt
+fondoDesierto
