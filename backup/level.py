@@ -173,16 +173,20 @@ class level:
         textSurf5 = self.font.render("inertiaCount: "+str(self.player1.inertiaCounter) , True,(0, 0, 0))
         textSurf6 = self.font.render("TIME: "+ str(int(self.totalElapsedTime)) , True,(0, 0, 0))
         textSurf7 = self.font.render("LIVES (P1): "+ str(self.player1.lives) , True,(0, 0, 0))
-        textSurf8 = self.font.render("yAdvance para otro player : "+ str(self.background.yAdvance) , True,(0, 0, 0))
+        textSurf8 = self.font.render("LIVES (P2): "+ str(self.player2.lives) , True,(0, 0, 0))
+        textSurf9 = self.font.render("Score (P1): "+ str(self.player1.score) , True,(0, 0, 0))
+        textSurf10 = self.font.render("Score (P2): "+ str(self.player2.score) , True,(0, 0, 0))
         screen.blit(textSurf,  (800, 70))
         screen.blit(textSurfqwe,  (800, 100))
         screen.blit(textSurf2, (800, 130))
         screen.blit(textSurf3, (800, 160))
         screen.blit(textSurf4, (800, 190))
         screen.blit(textSurf5, (800, 220))
-        screen.blit(textSurf7, (800, 250))
-        screen.blit(textSurf8,  (800, 300))
         screen.blit(textSurf6, (800, 350))
+        screen.blit(textSurf7, (800, 250))
+        screen.blit(textSurf8,  (900, 250))
+        screen.blit(textSurf9, (800, 300))
+        screen.blit(textSurf10, (900, 300))
 
 
 

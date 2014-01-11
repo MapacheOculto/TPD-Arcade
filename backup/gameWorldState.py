@@ -48,9 +48,9 @@ class gameWorldState(object):
                 self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath)
                 self.systemState.currentState.actualPath = "levels//test.txt"
             if self.playerPos == self.gameNodesList[1]:
-                actualPath = "levels//test2.txt"
+                actualPath = "levels//ex1.txt"
                 self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath)
-                self.systemState.currentState.actualPath = "levels//test2.txt"
+                self.systemState.currentState.actualPath = "levels//ex1.txt"
             if self.playerPos == self.gameNodesList[2]:
                 actualPath = "levels//castle2.txt"
                 self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath)

@@ -59,7 +59,7 @@ class Bala():
                 self.sprite.rect = pygame.Rect((self.X, self.Y), (self.sprite.rect.width, self.sprite.rect.height))
                 return True
             else:
-                print('choca')
+                #print('choca')
                 return False
         
             
@@ -124,7 +124,7 @@ class Proyectil:
                 self.sprite.rect = pygame.Rect((self.X, self.Y), (self.sprite.rect.width, self.sprite.rect.height))
                 return True
             else:
-                print('choca')
+                #print('choca')
                 return False
 
         else:
@@ -134,7 +134,6 @@ class Cannon:
     def __init__(self, x, y, color, rafaga, movil, angulo, velocidad, timer_entre_rafaga=2, timer_entre_proyectil=0.07):
         self.movil=movil
         self.angulo=math.radians(angulo)
-
         self.balas=Balas()
         self.x=x
         self.y=y

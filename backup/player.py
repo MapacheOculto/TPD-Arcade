@@ -43,14 +43,15 @@ class Player:
         self.joystick = joystick
         self.colisionada = None ##INTENTAR HACERLO CON UNA LISTA Y VERIFICAR TODOS LOS QUE ESTA COLISIONANDO
 
-        #POSICION
+        #POSICION Y OTROS INT
         self.X = x
         self.Y = y
         self.deltaY = 0.0
         self.deltaX = 0.0
         self.direction = 0
         self.speed = 100
-        self.lives = 5
+        self.lives = 10
+        self.score = 0
 
         # BOOLS
         self.falling = False
@@ -74,7 +75,8 @@ class Player:
         self.inertiaCounter = 0
         self.inertiaDirection = 0
         self.inertiaFrames = 40.0
-            
+
+        # Botones del joystick
         self.keyHeldPressed = False
         self.buttonPressed = False##
         self.buttonHeldPressed = False##
@@ -84,6 +86,7 @@ class Player:
         #COLOR
         self.color = "Green"
         self.companero = None
+
         #INICIALIZADORES
         self.initSpriteData()
         self.initImagesForAnimation()
@@ -180,9 +183,7 @@ class Player:
             self.falling = False
             self.freefall.stop()
             self.startJump()
-            self.lives -= 1
-            if self.lives == 0:
-                self.dead = True
+            self.takeDamage()
 
 
         ## CAMBIO ETAPA
@@ -324,7 +325,9 @@ class Player:
             pygame.draw.circle(surface, (0,0,255), (int(self.X), int(self.Y) -5), 6)
         elif self.color == "Green":
             pygame.draw.circle(surface, (0,255,0), (int(self.X), int(self.Y) -5), 6)
-            
+
+        #BORRARBORRAR
+        self.score += 0.5
             
                 
     # De acuerdo a los bools determinados en update, dibuja la animacion correspondiente
@@ -338,7 +341,6 @@ class Player:
                 self.animation(self.wallJumpRPath, len(self.wallJumpRPath))
             elif self.leftWallSliding:
                 self.animation(self.wallJumpRPath, len(self.wallJumpRPath))
-            #    self.animation(wallJumpLPath, len(wallJumpLPath))
             elif self.jumpStart:
                 self.animation(self.startJumpPath, len(self.startJumpPath))
                 if self.storyBoard.inProcess == False:
@@ -360,7 +362,6 @@ class Player:
                 self.animation(self.wallJumpRPath, len(self.wallJumpRPath))
             elif self.leftWallSliding:
                 self.animation(self.wallJumpRPath, len(self.wallJumpRPath))
-            #    self.animation(self.wallJumpLPath, len(self.wallJumpLPath))
             elif self.jumpStart:
                 self.animation(self.startJumpPath, len(self.startJumpPath))
                 if self.storyBoard.inProcess == False:
@@ -390,6 +391,17 @@ class Player:
         
         
     #---------------------------------------------------------------------------------------------
+    #-DAÑO-O-GANAR-PUNTAJE-----------------------------------------------------------
+    def takeDamage(self):
+        self.lives -= 1
+        if self.score > 10:
+            self.score -= 10
+        if self.lives == 0:
+            self.dead = True
+
+    def gainScore(self, value):
+        self.score += value
+    
     #-CAMINATA ----------------------------------------------------------------------
     def walk(self, group, xAdvance):
 
@@ -581,6 +593,7 @@ class Player:
             self.storyBoard.play(number, keys)
         elif self.storyBoard.inProcess:
             self.storyBoard.update(self.sprite, self.goingLeft)
+
 
     # Carga las imagenes y las convierte para no tener que volver a hacerlo despues
     def initImagesForAnimation(self):

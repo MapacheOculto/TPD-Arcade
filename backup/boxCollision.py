@@ -133,9 +133,11 @@ class boxCollision:
             rect = sprite.sprite.rect
             uncolor=sprite.color
             if uncolor != player.color and uncolor != "Todos":
-                print('damage')
+                #print('damage')
+                player.takeDamage()
                 return True
-
+            
+            player.gainScore(10)
             return True
             
         

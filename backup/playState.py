@@ -50,7 +50,11 @@ class playState(gameObject):
             self.currentLevel = level(self.joystickList, self.screenSize, self.actualPath)
 
         if self.currentLevel.background.endOfStageReached:
+            score1 = self.currentLevel.player1.score
+            score2 = self.currentLevel.player2.score
+            time = self.currentLevel.totalElapsedTime
             self.systemState.changeState("levelEndingState")
+            self.systemState.currentState.setParams(time, score1, score2) 
 
 
     def render(self):
