@@ -49,7 +49,7 @@ aaaaaaaa a       aaaaa
 aaaaaaaaaa    %  aaaaa
 aaaaaaaa a       aaaaa
 aaaaaaaaaa       aaaaa
-aaaaaaaa a  &    aaaaa
+aaaaaaaa a       aaaaa
 aaaaaaaaaa       aaaaa
 aaaaaaa          aaaaa
 aaaaaaa@         aaaaa
