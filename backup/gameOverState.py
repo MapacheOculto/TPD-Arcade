@@ -16,16 +16,16 @@ class gameOverState(gameObject):
     def update(self, elapsedTime):
         
         if len(self.joystickList) == 2:
-            startButton = self.joystickList[1].get_button(7) or self.joystickList[0].get_button(7)
+            retryButton = self.joystickList[1].get_button(7) or self.joystickList[0].get_button(7)
+            goBackButton = self.joystickList[1].get_button(3) or self.joystickList[0].get_button(3)
         else:
-            startButton = self.joystickList[0].get_button(7)
+            retryButton = self.joystickList[0].get_button(7)
+            goBackButton = self.joystickList[0].get_button(3)
 
-        pressedKey = pygame.key.get_pressed()
-        
-        if startButton:#pressedKey[K_SPACE]:
+        if retryButton:
             self.systemState.changeState("playState")
-        if pressedKey[K_TAB]:
-            self.systemState.changeState("titleState")
+        elif goBackButton:
+            self.systemState.changeState("gameWorldState")
 
     def render(self):
         screen = pygame.display.get_surface()

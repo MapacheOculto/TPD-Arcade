@@ -17,17 +17,18 @@ lavaAnimation = []
 
 class Background:
 
-    def __init__(self, screenSize):
+    def __init__(self, screenSize, initialPath):
 
         self.width = screenSize[0]
         self.height = screenSize[1]
+        self.endOfStageReached = False
         
         # RELATIVO A GRUPOS Y A LEVELMAKER
         self.initImagesForBackground()
         self.group = pygame.sprite.Group()
         self.exitGroup = pygame.sprite.Group()
         self.damageGroup = pygame.sprite.Group()
-        self.levelMaker = _2dLevelMaker(self.group, self.exitGroup, self.damageGroup, imageDictionary, screenSize)
+        self.levelMaker = _2dLevelMaker(self.group, self.exitGroup, self.damageGroup, imageDictionary, screenSize, initialPath)
         self.groupList = [self.group, self.exitGroup, self.damageGroup] ## VER SI SE PUEDEN HACER GRUPOS DE GRUPOS
 
         self.moveBackGroundForward = False
@@ -94,14 +95,16 @@ class Background:
         self.damageGroup.draw(surface)
 
     def changeBackground(self):
-        ## META: que archivo txt contenga el nombre del key para el fondo de pantalla
-        self.backgroundKey = self.levelMaker.nextBackgroundKey
-        self.group.empty()
-        self.exitGroup.empty()
-        self.damageGroup.empty()
-        #for group in self.groupList:
-        #   group.empty()
-        self.levelMaker = _2dLevelMaker(self.group, self.exitGroup, self.damageGroup, imageDictionary, (self.width, self.height), self.levelMaker.nextStagePath)
+        if self.levelMaker.nextStagePath != "---":
+            self.backgroundKey = self.levelMaker.nextBackgroundKey
+            self.group.empty()
+            self.exitGroup.empty()
+            self.damageGroup.empty()
+            #for group in self.groupList:
+            #   group.empty()
+            self.levelMaker = _2dLevelMaker(self.group, self.exitGroup, self.damageGroup, imageDictionary, (self.width, self.height), self.levelMaker.nextStagePath)
+        elif self.levelMaker.nextStagePath == "---":
+            self.endOfStageReached = True
 
 
     def initImagesForBackground(self):

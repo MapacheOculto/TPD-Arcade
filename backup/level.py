@@ -24,7 +24,7 @@ slide.set_volume(0.1)
 class level:
     
     # Constructor
-    def __init__(self, joystickList, screenSize):
+    def __init__(self, joystickList, screenSize, initialPath):
 
         self.screenSize = screenSize
         self.joystickList = joystickList
@@ -34,7 +34,7 @@ class level:
         self.playerInDeadZone = False
         self.totalElapsedTime = 0
 
-        self.background = Background(self.screenSize)
+        self.background = Background(self.screenSize, initialPath)
 
         x = self.background.levelMaker.startXPosition
         y = self.background.levelMaker.startYPosition
@@ -47,8 +47,10 @@ class level:
             self.player2 = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y) #-----------------#
         self.player1.id = "p1"
         self.player2.id = "p2"
+        
         self.player1.companero = self.player2
         self.player2.companero = self.player1
+
         # Flecha guia (para ubicar a otro player
         self.compassImageUp   = pygame.image.load("blocks//arrowUp.png").convert_alpha()
         self.compassImageDown = pygame.image.load("blocks//arrowDown.png").convert_alpha()
@@ -56,13 +58,7 @@ class level:
         self.compass.image = self.compassImageUp
         self.compassNeeded  = False
 
-
-
-
-                
-        
-
-        
+  
     # Update de todas las variables relevantes
     def update(self, elapsedTime):
 

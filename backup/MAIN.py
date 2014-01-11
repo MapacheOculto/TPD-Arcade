@@ -4,6 +4,8 @@ from systemState import *
 from playState import playState
 from titleState import titleState
 from gameOverState import gameOverState
+from gameWorldState import gameWorldState
+from LevelEndingState import LevelEndingState
 from pauseState import PauseState
 
 
@@ -39,12 +41,16 @@ class MAIN():
     menuState = titleState(joystickList, screenSize, systemState)
     gameOverState = gameOverState(joystickList, screenSize, systemState)
     pauseState = PauseState(joystickList, screenSize, systemState)
+    worldMapState = gameWorldState(joystickList, screenSize, systemState)
+    levelEndingState = LevelEndingState(joystickList, screenSize, systemState)
     
     # Se agregan estos estados a la instancia de systemState
     systemState.append(playState, "playState")
     systemState.append(menuState, "titleState")
     systemState.append(pauseState, "pauseState")
     systemState.append(gameOverState, "gameOverState")
+    systemState.append(levelEndingState, "levelEndingState")
+    systemState.append(worldMapState, "gameWorldState")
     
     # Se elije el estado de juego con el que se comenzara
     systemState.changeState("titleState")

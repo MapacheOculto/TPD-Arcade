@@ -25,7 +25,7 @@ class titleState(gameObject):
             startButton = self.joystickList[0].get_button(7)
         pressedKey = pygame.key.get_pressed()
         if startButton:#pressedKey[K_p]:
-            self.systemState.changeState("playState")
+            self.systemState.changeState("gameWorldState")
     
      
     def render(self):
