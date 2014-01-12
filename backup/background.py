@@ -115,13 +115,15 @@ class Background:
         imageDictionary.update({"lowEarth" : pygame.image.load("blocks//lowEarth.tif").convert()})
         imageDictionary.update({"topCement" : pygame.image.load("blocks//topa2.png").convert()})
         imageDictionary.update({"grass" : pygame.image.load("blocks//grass.png").convert()})
-        #imageDictionary.update({"bricks" : pygame.image.load("blocks//bricks.png").convert()})
-        imageDictionary.update({"lava" : pygame.image.load("blocks//lava4.png").convert()})
-        imageDictionary.update({"lavat" : pygame.image.load("blocks//lava4t.png").convert()})     
-        imageDictionary.update({"water" : pygame.image.load("blocks//ice.png").convert()})
-        imageDictionary.update({"watert" : pygame.image.load("blocks//ice2.png").convert()})
+        imageDictionary.update({"lava" : pygame.image.load("blocks//lava4.png").convert()})  
+        imageDictionary.update({"ice" : pygame.image.load("blocks//ice.png").convert()})
+        imageDictionary.update({"green" : pygame.image.load("blocks//green.png").convert()})
+        imageDictionary.update({"greent" : pygame.image.load("blocks//greenAlpha.png").convert()})   
+        imageDictionary.update({"blue" : pygame.image.load("blocks//blue.png").convert()})
+        imageDictionary.update({"bluet" : pygame.image.load("blocks//blueAlpha.png").convert()})
         imageDictionary.update({"sand" : pygame.image.load("blocks//sand.png").convert()})
         imageDictionary.update({"goldBrick" : pygame.image.load("blocks//goldBrick.png").convert()})
+        #imageDictionary.update({"bricks" : pygame.image.load("blocks//bricks.png").convert()})
 
         # imagenes de fondo
         imageDictionary.update({"fondo" : pygame.image.load("blocks//asddfg.jpg").convert()})
@@ -134,10 +136,10 @@ class Background:
         lavaAnimation.append(pygame.image.load("blocks//lava4.png").convert_alpha())
         
         # imagenes con animaciones
-        iceAnimation.append(pygame.image.load("blocks//iceGif0.png").convert_alpha())
-        iceAnimation.append(pygame.image.load("blocks//iceGif1.png").convert_alpha())
-        iceAnimation.append(pygame.image.load("blocks//iceGif2.png").convert_alpha())
-        iceAnimation.append(pygame.image.load("blocks//iceGif3.png").convert_alpha())
-        iceAnimation.append(pygame.image.load("blocks//iceGif4.png").convert_alpha())
+        iceAnimation.append(pygame.image.load("blocks//ice0.png").convert_alpha())
+        iceAnimation.append(pygame.image.load("blocks//ice1.png").convert_alpha())
+        iceAnimation.append(pygame.image.load("blocks//ice2.png").convert_alpha())
+        iceAnimation.append(pygame.image.load("blocks//ice3.png").convert_alpha())
+        iceAnimation.append(pygame.image.load("blocks//ice4.png").convert_alpha())
 
         

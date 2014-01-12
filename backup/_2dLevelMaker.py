@@ -155,7 +155,7 @@ class _2dLevelMaker:
                                                
         self.exitGroup.add(sprite);
 
-#METODO QUE CREA PLATAFORMAS (tipo corresponde a horizontal o vertical)
+    #METODO QUE CREA PLATAFORMAS (tipo corresponde a horizontal o vertical)
     def createPlatform(self, lines, j, i, tipo):
         #Horizontal y vertical
         color = ""
@@ -180,24 +180,25 @@ class _2dLevelMaker:
                    print "ERROR EN CREATEPLATFORM"
                    break
         if tipo == "V":
-                    aux = i - 1
-                    line = list(lines[j])
-                    while True:
-                       if line[aux] == '|':
-                          largo = largo + 1
-                          aux = aux - 1     
-                       elif line[aux] == 'G':
-                           color = "Green"
-                           largo = largo + 1
-                           return (color,1,largo)
-                       elif line[aux] == 'B':
-                           color = "Blue"
-                           largo = largo + 1
-                           return (color,1,largo)
-                       if aux > 100000:
-                           print "ERROR EN CREATEPLATFORM"
-                           break
-# METODO QUE CREA SPRITES (actualmente son todas plataformas)
+            aux = i - 1
+            line = list(lines[j])
+            while True:
+                if line[aux] == '|':
+                    largo = largo + 1
+                    aux = aux - 1     
+                elif line[aux] == 'G':
+                    color = "Green"
+                    largo = largo + 1
+                    return (color,1,largo)
+                elif line[aux] == 'B':
+                    color = "Blue"
+                    largo = largo + 1
+                    return (color,1,largo)
+                if aux > 100000:
+                    print "ERROR EN CREATEPLATFORM"
+                    break
+
+    # METODO QUE CREA SPRITES (actualmente son todas plataformas)
     def createSprite(self,lines, j, i, character):
         self.stageScale = 50
         
@@ -215,43 +216,36 @@ class _2dLevelMaker:
         elif character == "t":
             sprite.image = self.imageDictionary["lowEarth"]
             sprite.imagen2 = self.imageDictionary["lowEarth"]
-        elif character == "b":
-            sprite.image = self.imageDictionary["water"]
-            sprite.imagen2 = self.imageDictionary["watert"]
-            sprite.color = "Blue"     
-        elif character == "l":
-            sprite.image = self.imageDictionary["lavat"]
-            sprite.imagen2 = self.imageDictionary["lavat"]
         elif character == "s":
             sprite.image = self.imageDictionary["sand"]
             sprite.imagen2 = self.imageDictionary["sand"]
-        elif character == "w":
-            sprite.image = self.imageDictionary["watert"]
-            sprite.imagen2 = self.imageDictionary["watert"]
-        elif character == 'r':
-            sprite.image = self.imageDictionary["lava"]
-            sprite.imagen2 = self.imageDictionary["lava"]
-            #sprite.color = "Green"
+        elif character == "b":##################
+            sprite.image = self.imageDictionary["blue"]##################
+            sprite.imagen2 = self.imageDictionary["bluet"]##################
+            sprite.color = "Blue"     ##################
+        elif character == 'r':##################
+            sprite.image = self.imageDictionary["lava"]##################
+            sprite.imagen2 = self.imageDictionary["lava"]##################
+            #sprite.color = "Green"##################
         elif character == "O":
-             sprite.image = self.imageDictionary["water"]
-             sprite.imagen2 = self.imageDictionary["watert"]
+             sprite.image = self.imageDictionary["blue"]
+             sprite.imagen2 = self.imageDictionary["bluet"]
              sprite.color = "Blue" 
         elif character == "P":
-            sprite.image = self.imageDictionary["lava"]
-            sprite.imagen2 = self.imageDictionary["lavat"]
+            sprite.image = self.imageDictionary["green"]
+            sprite.imagen2 = self.imageDictionary["greent"]
             sprite.color = "Green"
         elif character == "Q":
-            sprite.image = self.imageDictionary["water"]
-            sprite.imagen2 = self.imageDictionary["watert"]
+            sprite.image = self.imageDictionary["blue"]
+            sprite.imagen2 = self.imageDictionary["bluet"]
             sprite.color = "Blue" 
         elif character == "F":
-            sprite.image = self.imageDictionary["lava"]
-            sprite.imagen2 = self.imageDictionary["lavat"]
+            sprite.image = self.imageDictionary["green"]
+            sprite.imagen2 = self.imageDictionary["greent"]
             sprite.color = "Green"    
-
         else: 
             sprite.image = self.imageDictionary["lava"]
-            sprite.imagen2 = self.imageDictionary["lavat"]
+            sprite.imagen2 = self.imageDictionary["lava"]
             sprite.color = "Green"
 
         if character == "P" or character == "O":
