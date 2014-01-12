@@ -80,6 +80,11 @@ class Player:
         self.keyHeldPressed = False
         self.buttonPressed = False##
         self.buttonHeldPressed = False##
+        self.joystickCounter= 0
+        self.joystickButtonOn = False
+        self.allowJoystickPressing = True
+
+        # STAGE Y MUERTE
         self.exitStage = False
         self.dead = False
 
@@ -155,15 +160,28 @@ class Player:
         
 
         ## JOYSTICK
-        if self.buttonHeldPressed:
+           """
+        if self.buttonPressed:
+            self.joystickCounter += 1
+
+        if self.joystick.get_button(0) and self.joystickCounter >= 2:
             self.buttonPressed = False
-        if not self.joystick.get_button(0):
-            self.buttonHeldPressed = False
-        if self.joystick.get_button(0):
+            self.joystickCounter = 0
+            alert.play()
+            
+        if self.joystick.get_button(0) and not self.buttonPressed:
+            self.buttonPressed = True"""
+        if not self.joystick.get_button(0) and self.joystickButtonOn:
+            self.joystickButtonOn = False
+            self.allowJoystickPressing = True
+        if self.joystick.get_button(0)and self.joystickButtonOn and not self.allowJoystickPressing:
+            self.buttonPressed = False
+        if self.joystick.get_button(0) and not self.buttonPressed and self.allowJoystickPressing:
+            self.allowJoystickPressing = False
             self.buttonPressed = True
-        if self.buttonPressed and self.joystick.get_button(0):
-            self.buttonHeldPressed = True
-        
+            self.joystickButtonOn = True
+        print self.buttonPressed
+
 
         ## CAIDA LIBRE
         if not clashingDown: 

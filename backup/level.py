@@ -54,9 +54,13 @@ class level:
         # Flecha guia (para ubicar a otro player
         self.compassImageUp   = pygame.image.load("blocks//arrowUp.png").convert_alpha()
         self.compassImageDown = pygame.image.load("blocks//arrowDown.png").convert_alpha()
+        self.compassImageRight = pygame.image.load("blocks//arrowRight.png").convert_alpha()
+        self.compassImageLeft = pygame.image.load("blocks//arrowLeft.png").convert_alpha()
         self.compass = pygame.sprite.Sprite()
         self.compass.image = self.compassImageUp
-        self.compassNeeded  = False
+        self.verticalCompassNeeded  = False
+        self.horizontalCompassNeeded = False
+        self.P1horizontalCompassNeeded = False
 
   
     # Update de todas las variables relevantes
@@ -72,9 +76,18 @@ class level:
 
         # Brujula que apunta a player 2
         if  self.player2.Y <= -50 or self.player2.Y >= self.screenSize[1]:
-            self.compassNeeded = True
+            self.horizontalCompassNeeded = True
+        elif self.player2.X <= -50 or self.player2.X >= self.screenSize[0]:
+            self.verticalCompassNeeded = True
         else:
-            self.compassNeeded = False
+            self.horizontalCompassNeeded = False
+            self.verticalCompassNeeded = False
+            
+        # Brujula que apunta a player 1
+        if  self.player1.Y <= -50 or self.player1.Y >= self.screenSize[1]:
+            self.P1horizontalCompassNeeded = True
+        else:
+            self.P1horizontalCompassNeeded = False
         
         # Update a las instancias del nivel
         #for sprite in self.background.group:
@@ -92,7 +105,8 @@ class level:
         #                   sprite.activada = True
         #        if (pygame.sprite.collide_rect(sprite,self.player2.sprite)):
         #               if(self.player2.color == sprite.color):
-        #                   sprite.activada = True          
+        #                   sprite.activada = True
+        
         for sprite in self.background.group:
             sprite.activada = False             
         self.player2.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.groupList)#-----------------#
@@ -154,28 +168,41 @@ class level:
             torreta.render()
 
         # Brujula que apunta a otro player
-        if self.compassNeeded:
-            if self.player2.Y <= -50:
+        if self.horizontalCompassNeeded or self.P1horizontalCompassNeeded:
+            if self.player2.Y <= -50 or self.player1.Y <= -50:
                 self.compass.image = self.compassImageUp
-                screen.blit(self.compass.image, (self.player2.X, 0))
-            elif self.player2.Y >= self.screenSize[1]:
+                if self.player2.Y <= -50:
+                    screen.blit(self.compass.image, (self.player2.X, 0))
+                else:
+                    screen.blit(self.compass.image, (self.player1.X, 0))
+            if self.player2.Y >= self.screenSize[1] or self.player1.Y >= self.screenSize[1]:
                 self.compass.image = self.compassImageDown
-                screen.blit(self.compass.image, (self.player2.X, self.screenSize[1] - 15))
+                if self.player2.Y >= self.screenSize[1]:
+                    screen.blit(self.compass.image, (self.player2.X, self.screenSize[1] - 15))
+                else:
+                    screen.blit(self.compass.image, (self.player1.X, self.screenSize[1] - 15))
+        if self.verticalCompassNeeded:
+            if self.player2.X <= -50:
+                self.compass.image = self.compassImageLeft
+                screen.blit(self.compass.image, (0, self.player2.Y))
+            if self.player2.X >= self.screenSize[0]:
+                self.compass.image = self.compassImageRight
+                screen.blit(self.compass.image, ((self.screenSize[0] - 15), self.player2.Y))
 
 
         # Aqui va por si se quiere escribir algo en Pantalla.
         # Actualmente : Posicion mas otros 
-        textSurf  = self.font.render("("+str(self.player1.X)+" , "+str(self.player1.Y)+")" , True,(0, 0, 0))
-        textSurfqwe  = self.font.render("("+str(self.player2.X)+" , "+str(self.player2.Y)+")" , True,(0, 0, 0))
+        textSurf  = self.font.render("("+str(int(self.player1.X))+" , "+str(int(self.player1.Y))+")" , True,(0, 0, 0))
+        textSurfqwe  = self.font.render("("+str(int(self.player2.X))+" , "+str(int(self.player2.Y))+")" , True,(0, 0, 0))
         textSurf2 = self.font.render("walking : "+str(self.player1.walking) , True,(0, 0, 0))
         textSurf3 = self.font.render("jumping : "+str(self.player1.jumping) , True,(0, 0, 0))
         textSurf4 = self.font.render("falling : "+str(self.player1.falling) , True,(0, 0, 0))
         textSurf5 = self.font.render("inertiaCount: "+str(self.player1.inertiaCounter) , True,(0, 0, 0))
         textSurf6 = self.font.render("TIME: "+ str(int(self.totalElapsedTime)) , True,(0, 0, 0))
         textSurf7 = self.font.render("LIVES (P1): "+ str(self.player1.lives) , True,(0, 0, 0))
-        textSurf8 = self.font.render("LIVES (P2): "+ str(self.player2.lives) , True,(0, 0, 0))
-        textSurf9 = self.font.render("Score (P1): "+ str(self.player1.score) , True,(0, 0, 0))
-        textSurf10 = self.font.render("Score (P2): "+ str(self.player2.score) , True,(0, 0, 0))
+        textSurf8 = self.font.render("(P2): "+ str(self.player2.lives) , True,(0, 0, 0))
+        textSurf9 = self.font.render("Score (P1): "+ str(int(self.player1.score)) , True,(0, 0, 0))
+        textSurf10 = self.font.render("(P2): "+ str(int(self.player2.score)) , True,(0, 0, 0))
         screen.blit(textSurf,  (800, 70))
         screen.blit(textSurfqwe,  (800, 100))
         screen.blit(textSurf2, (800, 130))
@@ -205,20 +232,27 @@ class level:
         bottomStageY = lastRect.top
         halfH = self.screenSize[1]/2.0
         height = self.screenSize[1]
+
+        levelHigherThanScreen = self.background.levelMaker.height * 50 > self.screenSize[1]
     
         _2playerUpperLimit = 0
         _2playerBottomLimit = height - 100
         _2PlayerInScreen = player2.Y >= _2playerUpperLimit and player2.Y <= _2playerBottomLimit
         # El 50 es para tomar en cuenta la altura del personaje
         _2PlayerInRealScreen = player2.Y >= -50 and player2.Y <= height
+        _1PlayerInRealScreen = player1.Y >= -50 and player1.Y <= height
                 
         deltaDownDeadZone = abs(firstRect.top) # Background moving down
         deltaUpDeadZone = lastRect.top - height # Background moving up
 
+        # Caso en que etapa es demasiado pequena
+        if not levelHigherThanScreen:
+            player1.Y -= player1.deltaY
+            
         # Si player esta centrado y player 2 se encuentra en pantalla ficticia
         # Camara seguira a player 1 hasta que player 2 salga de pantalla por delta de player 1
         # Revisar que se respeten las deadZones
-        if player1.Y == halfH and _2PlayerInScreen:
+        elif player1.Y == halfH and _2PlayerInScreen:
         
             # Caso en que el player2 esta dentro del area y no toca los bordes
             if (player2.Y + player1.deltaY > _2playerUpperLimit) and (player2.Y + player1.deltaY < _2playerBottomLimit):
@@ -273,7 +307,7 @@ class level:
         # Si player esta centrado y player 2 esta en la pantalla real, pero no en la ficticia
         # En este caso se ajusta la camara para que player 2 quede en la pantalla ficticia
         # Revisar que se respeten las deadZones
-        elif _2PlayerInRealScreen and not _2PlayerInScreen and not player2.jumping and not player2.falling and not player2.wallJumping:
+        elif _2PlayerInRealScreen and _1PlayerInRealScreen and not _2PlayerInScreen and not player2.jumping and not player2.falling and not player2.wallJumping:
             
             """ ERROR DE QUE SE LLAMA A DELTAP1 ANTES DE ASIGNARLE UN VALOR """
 
@@ -298,6 +332,11 @@ class level:
             player1.Y -= deltaP1
             player2.Y += self.background.yAdvance#------------------------------------------#
 
+        # Si ningun player esta en pantalla, esta se centra automaticamente en player 1
+        # es una prueba
+        elif not _2PlayerInRealScreen and not _1PlayerInRealScreen :
+            pass
+        
         # Si player 1 no esta centrado : 
         # Si player 2 esta en pantalla, se centrara sujeto a que no quede fuera de pantalla ficticia
         # Si player 2 no esta en pantalla, solo se centrara
@@ -369,6 +408,9 @@ class level:
 
     # Se encarga de movimiento horizontal para camara con dos jugadores
     def backgroundXMovementManager(self, player1, player2):
+
+        levelWiderThanScreen = self.background.levelMaker.width * 50 > self.screenSize[0]
+
         # Obtiene los valores de posicion de primer y ultimo sprite del grupo
         firstRect = self.background.levelMaker.firstRect
         lastRect  = self.background.levelMaker.lastRect
@@ -377,8 +419,12 @@ class level:
         leftStageX = firstRect.left
         rightStageX = lastRect.left
         halfW = self.screenSize[0]/2.0
-        
-        if  ((player1.X + player1.deltaX) - leftStageX <= halfW) and (player1.X - leftStageX > halfW) and player1.deltaX < 0:
+
+
+        if not levelWiderThanScreen:
+            player1.X += player1.deltaX
+
+        elif  ((player1.X + player1.deltaX) - leftStageX <= halfW) and (player1.X - leftStageX > halfW) and player1.deltaX < 0:
             rightPart = player1.X - (halfW + leftStageX)
             leftPart = abs(player1.deltaX) - rightPart
 
@@ -409,7 +455,7 @@ class level:
             player1.X += player1.deltaX + leftPart
             self.background.moveBackGroundForward = True
             self.background.xAdvance = abs(leftPart)
-            
+        
         elif((player1.X - leftStageX) >= halfW) and ((rightStageX - player1.X) >= halfW):
             self.background.xAdvance = -int(player1.deltaX)
             if player1.deltaX > 0:
@@ -421,16 +467,5 @@ class level:
 
 
         player2.X += self.background.xAdvance#---------------------------#
-        """clashed = self.clashManager.CheckCollision(self, group, player2.X + deltaP1, player2.Y) 
-        if clashed:
-            if deltaP2 > 0:
-                floorX = self.clashManager.leftX - (50)
-            elif deltaP2 < 0:
-                floorX = self.clashManager.rightX 
-            deltaP1 = floorX - self.X"""
-        """
-        if player2.X < 0:
-            player2.X = 0 
-        if player2.X > (halfW * 2 - 50):
-            player2.X = 2*halfW - 50"""
+        
 
