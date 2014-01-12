@@ -59,7 +59,7 @@ a@         aaaaa
 aaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaa
 -
 levels//test.txt
 fondoDesierto

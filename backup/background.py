@@ -14,6 +14,7 @@ alert=mixer.Sound('sounds//jump.wav')
 imageDictionary = {}
 ## Path de las animaciones de fondo
 lavaAnimation = []
+iceAnimation = []
 
 class Background:
 
@@ -28,7 +29,7 @@ class Background:
         self.group = pygame.sprite.Group()
         self.exitGroup = pygame.sprite.Group()
         self.damageGroup = pygame.sprite.Group()
-        self.levelMaker = _2dLevelMaker(self.group, self.exitGroup, self.damageGroup, imageDictionary, screenSize, initialPath)
+        self.levelMaker = _2dLevelMaker(self.group, self.exitGroup, self.damageGroup, imageDictionary, lavaAnimation, iceAnimation, screenSize, initialPath)
         self.groupList = [self.group, self.exitGroup, self.damageGroup] ## VER SI SE PUEDEN HACER GRUPOS DE GRUPOS
 
         self.moveBackGroundForward = False
@@ -78,6 +79,7 @@ class Background:
         self.yAdvance = 0
 
         self.group.update()
+        self.damageGroup.update()
         
 
     def render(self):
@@ -102,7 +104,7 @@ class Background:
             self.damageGroup.empty()
             #for group in self.groupList:
             #   group.empty()
-            self.levelMaker = _2dLevelMaker(self.group, self.exitGroup, self.damageGroup, imageDictionary, (self.width, self.height), self.levelMaker.nextStagePath)
+            self.levelMaker = _2dLevelMaker(self.group, self.exitGroup, self.damageGroup, imageDictionary, lavaAnimation, iceAnimation, (self.width, self.height), self.levelMaker.nextStagePath)
         elif self.levelMaker.nextStagePath == "---":
             self.endOfStageReached = True
 
@@ -125,9 +127,17 @@ class Background:
         imageDictionary.update({"fondo" : pygame.image.load("blocks//asddfg.jpg").convert()})
         imageDictionary.update({"fondoDesierto" : pygame.image.load("blocks//fondoDesierto.png").convert()})
 
-        # imagenes con animaciones (experimento)[] ##******************************
-        lavaAnimation.append(pygame.image.load("blocks//lava.png").convert_alpha()) ##******************************
-        lavaAnimation.append(pygame.image.load("blocks//lava0.png").convert_alpha()) ##******************************
-        lavaAnimation.append(pygame.image.load("blocks//lava1.png").convert_alpha()) ##******************************
-        lavaAnimation.append(pygame.image.load("blocks//lava2.png").convert_alpha()) ##******************************
+        # imagenes con animaciones
+        lavaAnimation.append(pygame.image.load("blocks//lava1.png").convert_alpha())
+        lavaAnimation.append(pygame.image.load("blocks//lava2.png").convert_alpha()) 
+        lavaAnimation.append(pygame.image.load("blocks//lava3.png").convert_alpha())
+        lavaAnimation.append(pygame.image.load("blocks//lava4.png").convert_alpha())
+        
+        # imagenes con animaciones
+        iceAnimation.append(pygame.image.load("blocks//iceGif0.png").convert_alpha())
+        iceAnimation.append(pygame.image.load("blocks//iceGif1.png").convert_alpha())
+        iceAnimation.append(pygame.image.load("blocks//iceGif2.png").convert_alpha())
+        iceAnimation.append(pygame.image.load("blocks//iceGif3.png").convert_alpha())
+        iceAnimation.append(pygame.image.load("blocks//iceGif4.png").convert_alpha())
+
         

@@ -80,9 +80,8 @@ class Player:
         self.keyHeldPressed = False
         self.buttonPressed = False##
         self.buttonHeldPressed = False##
-        self.joystickCounter= 0
-        self.joystickButtonOn = False
-        self.allowJoystickPressing = True
+        self.joystickButtonActivated = False
+        self.allowButtonPressing = True
 
         # STAGE Y MUERTE
         self.exitStage = False
@@ -160,27 +159,15 @@ class Player:
         
 
         ## JOYSTICK
-           """
-        if self.buttonPressed:
-            self.joystickCounter += 1
-
-        if self.joystick.get_button(0) and self.joystickCounter >= 2:
+        if not self.joystick.get_button(0) and self.joystickButtonActivated:
+            self.joystickButtonActivated = False
+            self.allowButtonPressing = True
+        if self.joystick.get_button(0) and self.joystickButtonActivated and not self.allowButtonPressing:
             self.buttonPressed = False
-            self.joystickCounter = 0
-            alert.play()
-            
-        if self.joystick.get_button(0) and not self.buttonPressed:
-            self.buttonPressed = True"""
-        if not self.joystick.get_button(0) and self.joystickButtonOn:
-            self.joystickButtonOn = False
-            self.allowJoystickPressing = True
-        if self.joystick.get_button(0)and self.joystickButtonOn and not self.allowJoystickPressing:
-            self.buttonPressed = False
-        if self.joystick.get_button(0) and not self.buttonPressed and self.allowJoystickPressing:
-            self.allowJoystickPressing = False
+        if self.joystick.get_button(0) and not self.buttonPressed and self.allowButtonPressing:
+            self.allowButtonPressing = False
             self.buttonPressed = True
-            self.joystickButtonOn = True
-        print self.buttonPressed
+            self.joystickButtonActivated = True
 
 
         ## CAIDA LIBRE
@@ -212,11 +199,6 @@ class Player:
         ## CAMINATA (ahora con joystick)
         if abs(self.joystick.get_axis(0)) > 0.3:##
             temporalDirection = self.joystick.get_axis(0)##
-        pressedKey = pygame.key.get_pressed()
-        if pressedKey[K_RIGHT]:
-            temporalDirection = 1
-        if pressedKey[K_LEFT]:
-            temporalDirection = -1
 
         self.deltaX = int( 4 * temporalDirection * elapsedTime * self.speed)
         if abs(self.deltaX) > 0:
@@ -240,7 +222,7 @@ class Player:
                 self.pressedAgainstWall = True
                 self.jumping = False
                 self.freefall.stop()
-                self.deltaY = -2 ############################
+                self.deltaY = -2 ########################
                 if self.clashManager.CheckCollision(self, group, self.X, self.Y + 2):
                     floorY = self.clashManager.topY - (self.sprite.rect.height)
                     self.deltaY = self.Y - floorY
@@ -258,11 +240,6 @@ class Player:
                 self.buttonPressed = False
                 self.freefall.stop()##
                 self.wallJumpStart(self.rightWallSliding)##
-        if self.rightWallSliding or self.leftWallSliding:
-            if pressedKey[K_SPACE] and not self.keyHeldPressed:
-                self.keyHeldPressed = True ## Esto es para que no reaccione a cada vez que se apreta espacio
-                self.freefall.stop()
-                self.wallJumpStart(self.rightWallSliding)
         if self.wallJumping:
             self.updateWallJump(group, elapsedTime)
             
@@ -272,11 +249,7 @@ class Player:
             self.jumpStart = True##
             self.startJump()##
             self.buttonPressed = False
-
-        if pressedKey[K_SPACE] and not self.falling and not self.keyHeldPressed and not self.wallJumping:# and not self.jumping:
-                self.keyHeldPressed = True
-                self.jumpStart = True
-                self.startJump()
+            
         if self.jumping and not self.pressedAgainstWall:
             self.updateJump(group, elapsedTime)
 
@@ -344,7 +317,7 @@ class Player:
         elif self.color == "Green":
             pygame.draw.circle(surface, (0,255,0), (int(self.X), int(self.Y) -5), 6)
 
-        #BORRARBORRAR
+        #BORRAR-----------------------------------------------------------------------------------------------------------BORRAR
         self.score += 0.5
             
                 

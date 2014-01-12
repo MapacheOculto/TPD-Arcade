@@ -214,6 +214,9 @@ class level:
         screen.blit(textSurf8,  (900, 250))
         screen.blit(textSurf9, (800, 300))
         screen.blit(textSurf10, (900, 300))
+        
+        textSurf11 = self.font.render("wallStickLag: "+ str(int(self.player1.wallStickLag)) , True,(0, 0, 0))
+        screen.blit(textSurf11, (900, 400))
 
 
 

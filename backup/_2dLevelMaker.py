@@ -3,10 +3,11 @@ from pygame.locals import *
 from platform import Platform
 from enemigos import Turret
 from enemigos import Cannon
+from damageFields import DamageField
 
 class _2dLevelMaker:
         
-    def __init__(self, group, exitGroup, damageGroup, imageDictionary, screenSize, filePath = "levels//ex1.txt"):
+    def __init__(self, group, exitGroup, damageGroup, imageDictionary, lavaDict, iceDict, screenSize, filePath = "levels//ex1.txt"):
         # ATRIBUTOS
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
@@ -22,6 +23,8 @@ class _2dLevelMaker:
 
         # SPRITES
         self.imageDictionary = imageDictionary
+        self.lavaDict = lavaDict
+        self.iceDict = iceDict
 
         # FILE Y SCREEN SIZE
         self.readFile(filePath)
@@ -302,16 +305,21 @@ class _2dLevelMaker:
         x = self.stageScale * (j)
         y = self.stageScale * (i)
 
-        sprite = Platform() 
+        rect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
+        
+        ###sprite = Platform()
         if character == "l":
-            sprite.image = self.imageDictionary["lava"]
+            ###sprite.image = self.imageDictionary["lava"]
+            sprite = DamageField(self.lavaDict, rect)
         elif character == "w":
-            sprite.image = self.imageDictionary["water"]
+            ###sprite.image = self.imageDictionary["water"]
+            sprite = DamageField(self.iceDict, rect)
         else: 
-            sprite.image = self.imageDictionary["bricks"]
+            ###sprite.image = self.imageDictionary["bricks"]
+            sprite = DamageField(self.lavaDict, rect)
 
-        sprite.image = pygame.transform.scale(sprite.image, (self.stageScale, self.stageScale))
-        sprite.rect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
+        ###sprite.image = pygame.transform.scale(sprite.image, (self.stageScale, self.stageScale))
+        ###sprite.rect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
 
         # Define rectangulos que serviran para delimitar etapa y limitar movimiento de la camara
         if i == 0 and j == 0:
@@ -319,7 +327,12 @@ class _2dLevelMaker:
         elif i == (self.height - 1) and j == (self.width - 1):
             self.lastRect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
         
-        self.damageGroup.add(sprite);     
+        self.damageGroup.add(sprite);
+
+    # METODO PARA TENER LISTOS LOS DICT
+    def setDamageDictionaries(self):
+        self.lavaDic = {}
+        self.waterDic = {}
 
    
    
