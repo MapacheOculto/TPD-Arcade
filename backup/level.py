@@ -7,8 +7,7 @@ from pygame import mixer
 from storyBoard2 import StoryBoard2
 from projectileMotion import ProjectileMotion
 from freefall import FreeFall
-from enemigos import Turret
-from enemigos import Cannon
+
 
 # Relativo a los sonidos
 mixer.init()
@@ -114,7 +113,10 @@ class level:
         self.backgroundXMovementManager(self.player1, self.player2)
         self.backgroundYMovementManager(self.player1, self.player2)
         for torreta in self.background.levelMaker.torretas:
-            torreta.update(elapsedTime,self.background.group,[self.player1.X,self.player1.Y],self.background.xAdvance, self.background.yAdvance, self.player1, self.screenSize)
+            if torreta.color=='Green':
+                torreta.update(elapsedTime,self.background.group,[self.player1.X,self.player1.Y],self.background.xAdvance, self.background.yAdvance, self.player1, self.screenSize)
+            elif torreta.color=='Blue':
+                torreta.update(elapsedTime,self.background.group,[self.player2.X,self.player2.Y],self.background.xAdvance, self.background.yAdvance, self.player2, self.screenSize)
         self.background.update(elapsedTime, self.player1.X, self.player1.Y)
         
         """
