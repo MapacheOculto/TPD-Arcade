@@ -59,7 +59,7 @@ class Bala():
                 self.sprite.rect = pygame.Rect((self.X, self.Y), (self.sprite.rect.width, self.sprite.rect.height))
                 return True
             else:
-                #print('choca')
+                player.takeDamage()
                 return False
         
             
@@ -124,7 +124,7 @@ class Proyectil:
                 self.sprite.rect = pygame.Rect((self.X, self.Y), (self.sprite.rect.width, self.sprite.rect.height))
                 return True
             else:
-                #print('choca')
+                player.takeDamage()
                 return False
 
         else:
