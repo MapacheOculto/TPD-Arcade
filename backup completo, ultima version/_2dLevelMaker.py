@@ -257,28 +257,28 @@ class _2dLevelMaker:
             sprite.image = self.imageDictionary["sand"]
             sprite.imagen2 = self.imageDictionary["sand"]
         elif character == "b":##################
-            sprite.image = self.imageDictionary["blue"]##################
-            sprite.imagen2 = self.imageDictionary["bluet"]##################
+            sprite.image = self.imageDictionary["blueAlpha"]##################
+            sprite.imagen2 = self.imageDictionary["blue"]##################
             sprite.color = "Blue"     ##################
         elif character == 'r':##################
             sprite.image = self.imageDictionary["lava"]##################
             sprite.imagen2 = self.imageDictionary["lava"]##################
             #sprite.color = "Green"##################
         elif character == "O":
-             sprite.image = self.imageDictionary["blue"]
-             sprite.imagen2 = self.imageDictionary["bluet"]
+             sprite.image = self.imageDictionary["blueAlpha"]
+             sprite.imagen2 = self.imageDictionary["blue"]
              sprite.color = "Blue" 
         elif character == "P":
-            sprite.image = self.imageDictionary["green"]
-            sprite.imagen2 = self.imageDictionary["greent"]
+            sprite.image = self.imageDictionary["greenAlpha"]
+            sprite.imagen2 = self.imageDictionary["green"]
             sprite.color = "Green"
         elif character == "Q":
-            sprite.image = self.imageDictionary["blue"]
-            sprite.imagen2 = self.imageDictionary["bluet"]
+            sprite.image = self.imageDictionary["blueAlpha"]
+            sprite.imagen2 = self.imageDictionary["blue"]
             sprite.color = "Blue" 
         elif character == "F":
-            sprite.image = self.imageDictionary["green"]
-            sprite.imagen2 = self.imageDictionary["greent"]
+            sprite.image = self.imageDictionary["greenAlpha"]
+            sprite.imagen2 = self.imageDictionary["green"]
             sprite.color = "Green"    
         else: 
             sprite.image = self.imageDictionary["lava"]
@@ -309,10 +309,6 @@ class _2dLevelMaker:
             sprite.imagen2 = pygame.transform.scale(sprite.imagen2, (int(0.5*self.stageScale), 5*self.stageScale))
             sprite.rect = pygame.Rect((x, y), (int(0.5*self.stageScale), 5*self.stageScale))
             sprite.imagenoriginal = sprite.image   
-            if character == "F":
-                sprite.color = "Green"
-            elif character == "Q":
-                sprite.color = "Blue"
         else:
             sprite.x_scale = self.stageScale 
             sprite.y_scale = self.stageScale

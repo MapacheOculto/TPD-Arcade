@@ -9,11 +9,11 @@ aa                                                                             a
 aa                                                                             aaaaaaaaaaaaaaaaaaaaaaaa
 aa                                                   O-----B                   aaaaaaaaaaaaaaaaaaaaaaaa
 aa                                                                             aaaaaaaaaaaaaaaaaaaaaaaa
-aa                                       O-----G                                   aaaaaaaaaaaaaaaaaaaa
+aa                                       P-----G                                   aaaaaaaaaaaaaaaaaaaa
 aa                                                                                 aaaaaaaaaaaaaaaaaaaa
 aa                           O-----B                                               a                 aa
 aa                                                                                 a                 aa
-aa               O-----G                                                           a                 aa
+aa               P-----G                                                           a                 aa
 aa                                                                                 a                 aa
 aa    @                                                                            a                 aa
 aaaaaaaaaaaaallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaaaaaaaaaaaaaaaaaaaa
