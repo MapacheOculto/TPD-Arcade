@@ -70,7 +70,7 @@ class Proyectil:
     def __init__(self, x, y, velocidad, angulo,color,clashManager=boxCollision()):
         self.angulo=angulo
         self.velocidad=velocidad
-        self.movParab=ProjectileMotion(20, self.velocidad/2, math.degrees(self.angulo))
+        self.movParab=ProjectileMotion(10, self.velocidad/6, math.degrees(self.angulo)+20)
         self.clashManager=clashManager
         self.sprite = pygame.sprite.Sprite()
         self.X = x
@@ -144,7 +144,7 @@ class Cannon:
         self.sprite.image=pygame.image.load('enemigos//torreta2.png').convert_alpha()
         self.height=int(self.sprite.image.get_height())
         self.width=int(self.sprite.image.get_width())
-        self.cannon=[self.x-15, self.y-10]
+        self.cannon=[self.x-13, self.y-13]
         self.velocidad=velocidad
         self.sprite.rect=pygame.Rect((self.x, self.y), (self.width, self.height))
         self.timer=0
@@ -154,6 +154,13 @@ class Cannon:
         self.disparos=0
         self.rafaga=rafaga
         self.color=color
+        if self.color=='Multi':
+            self.multi=True
+            self.color='Green'
+        else:
+            self.multi=False
+    
+            
         
     def rotar_respecto_esquina(self, ima, angulo, v_x, v_y):
         w = ima.get_width()/2
@@ -236,10 +243,12 @@ class Cannon:
                 else:
                     self.disparos=0
                     self.timer=0
-                    if self.color=='Green':
-                        self.color='Blue'
-                    else:
-                        self.color='Green'
+                    if self.multi:
+                        if self.color=='Green':
+                            self.color='Blue'
+                        else:
+                            self.color='Green'
+
                     
             else:
                 self.timer+=elapsedTime
@@ -279,6 +288,11 @@ class Turret:
         self.disparos=0
         self.rafaga=rafaga
         self.color=color
+        if self.color=='Multi':
+            self.multi=True
+            self.color='Green'
+        else:
+            self.multi=False
         
     def rotar_respecto_esquina(self, ima, angulo, v_x, v_y):
         w = ima.get_width()/2
@@ -351,10 +365,12 @@ class Turret:
                 else:
                     self.disparos=0
                     self.timer=0
-                    if self.color=='Green':
-                        self.color='Blue'
-                    else:
-                        self.color='Green'
+                    if self.multi:
+                        if self.color=='Green':
+                            self.color='Blue'
+                        else:
+                            self.color='Green'
+
                     
             else:
                 self.timer+=elapsedTime

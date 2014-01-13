@@ -20,6 +20,7 @@ class _2dLevelMaker:
         self.damageGroup = damageGroup
         self.group2 = pygame.sprite.Group()
         self.torretas=[]
+        self.caracteristicas_torretas=[]
 
         # SPRITES
         self.imageDictionary = imageDictionary
@@ -37,19 +38,46 @@ class _2dLevelMaker:
 
     # CREA ETAPA A PARTIR DE FILE
     def readFile(self, filePath):
+
+        self.numero_torretas=0
+        indice_torreta=1
+        
         
         File = open(filePath)
         lines = File.readlines()
         File.close()
+
+        
+        caracteristicas=lines[len(lines)-indice_torreta]
+
+        while not '-' in caracteristicas:
+
+            self.numero_torretas+=1
+            self.caracteristicas_torretas.append(caracteristicas)
+            indice_torreta+=1
+            caracteristicas=lines[len(lines)-indice_torreta]
+        self.caracteristicas_torretas.reverse()
+        for c in range(len(self.caracteristicas_torretas)):
+            self.caracteristicas_torretas[c]=self.caracteristicas_torretas[c].split(' ')
+        self.caract=self.caracteristicas_torretas
+
+
+
+        indice_torreta=0
+
+        
+        
         
         ## ESTANDARIZAR ESTO
         #self.height = len(lines)
         #self.width = len(lines[len(lines) - 1])
-        self.height = len(lines) - 3
+        self.height = len(lines) - 4 -self.numero_torretas
         self.width = len(lines[0]) - 1
 
         self.nextStagePath = lines[self.height + 1].rstrip()
         self.nextBackgroundKey = lines[self.height + 2].rstrip()
+
+        
         
         for i in range(self.height):
             line = list(lines[i])
@@ -89,9 +117,11 @@ class _2dLevelMaker:
 
 
                 elif line[j]=='%':
-                    self.torretas.append(Turret(j*50,i*50, 'Blue', 4, True, 130, 800))
+                    self.torretas.append(Turret(j*50,i*50, self.caract[indice_torreta][0], float(self.caract[indice_torreta][1]), string_a_bool(self.caract[indice_torreta][2]), float(self.caract[indice_torreta][3]), float(self.caract[indice_torreta][4]),float(self.caract[indice_torreta][5]),float(self.caract[indice_torreta][6])))
+                    indice_torreta+=1
                 elif line[j]=='&':
-                    self.torretas.append(Cannon(j*50,i*50, 'Green', 8, False, 125, 250))
+                    self.torretas.append(Cannon(j*50,i*50, self.caract[indice_torreta][0], float(self.caract[indice_torreta][1]), string_a_bool(self.caract[indice_torreta][2]), float(self.caract[indice_torreta][3]), float(self.caract[indice_torreta][4]),float(self.caract[indice_torreta][5]),float(self.caract[indice_torreta][6])))
+                    indice_torreta+=1
                     
     # METODO POSICION INICIAL PERSONAJE. 
     def initPlayerPosition(self, j, i):
@@ -333,6 +363,13 @@ class _2dLevelMaker:
     def setDamageDictionaries(self):
         self.lavaDic = {}
         self.waterDic = {}
+
+def string_a_bool(string):
+    if string =='True':
+        return True
+    elif string =='False':
+        return False
+    
 
    
    
