@@ -1,0 +1,66 @@
+aaaaaaaaaaaaaaaa
+aaaaaaaaa     <<
+aaaaaaaa      <<
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa    Q  aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa    Q  aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa    Q  aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaaP-G    aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa    %  aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+aaaa       aaaaa
+a aa       aaaaa
+a          aaaaa
+a@         aaaaa
+aaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaa
+-
+levels//test.txt
+fondoDesierto
+-

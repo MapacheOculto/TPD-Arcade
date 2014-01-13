@@ -1,0 +1,21 @@
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a                                           aaaaaaaaaaaa
+a                                               aaaaaaaa
+<                                                  aaaaa
+<                                                    aaa
+awwwwa                                                aa
+awwwwwa                                               aa
+alllllla                                              aa
+allllllla                                             aa
+awwwwwwwwa                              aaaaaaaaaaaaaaaa
+awwwwwwwwwa                   aaaaaaaaaaaaaaaaaaaaaaaaaa
+alllllllllla                  aaaaaaaaaaaaaaaaaaaaaaaaaa
+allllllllllla                                          a
+aaaaaaaaaaaaaa                                        @a
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+-
+levels//level1.txt
+fondoDesierto
+-

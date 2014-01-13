@@ -1,0 +1,24 @@
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aa                                                                            aa
+aa                                                                            aa
+aa                                                                            aa
+aa                                                                            aa
+aa                                                                            aa
+aa                                                                             a
+aa                                                                            @a
+aa                                                                        aaaaaa
+aa                                                                          aaaa
+aa             llllll                                                         aa
+aa             llllll                                                         aa
+aa                                            aa               aa             aa
+aa                                            aalllllllllllllllaawwwwwwwwwwwwwaa
+aa                                            aalllllllllllllllaawwwwwwwwwwwwwaa
+<<                                            aalllllllllllllllaawwwwwwwwwwwwwaa
+<<                                            aalllllllllllllllaawwwwwwwwwwwwwaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+-
+levels//castle2.txt
+fondoDesierto
+-
