@@ -15,6 +15,7 @@ imageDictionary = {}
 ## Path de las animaciones de fondo
 lavaAnimation = []
 iceAnimation = []
+itemAnimation = []
 
 class Background:
 
@@ -29,7 +30,8 @@ class Background:
         self.group = pygame.sprite.Group()
         self.exitGroup = pygame.sprite.Group()
         self.damageGroup = pygame.sprite.Group()
-        self.levelMaker = _2dLevelMaker(self.group, self.exitGroup, self.damageGroup, imageDictionary, lavaAnimation, iceAnimation, screenSize, initialPath)
+        self.itemsGroup = pygame.sprite.Group()
+        self.levelMaker = _2dLevelMaker(self.group, self.exitGroup, self.damageGroup, self.itemsGroup, imageDictionary, lavaAnimation, iceAnimation, itemAnimation, screenSize, initialPath)
         self.groupList = [self.group, self.exitGroup, self.damageGroup] ## VER SI SE PUEDEN HACER GRUPOS DE GRUPOS
 
         self.moveBackGroundForward = False
@@ -61,7 +63,9 @@ class Background:
                 exitSprite.rect = pygame.Rect((exitSprite.rect.left + self.xAdvance, exitSprite.rect.top), (exitSprite.rect.width, exitSprite.rect.height))
             for damageSprite in self.damageGroup:
                 damageSprite.rect = pygame.Rect((damageSprite.rect.left + self.xAdvance, damageSprite.rect.top), (damageSprite.rect.width, damageSprite.rect.height))
-                
+            for itemSprite in self.itemsGroup:
+                itemSprite.rect = pygame.Rect((itemSprite.rect.left + self.xAdvance, itemSprite.rect.top), (itemSprite.rect.width, itemSprite.rect.height))
+                   
         if self.moveBackGroundUp or self.moveBackGroundDown: 
             self.moveBackGroundUp = False
             self.moveBackGroundDown = False
@@ -71,7 +75,9 @@ class Background:
                 exitSprite.rect = pygame.Rect((exitSprite.rect.left, exitSprite.rect.top + self.yAdvance), (exitSprite.rect.width, exitSprite.rect.height))
             for damageSprite in self.damageGroup:
                 damageSprite.rect = pygame.Rect((damageSprite.rect.left, damageSprite.rect.top + self.yAdvance), (damageSprite.rect.width, damageSprite.rect.height))
-                
+            for itemSprite in self.itemsGroup:
+                itemSprite.rect = pygame.Rect((itemSprite.rect.left, itemSprite.rect.top + self.yAdvance), (itemSprite.rect.width, itemSprite.rect.height))
+                 
         self.levelMaker.firstRect = pygame.Rect((firstRect.left + self.xAdvance, firstRect.top + self.yAdvance), (self.levelMaker.stageScale, self.levelMaker.stageScale))
         self.levelMaker.lastRect  = pygame.Rect((lastRect.left  + self.xAdvance, lastRect.top  + self.yAdvance) , (self.levelMaker.stageScale, self.levelMaker.stageScale))
 
@@ -80,6 +86,7 @@ class Background:
 
         self.group.update()
         self.damageGroup.update()
+        self.itemsGroup.update()
         
 
     def render(self):
@@ -95,6 +102,7 @@ class Background:
         self.group.draw(surface)
         self.exitGroup.draw(surface)
         self.damageGroup.draw(surface)
+        self.itemsGroup.draw(surface)
 
     def changeBackground(self):
         if self.levelMaker.nextStagePath != "---":
@@ -142,4 +150,6 @@ class Background:
         iceAnimation.append(pygame.image.load("blocks//ice3.png").convert_alpha())
         iceAnimation.append(pygame.image.load("blocks//ice4.png").convert_alpha())
 
-        
+        # Imagenes para items
+        itemAnimation.append(pygame.image.load("blocks//life1.png").convert_alpha())
+        itemAnimation.append(pygame.image.load("blocks//life2.png").convert_alpha())        

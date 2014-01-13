@@ -113,7 +113,7 @@ class Player:
 
 
     # Metodo ve si esta cayendo, caminando, saltando, etc. Luego, actualiza bools y valores correspondientes
-    def update(self, elapsedTime, group, exitGroup, damageGroup, groupList):
+    def update(self, elapsedTime, group, exitGroup, damageGroup, itemsGroup, groupList):
         
         ##IVAN
             ##Plataformas no activadas (agregarlas a una lista de plataformas tocadas pa ver si siguen estando activadas o no
@@ -181,6 +181,17 @@ class Player:
             self.fall(group, self.freefall, elapsedTime)
         else:
             self.freefall.stop()
+            
+            
+        ## ITEMS
+        if self.clashManager.CheckCollision(self, itemsGroup, self.X, self.Y):
+            itemList = pygame.sprite.spritecollide(self.sprite, itemsGroup, False)
+            for item in itemList:
+                if item.id == "life":
+                    self.lives += 1
+                elif item.id == "points":
+                    self.score += 100
+                item.kill()
             
 
         ## MUERTE

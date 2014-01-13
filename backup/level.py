@@ -108,8 +108,8 @@ class level:
         
         for sprite in self.background.group:
             sprite.activada = False             
-        self.player2.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.groupList)#-----------------#
-        self.player1.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.groupList)
+        self.player2.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.itemsGroup, self.background.groupList)#-----------------#
+        self.player1.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.itemsGroup, self.background.groupList)
         self.backgroundXMovementManager(self.player1, self.player2)
         self.backgroundYMovementManager(self.player1, self.player2)
         for torreta in self.background.levelMaker.torretas:

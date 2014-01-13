@@ -1,12 +1,14 @@
+# -*- coding: cp1252 -*-
 import pygame
 from pygame.locals import *
 from platform import Platform
 from enemigos import Turret
 from damageFields import DamageField
+from items import Items
 
 class _2dLevelMaker:
         
-    def __init__(self, group, exitGroup, damageGroup, imageDictionary, lavaDict, iceDict, screenSize, filePath = "levels//ex1.txt"):
+    def __init__(self, group, exitGroup, damageGroup,  itemsGroup, imageDictionary, lavaDict, iceDict, itemsDict, screenSize, filePath = "levels//ex1.txt"):
         # ATRIBUTOS
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
@@ -17,6 +19,7 @@ class _2dLevelMaker:
         self.group = group
         self.exitGroup = exitGroup
         self.damageGroup = damageGroup
+        self.itemsGroup = itemsGroup
         self.group2 = pygame.sprite.Group()
         self.torretas=[]
         self.caracteristicas_torretas=[]
@@ -25,6 +28,7 @@ class _2dLevelMaker:
         self.imageDictionary = imageDictionary
         self.lavaDict = lavaDict
         self.iceDict = iceDict
+        self.itemsDict = itemsDict
 
         # FILE Y SCREEN SIZE
         self.readFile(filePath)
@@ -111,6 +115,10 @@ class _2dLevelMaker:
                     self.createSprite(lines,j,i,"F")
                 elif line[j] == "Q":
                     self.createSprite(lines,j,i,"Q")
+                elif line[j] == "º":
+                    self.createItem(lines, j, i, "º")
+                elif line[j] == "*":
+                    self.createItem(lines, j, i, "*")
 
                 # ATRIBUTOS Turret y Cannon(x, y, color, rafaga, movil, angulo, velocidad, timer_entre_rafaga=2, timer_entre_bala=0.7)
 
@@ -350,7 +358,19 @@ class _2dLevelMaker:
         elif i == (self.height - 1) and j == (self.width - 1):
             self.lastRect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
         
-        self.damageGroup.add(sprite);
+        self.damageGroup.add(sprite)
+        
+    # CREA ITEMS
+    def createItem(self, lines, j, i, char):
+        x = self.stageScale * (j)
+        y = self.stageScale * (i)
+        rect = pygame.Rect((x, y), (20,20))
+        item = Items(self.itemsDict, rect)
+        if char ==  "º":
+            item.id = "life"
+        else:
+            item.id = "points"
+        self.itemsGroup.add(item)
 
     # METODO PARA TENER LISTOS LOS DICT
     def setDamageDictionaries(self):
