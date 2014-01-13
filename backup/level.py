@@ -7,8 +7,7 @@ from pygame import mixer
 from storyBoard2 import StoryBoard2
 from projectileMotion import ProjectileMotion
 from freefall import FreeFall
-from enemigos import Turret
-from enemigos import Cannon
+
 
 # Relativo a los sonidos
 mixer.init()

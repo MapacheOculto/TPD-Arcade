@@ -2,7 +2,6 @@ import pygame
 from pygame.locals import *
 from platform import Platform
 from enemigos import Turret
-from enemigos import Cannon
 from damageFields import DamageField
 
 class _2dLevelMaker:
@@ -117,10 +116,10 @@ class _2dLevelMaker:
 
 
                 elif line[j]=='%':
-                    self.torretas.append(Turret(j*50,i*50, self.caract[indice_torreta][0], float(self.caract[indice_torreta][1]), string_a_bool(self.caract[indice_torreta][2]), float(self.caract[indice_torreta][3]), float(self.caract[indice_torreta][4]),float(self.caract[indice_torreta][5]),float(self.caract[indice_torreta][6])))
+                    self.torretas.append(Turret((j*50)+25,(i*50)+25, self.caract[indice_torreta][0], float(self.caract[indice_torreta][1]), string_a_bool(self.caract[indice_torreta][2]), float(self.caract[indice_torreta][3]), float(self.caract[indice_torreta][4]),float(self.caract[indice_torreta][5]),float(self.caract[indice_torreta][6]), 'Turret'))
                     indice_torreta+=1
                 elif line[j]=='&':
-                    self.torretas.append(Cannon(j*50,i*50, self.caract[indice_torreta][0], float(self.caract[indice_torreta][1]), string_a_bool(self.caract[indice_torreta][2]), float(self.caract[indice_torreta][3]), float(self.caract[indice_torreta][4]),float(self.caract[indice_torreta][5]),float(self.caract[indice_torreta][6])))
+                    self.torretas.append(Turret((j*50)+25,(i*50)+25, self.caract[indice_torreta][0], float(self.caract[indice_torreta][1]), string_a_bool(self.caract[indice_torreta][2]), float(self.caract[indice_torreta][3]), float(self.caract[indice_torreta][4]),float(self.caract[indice_torreta][5]),float(self.caract[indice_torreta][6]), 'Cannon'))
                     indice_torreta+=1
                     
     # METODO POSICION INICIAL PERSONAJE. 
