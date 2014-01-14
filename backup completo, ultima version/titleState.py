@@ -16,8 +16,9 @@ class titleState(gameObject):
 
 
     def __init__(self, joystickList, screenSize, systemState):
-        self.font1 = pygame.font.SysFont("arial", 50)
+        self.font1 = pygame.font.SysFont("Xcelsion", 70)
         self.font2 = pygame.font.SysFont("arial", 20)
+        self.font2.set_bold(True)
         self.joystickList = joystickList
         self.screenSize = screenSize
         self.systemState = systemState
@@ -27,6 +28,10 @@ class titleState(gameObject):
         
         self.instructionsHub = pygame.image.load("blocks//hub.png").convert_alpha()
         self.instructionsHub = pygame.transform.scale(self.instructionsHub, (screenSize[0] - 100, screenSize[1] - 100))
+        #self.titleBackground = pygame.image.load("blocks//titleBackground.png").convert()
+        #self.titleBackground = pygame.image.load("blocks//titleBackground1.png").convert()
+        self.titleBackground = pygame.image.load("blocks//titleBackground2.png").convert()
+        self.titleBackground = pygame.transform.scale(self.titleBackground, (screenSize[0], screenSize[1]))
         self.activateHub = False
         
 
@@ -64,7 +69,7 @@ class titleState(gameObject):
      
     def render(self):
         screen = pygame.display.get_surface()
-        screen.fill((123,87,21))
+        screen.blit(self.titleBackground, (0,0))
 
         if self.pointer == 0:
             self.playChoice = (0,0,255)
@@ -73,14 +78,14 @@ class titleState(gameObject):
             self.playChoice = (0,0,0)
             self.readChoice = (0,0,255)
 
-        textSurf  = self.font1.render("MISSED COLOURS" , True,(0, 0, 0))
-        screen.blit(textSurf, (self.screenSize[0] / 2 - 200, 100))
+        textSurf  = self.font1.render("MISSED COLOURS" , True,(0 , 0, 0))
+        screen.blit(textSurf, (self.screenSize[0] / 2 - 220, 40))
         
         textSurf2  = self.font2.render("Jugar" , True, self.playChoice)
-        screen.blit(textSurf2, (self.screenSize[0] / 2 - 50, 400))
+        screen.blit(textSurf2, (self.screenSize[0] / 2 - 100, 400))
         
         textSurf3  = self.font2.render("Instrucciones" , True, self.readChoice)
-        screen.blit(textSurf3, (self.screenSize[0] / 2 - 50, 500))
+        screen.blit(textSurf3, (self.screenSize[0] / 2 - 100, 500))
             
         if self.activateHub:
             screen.blit(self.instructionsHub,  (50, 50))
