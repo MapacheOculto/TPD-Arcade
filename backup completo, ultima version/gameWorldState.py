@@ -31,9 +31,10 @@ class gameWorldState(object):
         self.deltaX = 0
         self.deltaY = 0
 
-        self.background = pygame.image.load("blocks//worldMap.jpeg").convert()
+        self.background = pygame.image.load("blocks//worldMap.jpg").convert()
         self.background = pygame.transform.scale(self.background, (self.screenSize[0],self.screenSize[1]))  
-
+        self.vortex = pygame.image.load("blocks//vortex.png").convert_alpha()
+        self.vortex = pygame.transform.scale(self.vortex, (60, 60))
 
     # Update a las variables relevantes
     def update(self, elapsedTime):
@@ -99,13 +100,20 @@ class gameWorldState(object):
         textSurf  = self.font1.render("GAME WORLD" , True,(0, 0, 0))
         screen.blit(textSurf, (self.screenSize[0] / 2 - 150, 50))
 
+        screen.blit(self.vortex, self.gameNodesList[0])
+        screen.blit(self.vortex, self.gameNodesList[1])
+        screen.blit(self.vortex, self.gameNodesList[2])
+        screen.blit(self.vortex, self.gameNodesList[3])
+        screen.blit(self.vortex, self.gameNodesList[4])
+        screen.blit(self.vortex, self.gameNodesList[5])
+        """
         pygame.draw.circle(screen, (0,0,255), self.gameNodesList[0], 20)
         pygame.draw.circle(screen, (0,0,255), self.gameNodesList[1], 20)
         pygame.draw.circle(screen, (0,0,255), self.gameNodesList[2], 20)
         pygame.draw.circle(screen, (0,0,255), self.gameNodesList[3], 20)
         pygame.draw.circle(screen, (0,0,255), self.gameNodesList[4], 20)
         pygame.draw.circle(screen, (0,0,255), self.gameNodesList[5], 20)
-
+        """
         self.playerSprite.image = pygame.transform.scale(self.playerSprite.image , (50, 50))
         screen.blit(self.playerSprite.image, self.playerPos)
 
