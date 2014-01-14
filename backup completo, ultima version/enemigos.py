@@ -42,7 +42,7 @@ class Bala():
         if self.color=='Green':
             sonido_laser2.play()
 
-    def update(self, elapsedTime, group, xAdvance, yAdvance, player):
+    def update(self, elapsedTime, group, xAdvance, yAdvance, player, other_player):
         clashingDown = self.clashManager.CheckCollision2(self, group, self.X, self.Y + 1)
         clashingRight = self.clashManager.CheckCollision2(self, group, self.X + 1, self.Y)
         clashingLeft = self.clashManager.CheckCollision2(self, group, self.X - 1, self.Y)
@@ -52,19 +52,32 @@ class Bala():
         clashingRight_player = self.clashManager.IndividualCollision(player,self,  self.X + 1, self.Y)
         clashingLeft_player = self.clashManager.IndividualCollision(player,self, self.X - 1, self.Y)
         clashingUp_player = self.clashManager.IndividualCollision(player,self, self.X, self.Y - 1)
+
+        clashingDown_player2 = self.clashManager.IndividualCollision(other_player,self, self.X, self.Y + 1)
+        clashingRight_player2 = self.clashManager.IndividualCollision(other_player,self,  self.X + 1, self.Y)
+        clashingLeft_player2 = self.clashManager.IndividualCollision(other_player,self, self.X - 1, self.Y)
+        clashingUp_player2 = self.clashManager.IndividualCollision(other_player,self, self.X, self.Y - 1)
     
         if not clashingDown and not clashingRight and not clashingUp and not clashingLeft:
             if clashingDown_player=='Damage' or clashingRight_player=='Damage' or clashingUp_player=='Damage' or clashingLeft_player=='Damage':
-                player.takeDamage()
+                player.takeDamage('bullet')
+                explode.play()
+                return
+            elif clashingDown_player2=='Damage' or clashingRight_player2=='Damage' or clashingUp_player2=='Damage' or clashingLeft_player2=='Damage':
+                other_player.takeDamage('bullet')
                 explode.play()
                 return False
-            if clashingDown_player=='Points' or clashingRight_player=='Points'  or clashingUp_player=='Points'  or clashingLeft_player=='Points' :
+
+            elif clashingDown_player2=='Points' or clashingRight_player2=='Points'  or clashingUp_player2=='Points'  or clashingLeft_player2=='Points' :
+                other_player.gainScore(10)
+                points.play()
+                return False
+            elif clashingDown_player=='Points' or clashingRight_player=='Points'  or clashingUp_player=='Points'  or clashingLeft_player=='Points' :
                 player.gainScore(10)
                 points.play()
                 return False
-            
 
-            if not clashingDown_player and not clashingRight_player and not clashingLeft_player and not clashingUp_player:
+            elif not clashingDown_player and not clashingRight_player and not clashingLeft_player and not clashingUp_player and not clashingDown_player2 and not clashingRight_player2 and not clashingLeft_player2 and not clashingUp_player2:
                 self.X+=math.cos(self.angulo)*self.velocidad*elapsedTime
                 self.Y-=math.sin(self.angulo)*self.velocidad*elapsedTime
                 self.X+=xAdvance
@@ -107,7 +120,7 @@ class Proyectil:
         self.movParab.start(self.Y)
         self.parabTime=0
 
-    def update(self, elapsedTime, group, xAdvance, yAdvance, player):
+    def update(self, elapsedTime, group, xAdvance, yAdvance, player, other_player):
         clashingDown = self.clashManager.CheckCollision2(self, group, self.X, self.Y + 1)
         clashingRight = self.clashManager.CheckCollision2(self, group, self.X + 1, self.Y)
         clashingLeft = self.clashManager.CheckCollision2(self, group, self.X - 1, self.Y)
@@ -118,20 +131,37 @@ class Proyectil:
         clashingLeft_player = self.clashManager.IndividualCollision(player,self, self.X - 1, self.Y)
         clashingUp_player = self.clashManager.IndividualCollision(player,self, self.X, self.Y - 1)
 
+        clashingDown_player2 = self.clashManager.IndividualCollision(other_player,self, self.X, self.Y + 1)
+        clashingRight_player2 = self.clashManager.IndividualCollision(other_player,self,  self.X + 1, self.Y)
+        clashingLeft_player2 = self.clashManager.IndividualCollision(other_player,self, self.X - 1, self.Y)
+        clashingUp_player2 = self.clashManager.IndividualCollision(other_player,self, self.X, self.Y - 1)
+    
+
+
         self.parabTime+=elapsedTime
         
         if not clashingDown and not clashingRight and not clashingUp and not clashingLeft:
             if clashingDown_player=='Damage' or clashingRight_player=='Damage' or clashingUp_player=='Damage' or clashingLeft_player=='Damage':
-                player.takeDamage()
+                player.takeDamage('bullet')
                 explode.play()
                 return False
-            if clashingDown_player=='Points' or clashingRight_player=='Points'  or clashingUp_player=='Points'  or clashingLeft_player=='Points' :
+
+            elif clashingDown_player=='Points' or clashingRight_player=='Points'  or clashingUp_player=='Points'  or clashingLeft_player=='Points' :
                 player.gainScore(10)
                 points.play()
                 return False
+            elif clashingDown_player2=='Damage' or clashingRight_player2=='Damage' or clashingUp_player2=='Damage' or clashingLeft_player2=='Damage':
+                other_player.takeDamage('bullet')
+                explode.play()
+                return False
 
+            elif clashingDown_player2=='Points' or clashingRight_player2=='Points'  or clashingUp_player2=='Points'  or clashingLeft_player2=='Points' :
+                other_player.gainScore(10)
+                points.play()
+                return False
+            
 
-            if not clashingDown_player and not clashingRight_player and not clashingLeft_player and not clashingUp_player:
+            elif not clashingDown_player and not clashingRight_player and not clashingLeft_player and not clashingUp_player and not clashingDown_player2 and not clashingRight_player2 and not clashingLeft_player2 and not clashingUp_player2:
                 self.X+=math.cos(self.angulo)*self.velocidad*elapsedTime
             
                 self.movParab.update(self.parabTime)
@@ -219,7 +249,11 @@ class Turret:
             self.balas.append(Proyectil(self.cannon[0], self.cannon[1],self.velocidad,self.angulo, self.color))
         
 
-    def update(self,elapsedTime,group ,direccion, xAdvance, yAdvance, player, screenSize):
+    def update(self,elapsedTime,group, xAdvance, yAdvance, player,other_player,screenSize):
+        if player.color==self.color:
+            direccion=[other_player.X, other_player.Y]
+        if other_player.color==self.color:
+            direccion=[player.X, player.Y]
         self.sprite.image=self.sprite.image_original
         self.x+=xAdvance
         self.y+=yAdvance
@@ -251,7 +285,7 @@ class Turret:
         
 
         self.sprite.rect = pygame.Rect((self.x, self.y), (self.sprite.rect.width, self.sprite.rect.height))
-        self.balas.update(elapsedTime, group, xAdvance, yAdvance, player)
+        self.balas.update(elapsedTime, group, xAdvance, yAdvance, player, other_player)
         if abs(player.X-self.x)<=screenSize[0] and abs(player.Y-self.y)<=screenSize[1]: 
             if self.timer > self.timer_entre_rafaga:
                 if self.disparos < self.rafaga:

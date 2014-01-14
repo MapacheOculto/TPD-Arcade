@@ -9,14 +9,14 @@ class Balas:
     def append(self, sprite):
         self.group.add(sprite.sprite)
         self.lista.append(sprite)
-    def update(self, elapsedTime, group, xAdvance, yAdvance, player):
+    def update(self, elapsedTime, group, xAdvance, yAdvance, player, other_player):
         for bala in self.group.sprites():
             if not bala.update(elapsedTime, group, xAdvance, yAdvance, player):
                 self.group.remove(bala)
 
                 
         for bala in self.lista:
-            if not bala.update(elapsedTime, group, xAdvance, yAdvance, player):
+            if not bala.update(elapsedTime, group, xAdvance, yAdvance, player, other_player):
                 self.lista.remove(bala)
         
         

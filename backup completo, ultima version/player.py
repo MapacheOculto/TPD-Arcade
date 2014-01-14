@@ -189,6 +189,8 @@ class Player:
         if self.clashManager.CheckCollision(self, damageGroup, self.X, self.Y):
             self.falling = False
             self.freefall.stop()
+            floorY = self.clashManager.topY - (self.sprite.rect.height)
+            self.deltaY = self.Y - floorY
             self.startJump()
             self.takeDamage("damaging field")
             burn.play()
@@ -248,12 +250,11 @@ class Player:
             
 
         ## SALTO NORMAL (ahora con joystick)
-        if self.buttonPressed and not self.falling and not self.wallJumping and not self.jumping:##
+        if self.buttonPressed and not self.falling and not self.jumping and not self.wallJumping :##
             self.jumpStart = True##
             self.startJump()##
             self.buttonPressed = False
-            
-        if self.jumping and not self.pressedAgainstWall:
+        if self.jumping:# and not self.pressedAgainstWall:
             self.updateJump(group, elapsedTime)
 
         

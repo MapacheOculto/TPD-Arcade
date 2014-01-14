@@ -5,13 +5,13 @@ a                                               aaaaaaaa
 <                                                    aaa
 a @                                                   aa
 aaaa                                                  aa
-a  a                                                  aa
-a  aaaa                                               aa
-a  a  a                                               aa
-a  a  aaaa                                             a
+a  a                                                   a
+a  aaaa                                              % a
+a  a  a               &        &                       a
+a  a  aaaa                                           % a
 a  a  a  a                                             a
 a  a  a  a                                             <
-a  a  a  a                                             <
+a  a  a  aaaa     aaaaa     aaaa     aaaa              <
 aaaaaaaaaaaaa     aaaaa     aaaa     aaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaalllllaaaaalllllaaaawwwwwaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

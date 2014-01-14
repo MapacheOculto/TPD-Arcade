@@ -42,7 +42,7 @@ class _2dLevelMaker:
         self.readFile(filePath)
 
     # CREA ETAPA A PARTIR DE FILE
-    def readFile(self, filePath):
+    def readFile(self, filePath):    
 
         self.numero_torretas=0
         indice_torreta=1
@@ -51,6 +51,8 @@ class _2dLevelMaker:
         File = open(filePath)
         lines = File.readlines()
         File.close()
+
+
 
         
         caracteristicas=lines[len(lines)-indice_torreta]
@@ -71,6 +73,8 @@ class _2dLevelMaker:
         indice_torreta=0
 
         
+
+        
         
         
         ## ESTANDARIZAR ESTO
@@ -81,6 +85,14 @@ class _2dLevelMaker:
 
         self.nextStagePath = lines[self.height + 1].rstrip()
         self.nextBackgroundKey = lines[self.height + 2].rstrip()
+
+
+        self.numero_torretas_en_mapa=0
+        for i in range(self.height):
+            self.numero_torretas_en_mapa+=lines[i].count('%')
+            self.numero_torretas_en_mapa+=lines[i].count('&')
+        while len(self.caract)<self.numero_torretas_en_mapa:
+            self.caract.append([])
 
         
         
@@ -126,10 +138,16 @@ class _2dLevelMaker:
 
 
                 elif line[j]=='%':
-                    self.torretas.append(Turret((j*50)+25,(i*50)+25, self.caract[indice_torreta][0], float(self.caract[indice_torreta][1]), string_a_bool(self.caract[indice_torreta][2]), float(self.caract[indice_torreta][3]), float(self.caract[indice_torreta][4]),float(self.caract[indice_torreta][5]),float(self.caract[indice_torreta][6]), 'Turret'))
+                    if self.caract[indice_torreta]:
+                        self.torretas.append(Turret((j*50)+25,(i*50)+25, self.caract[indice_torreta][0], float(self.caract[indice_torreta][1]), string_a_bool(self.caract[indice_torreta][2]), float(self.caract[indice_torreta][3]), float(self.caract[indice_torreta][4]),float(self.caract[indice_torreta][5]),float(self.caract[indice_torreta][6]), 'Turret'))
+                    else:
+                        self.torretas.append(Turret((j*50)+25,(i*50)+25, 'Multi', 5, True, 0, 600,2,0.07, 'Turret'))
                     indice_torreta+=1
                 elif line[j]=='&':
-                    self.torretas.append(Turret((j*50)+25,(i*50)+25, self.caract[indice_torreta][0], float(self.caract[indice_torreta][1]), string_a_bool(self.caract[indice_torreta][2]), float(self.caract[indice_torreta][3]), float(self.caract[indice_torreta][4]),float(self.caract[indice_torreta][5]),float(self.caract[indice_torreta][6]), 'Cannon'))
+                    if self.caract[indice_torreta]:
+                        self.torretas.append(Turret((j*50)+25,(i*50)+25, self.caract[indice_torreta][0], float(self.caract[indice_torreta][1]), string_a_bool(self.caract[indice_torreta][2]), float(self.caract[indice_torreta][3]), float(self.caract[indice_torreta][4]),float(self.caract[indice_torreta][5]),float(self.caract[indice_torreta][6]), 'Cannon'))
+                    else:
+                        self.torretas.append(Turret((j*50)+25,(i*50)+25, 'Multi', 10, False, 135, 250,1,0.07, 'Cannon'))
                     indice_torreta+=1
                     
     # METODO POSICION INICIAL PERSONAJE. 
@@ -192,7 +210,7 @@ class _2dLevelMaker:
         y = self.stageScale * (i)
         sprite = Platform()
         sprite.rect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
-        sprite.image = self.imageDictionary["goldBrick"]
+        sprite.image = self.imageDictionary["exit"]
         sprite.image = pygame.transform.scale(sprite.image, (self.stageScale, self.stageScale))
                                                
         self.exitGroup.add(sprite);

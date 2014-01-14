@@ -148,6 +148,7 @@ class Background:
         self.imageDictionary.update({"blueAlpha" : pygame.image.load("blocks//blueAlpha.png").convert()})
         self.imageDictionary.update({"sand" : pygame.image.load("blocks//sand.png").convert()})
         self.imageDictionary.update({"goldBrick" : pygame.image.load("blocks//goldBrick.png").convert()})
+        self.imageDictionary.update({"exit" : pygame.image.load("blocks//exit.png").convert()})
         #imageDictionary.update({"bricks" : pygame.image.load("blocks//bricks.png").convert()})
 
         # imagenes de fondo
