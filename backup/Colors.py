@@ -1,7 +1,5 @@
-import MAIN
-class Colors(object):
+from MAIN import MAIN
+import StartBase
+class Colors(StartBase.Start):
     def Go(self,services):
-        Main.main()
-    
-
-
+        MAIN.main()

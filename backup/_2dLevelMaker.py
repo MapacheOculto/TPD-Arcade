@@ -1,13 +1,14 @@
+# -*- coding: cp1252 -*-
 import pygame
 from pygame.locals import *
 from platform import Platform
 from enemigos import Turret
-from enemigos import Cannon
 from damageFields import DamageField
+from items import Items
 
 class _2dLevelMaker:
         
-    def __init__(self, group, exitGroup, damageGroup, imageDictionary, lavaDict, iceDict, screenSize, filePath = "levels//ex1.txt"):
+    def __init__(self, group, exitGroup, damageGroup,  itemsGroup, imageDictionary, lavaDict, iceDict, itemsDict1, itemsDict2, screenSize, filePath = "levels//ex1.txt"):
         # ATRIBUTOS
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
@@ -18,13 +19,18 @@ class _2dLevelMaker:
         self.group = group
         self.exitGroup = exitGroup
         self.damageGroup = damageGroup
+        self.itemsGroup = itemsGroup
         self.group2 = pygame.sprite.Group()
         self.torretas=[]
+        self.caracteristicas_torretas=[]
 
         # SPRITES
         self.imageDictionary = imageDictionary
         self.lavaDict = lavaDict
         self.iceDict = iceDict
+        self.itemsDict1 = itemsDict1
+        self.itemsDict2 = itemsDict2
+        
 
         # FILE Y SCREEN SIZE
         self.readFile(filePath)
@@ -37,19 +43,46 @@ class _2dLevelMaker:
 
     # CREA ETAPA A PARTIR DE FILE
     def readFile(self, filePath):
+
+        self.numero_torretas=0
+        indice_torreta=1
+        
         
         File = open(filePath)
         lines = File.readlines()
         File.close()
+
+        
+        caracteristicas=lines[len(lines)-indice_torreta]
+
+        while not '-' in caracteristicas:
+
+            self.numero_torretas+=1
+            self.caracteristicas_torretas.append(caracteristicas)
+            indice_torreta+=1
+            caracteristicas=lines[len(lines)-indice_torreta]
+        self.caracteristicas_torretas.reverse()
+        for c in range(len(self.caracteristicas_torretas)):
+            self.caracteristicas_torretas[c]=self.caracteristicas_torretas[c].split(' ')
+        self.caract=self.caracteristicas_torretas
+
+
+
+        indice_torreta=0
+
+        
+        
         
         ## ESTANDARIZAR ESTO
         #self.height = len(lines)
         #self.width = len(lines[len(lines) - 1])
-        self.height = len(lines) - 3
+        self.height = len(lines) - 4 -self.numero_torretas
         self.width = len(lines[0]) - 1
 
         self.nextStagePath = lines[self.height + 1].rstrip()
         self.nextBackgroundKey = lines[self.height + 2].rstrip()
+
+        
         
         for i in range(self.height):
             line = list(lines[i])
@@ -84,14 +117,20 @@ class _2dLevelMaker:
                     self.createSprite(lines,j,i,"F")
                 elif line[j] == "Q":
                     self.createSprite(lines,j,i,"Q")
+                elif line[j] == "º":
+                    self.createItem(lines, j, i, "º")
+                elif line[j] == "*":
+                    self.createItem(lines, j, i, "*")
 
                 # ATRIBUTOS Turret y Cannon(x, y, color, rafaga, movil, angulo, velocidad, timer_entre_rafaga=2, timer_entre_bala=0.7)
 
 
                 elif line[j]=='%':
-                    self.torretas.append(Turret(j*50,i*50, 'Blue', 4, True, 130, 800))
+                    self.torretas.append(Turret((j*50)+25,(i*50)+25, self.caract[indice_torreta][0], float(self.caract[indice_torreta][1]), string_a_bool(self.caract[indice_torreta][2]), float(self.caract[indice_torreta][3]), float(self.caract[indice_torreta][4]),float(self.caract[indice_torreta][5]),float(self.caract[indice_torreta][6]), 'Turret'))
+                    indice_torreta+=1
                 elif line[j]=='&':
-                    self.torretas.append(Cannon(j*50,i*50, 'Green', 8, False, 125, 250))
+                    self.torretas.append(Turret((j*50)+25,(i*50)+25, self.caract[indice_torreta][0], float(self.caract[indice_torreta][1]), string_a_bool(self.caract[indice_torreta][2]), float(self.caract[indice_torreta][3]), float(self.caract[indice_torreta][4]),float(self.caract[indice_torreta][5]),float(self.caract[indice_torreta][6]), 'Cannon'))
+                    indice_torreta+=1
                     
     # METODO POSICION INICIAL PERSONAJE. 
     def initPlayerPosition(self, j, i):
@@ -136,6 +175,9 @@ class _2dLevelMaker:
             sprite.rect = pygame.Rect((sprite.rect.left - xAdvance, sprite.rect.top - yAdvance), (sprite.rect.width, sprite.rect.height))
         for sprite in self.damageGroup:
             sprite.rect = pygame.Rect((sprite.rect.left - xAdvance, sprite.rect.top - yAdvance), (sprite.rect.width, sprite.rect.height))
+        for sprite in self.itemsGroup:
+            sprite.rect = pygame.Rect((sprite.rect.left - xAdvance, sprite.rect.top - yAdvance), (sprite.rect.width, sprite.rect.height))
+            
 
         for torreta in self.torretas:
             torreta.x-=xAdvance
@@ -155,7 +197,7 @@ class _2dLevelMaker:
                                                
         self.exitGroup.add(sprite);
 
-#METODO QUE CREA PLATAFORMAS (tipo corresponde a horizontal o vertical)
+    #METODO QUE CREA PLATAFORMAS (tipo corresponde a horizontal o vertical)
     def createPlatform(self, lines, j, i, tipo):
         #Horizontal y vertical
         color = ""
@@ -180,24 +222,25 @@ class _2dLevelMaker:
                    print "ERROR EN CREATEPLATFORM"
                    break
         if tipo == "V":
-                    aux = i - 1
-                    line = list(lines[j])
-                    while True:
-                       if line[aux] == '|':
-                          largo = largo + 1
-                          aux = aux - 1     
-                       elif line[aux] == 'G':
-                           color = "Green"
-                           largo = largo + 1
-                           return (color,1,largo)
-                       elif line[aux] == 'B':
-                           color = "Blue"
-                           largo = largo + 1
-                           return (color,1,largo)
-                       if aux > 100000:
-                           print "ERROR EN CREATEPLATFORM"
-                           break
-# METODO QUE CREA SPRITES (actualmente son todas plataformas)
+            aux = i - 1
+            line = list(lines[j])
+            while True:
+                if line[aux] == '|':
+                    largo = largo + 1
+                    aux = aux - 1     
+                elif line[aux] == 'G':
+                    color = "Green"
+                    largo = largo + 1
+                    return (color,1,largo)
+                elif line[aux] == 'B':
+                    color = "Blue"
+                    largo = largo + 1
+                    return (color,1,largo)
+                if aux > 100000:
+                    print "ERROR EN CREATEPLATFORM"
+                    break
+
+    # METODO QUE CREA SPRITES (actualmente son todas plataformas)
     def createSprite(self,lines, j, i, character):
         self.stageScale = 50
         
@@ -215,43 +258,36 @@ class _2dLevelMaker:
         elif character == "t":
             sprite.image = self.imageDictionary["lowEarth"]
             sprite.imagen2 = self.imageDictionary["lowEarth"]
-        elif character == "b":
-            sprite.image = self.imageDictionary["water"]
-            sprite.imagen2 = self.imageDictionary["watert"]
-            sprite.color = "Blue"     
-        elif character == "l":
-            sprite.image = self.imageDictionary["lavat"]
-            sprite.imagen2 = self.imageDictionary["lavat"]
         elif character == "s":
             sprite.image = self.imageDictionary["sand"]
             sprite.imagen2 = self.imageDictionary["sand"]
-        elif character == "w":
-            sprite.image = self.imageDictionary["watert"]
-            sprite.imagen2 = self.imageDictionary["watert"]
-        elif character == 'r':
-            sprite.image = self.imageDictionary["lava"]
-            sprite.imagen2 = self.imageDictionary["lava"]
-            #sprite.color = "Green"
+        elif character == "b":##################
+            sprite.image = self.imageDictionary["blueAlpha"]##################
+            sprite.imagen2 = self.imageDictionary["blue"]##################
+            sprite.color = "Blue"     ##################
+        elif character == 'r':##################
+            sprite.image = self.imageDictionary["lava"]##################
+            sprite.imagen2 = self.imageDictionary["lava"]##################
+            #sprite.color = "Green"##################
         elif character == "O":
-             sprite.image = self.imageDictionary["water"]
-             sprite.imagen2 = self.imageDictionary["watert"]
+             sprite.image = self.imageDictionary["blueAlpha"]
+             sprite.imagen2 = self.imageDictionary["blue"]
              sprite.color = "Blue" 
         elif character == "P":
-            sprite.image = self.imageDictionary["lava"]
-            sprite.imagen2 = self.imageDictionary["lavat"]
+            sprite.image = self.imageDictionary["greenAlpha"]
+            sprite.imagen2 = self.imageDictionary["green"]
             sprite.color = "Green"
         elif character == "Q":
-            sprite.image = self.imageDictionary["water"]
-            sprite.imagen2 = self.imageDictionary["watert"]
+            sprite.image = self.imageDictionary["blueAlpha"]
+            sprite.imagen2 = self.imageDictionary["blue"]
             sprite.color = "Blue" 
         elif character == "F":
-            sprite.image = self.imageDictionary["lava"]
-            sprite.imagen2 = self.imageDictionary["lavat"]
+            sprite.image = self.imageDictionary["greenAlpha"]
+            sprite.imagen2 = self.imageDictionary["green"]
             sprite.color = "Green"    
-
         else: 
             sprite.image = self.imageDictionary["lava"]
-            sprite.imagen2 = self.imageDictionary["lavat"]
+            sprite.imagen2 = self.imageDictionary["lava"]
             sprite.color = "Green"
 
         if character == "P" or character == "O":
@@ -278,10 +314,6 @@ class _2dLevelMaker:
             sprite.imagen2 = pygame.transform.scale(sprite.imagen2, (int(0.5*self.stageScale), 5*self.stageScale))
             sprite.rect = pygame.Rect((x, y), (int(0.5*self.stageScale), 5*self.stageScale))
             sprite.imagenoriginal = sprite.image   
-            if character == "F":
-                sprite.color = "Green"
-            elif character == "Q":
-                sprite.color = "Blue"
         else:
             sprite.x_scale = self.stageScale 
             sprite.y_scale = self.stageScale
@@ -327,12 +359,33 @@ class _2dLevelMaker:
         elif i == (self.height - 1) and j == (self.width - 1):
             self.lastRect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
         
-        self.damageGroup.add(sprite);
+        self.damageGroup.add(sprite)
+        
+    # CREA ITEMS
+    def createItem(self, lines, j, i, char):
+        x = self.stageScale * (j)
+        y = self.stageScale * (i)
+        rect = pygame.Rect((x, y), (20,20))
+        if char ==  "º":
+            item = Items(self.itemsDict1, rect)
+            item.id = "points"
+        else:
+            item = Items(self.itemsDict2, rect)
+            item.id = "life"
+        
+        self.itemsGroup.add(item)
 
     # METODO PARA TENER LISTOS LOS DICT
     def setDamageDictionaries(self):
         self.lavaDic = {}
         self.waterDic = {}
+
+def string_a_bool(string):
+    if string =='True':
+        return True
+    elif string =='False':
+        return False
+    
 
    
    

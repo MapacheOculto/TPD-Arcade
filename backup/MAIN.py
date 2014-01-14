@@ -20,70 +20,69 @@ deathPath = []
 
 # FUNCION PRINCIPAL QUE CORRE CODIGO
 class MAIN():
-    
+
     # Relacionado a pygame
-    def main(self):
-        pygame.init()
-        screenSize = (1024,768)
-        screen = pygame.display.set_mode(screenSize, 0, 32)
-        pygame.display.set_caption("Missed Colours")
+    pygame.init()
+    screenSize = (1024,768)
+    screen = pygame.display.set_mode(screenSize, 0, 32)
+    pygame.display.set_caption("Missed Colours")
 
-        # joysticks
-        pygame.joystick.init()
-        joystickList = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
-        for i in range(len(joystickList)):
-            joystickList[i].init()
+    # joysticks
+    pygame.joystick.init()
+    joystickList = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+    for i in range(len(joystickList)):
+        joystickList[i].init()
 
-        # Se inicializa systemState, la clase que va a apuntar a la instancia del estado en que se encuentre el juego
-        systemState = systemState()
+    # Se inicializa systemState, la clase que va a apuntar a la instancia del estado en que se encuentre el juego
+    systemState = systemState()
     
-        # Se inicializan los distintos estados de juego posibles
-        playState = playState(joystickList, screenSize, systemState)
-        menuState = titleState(joystickList, screenSize, systemState)
-        gameOverState = gameOverState(joystickList, screenSize, systemState)
-        pauseState = PauseState(joystickList, screenSize, systemState)
-        worldMapState = gameWorldState(joystickList, screenSize, systemState)
-        levelEndingState = LevelEndingState(joystickList, screenSize, systemState)
+    # Se inicializan los distintos estados de juego posibles
+    playState = playState(joystickList, screenSize, systemState)
+    menuState = titleState(joystickList, screenSize, systemState)
+    gameOverState = gameOverState(joystickList, screenSize, systemState)
+    pauseState = PauseState(joystickList, screenSize, systemState)
+    worldMapState = gameWorldState(joystickList, screenSize, systemState)
+    levelEndingState = LevelEndingState(joystickList, screenSize, systemState)
     
-        # Se agregan estos estados a la instancia de systemState
-        systemState.append(playState, "playState")
-        systemState.append(menuState, "titleState")
-        systemState.append(pauseState, "pauseState")
-        systemState.append(gameOverState, "gameOverState")
-        systemState.append(levelEndingState, "levelEndingState")
-        systemState.append(worldMapState, "gameWorldState")
+    # Se agregan estos estados a la instancia de systemState
+    systemState.append(playState, "playState")
+    systemState.append(menuState, "titleState")
+    systemState.append(pauseState, "pauseState")
+    systemState.append(gameOverState, "gameOverState")
+    systemState.append(levelEndingState, "levelEndingState")
+    systemState.append(worldMapState, "gameWorldState")
     
-        # Se elije el estado de juego con el que se comenzara
-        systemState.changeState("titleState")
+    # Se elije el estado de juego con el que se comenzara
+    systemState.changeState("titleState")
     
-        # Timer para el tiempo transcurrido
-        ticker = pygame.time.Clock()    
+    # Timer para el tiempo transcurrido
+    ticker = pygame.time.Clock()    
 
 
-        # LOOP PRINCIPAL DEL JUEGO
-        while True:
+    # LOOP PRINCIPAL DEL JUEGO
+    while True:
 
-            # Timer
-            elapsedTime = ticker.tick(30) / 1000.0
+        # Timer
+        elapsedTime = ticker.tick(30) / 1000.0
 
-            # Eventos
-            for event in pygame.event.get():
-                if event.type == QUIT:
-                    exit()
-                if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_SPACE:
-                        if systemState.currentState == systemState.stateDictionary["playState"]:
-                            systemState.currentState.level1.player1.keyHeldPressed = False
-                            systemState.currentState.level1.player2.keyHeldPressed = False
-                    if event.key == K_TAB:
-                        pass
+        # Eventos
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                exit()
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_SPACE:
+                    if systemState.currentState == systemState.stateDictionary["playState"]:
+                        systemState.currentState.level1.player1.keyHeldPressed = False
+                        systemState.currentState.level1.player2.keyHeldPressed = False
+                if event.key == K_TAB:
+                    pass
    
-            # Se actualiza y dibuja el estado seleccionado
-            systemState.update(elapsedTime)
-            systemState.render()
+        # Se actualiza y dibuja el estado seleccionado
+        systemState.update(elapsedTime)
+        systemState.render()
 
-            # se actualiza lo relativo a pygame
-            pygame.display.update()
+        # se actualiza lo relativo a pygame
+        pygame.display.update()
 
 
     # PARA DESPUES

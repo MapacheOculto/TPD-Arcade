@@ -17,7 +17,6 @@
   <ItemGroup>
     <Compile Include="background.py" />
     <Compile Include="boxCollision.py" />
-    <Compile Include="Colors.py" />
     <Compile Include="freefall.py" />
     <Compile Include="gameOverState.py" />
     <Compile Include="level.py" />

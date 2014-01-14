@@ -2,6 +2,7 @@ import pygame
 from pygame import *
 from systemState import systemState
 from systemState import gameObject
+from storyBoard2 import StoryBoard2
 from level import level
 
 
@@ -13,6 +14,7 @@ class gameWorldState(object):
         self.joystickList = joystickList
         self.screenSize = screenSize
         self.systemState = systemState
+        self.storyboard = StoryBoard2()
 
         self.gameNodesList = []
         self.createNodes()
@@ -21,6 +23,9 @@ class gameWorldState(object):
         self.playerSprite.image = pygame.image.load("still//fire01.png").convert_alpha()
         self.playerSprite.image = pygame.transform.scale(self.playerSprite.image, (50,50))
         self.playerPos = self.gameNodesList[0]
+        self.stillDictionary = []
+        self.walkDictionary = []
+        self.initDictionaries()
     
         self.moving = False
         self.deltaX = 0
@@ -44,29 +49,19 @@ class gameWorldState(object):
         if levelSelectionButton and not self.moving:
             self.systemState.changeState("playState") 
             if self.playerPos == self.gameNodesList[0]:
-                actualPath = "levels//test.txt"
-                self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath)
-                self.systemState.currentState.actualPath = "levels//test.txt"
+                actualPath = "levels//level11.txt"
             if self.playerPos == self.gameNodesList[1]:
-                actualPath = "levels//ex1.txt"
-                self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath)
-                self.systemState.currentState.actualPath = "levels//ex1.txt"
+                actualPath = "levels//level21.txt"
             if self.playerPos == self.gameNodesList[2]:
                 actualPath = "levels//castle2.txt"
-                self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath)
-                self.systemState.currentState.actualPath = "levels//castle2.txt"
             if self.playerPos == self.gameNodesList[3]:
                 actualPath = "levels//level1.txt"
-                self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath)
-                self.systemState.currentState.actualPath = "levels//level1.txt"
             if self.playerPos == self.gameNodesList[4]:
                 actualPath = "levels//level3.txt"
-                self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath)
-                self.systemState.currentState.actualPath = "levels//level3.txt"
             if self.playerPos == self.gameNodesList[5]:  
                 actualPath = "levels//castle.txt"
-                self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath)
-                self.systemState.currentState.actualPath = "levels//castle.txt"
+            self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath)
+            self.systemState.currentState.actualPath = actualPath
         elif goBackButton:
             self.systemState.changeState("titleState")
 
@@ -107,7 +102,22 @@ class gameWorldState(object):
         pygame.draw.circle(screen, (0,0,255), self.gameNodesList[4], 20)
         pygame.draw.circle(screen, (0,0,255), self.gameNodesList[5], 20)
 
+        self.playerSprite.image = pygame.transform.scale(self.playerSprite.image , (50, 50))
         screen.blit(self.playerSprite.image, self.playerPos)
+
+        if self.moving:
+            self.animation(len(self.walkDictionary), self.walkDictionary)
+        elif not self.moving:
+            self.animation(len(self.stillDictionary), self.stillDictionary)
+
+
+    # Ahora keys son las imagenes que se pasan a storyboard
+    def animation(self, number, images):
+        if self.storyboard.inProcess == False:
+            self.storyboard.play(number, images)
+        elif self.storyboard.inProcess:
+            return self.storyboard.update(self.playerSprite, False)
+        
     
     # Nodos donde se ubicaran visualmente los iconos a seleccionar
     def createNodes(self): 
@@ -133,6 +143,20 @@ class gameWorldState(object):
             self.deltaX = 0
             self.deltaY = 0
             self.moving = False
+    
+    def initDictionaries(self):
+        
+        self.walkDictionary.append(pygame.image.load("walk//fire12.png").convert_alpha())
+        self.walkDictionary.append(pygame.image.load("walk//fire22.png").convert_alpha())
+        self.walkDictionary.append(pygame.image.load("walk//fire32.png").convert_alpha())
+        self.walkDictionary.append(pygame.image.load("walk//fire42.png").convert_alpha())
+        self.walkDictionary.append(pygame.image.load("walk//fire52.png").convert_alpha())
+        self.walkDictionary.append(pygame.image.load("walk//fire62.png").convert_alpha())
+        
+        self.stillDictionary.append(pygame.image.load("still//fire012.png").convert_alpha())
+        self.stillDictionary.append(pygame.image.load("still//fire022.png").convert_alpha())
+        self.stillDictionary.append(pygame.image.load("still//fire032.png").convert_alpha())
+        self.stillDictionary.append(pygame.image.load("still//fire042.png").convert_alpha())
 
     
 

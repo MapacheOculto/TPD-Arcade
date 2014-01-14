@@ -7,8 +7,8 @@ from pygame import mixer
 from storyBoard2 import StoryBoard2
 from projectileMotion import ProjectileMotion
 from freefall import FreeFall
-from enemigos import Turret
-from enemigos import Cannon
+from items import Items
+
 
 # Relativo a los sonidos
 mixer.init()
@@ -28,13 +28,20 @@ class level:
 
         self.screenSize = screenSize
         self.joystickList = joystickList
-        self.font = pygame.font.SysFont("arial", 16)
+        self.font = pygame.font.SysFont("arial", 18)
+        self.font.set_bold(True)
         self.pauseGame = False
         self.gameOver = False
         self.playerInDeadZone = False
         self.totalElapsedTime = 0
+        self.deadMessage = ""
 
         self.background = Background(self.screenSize, initialPath)
+
+        # Relacionado al hub
+        self.lifeSprite = Items(self.background.itemAnimation2, pygame.Rect((0,0), (20,20)))
+        self.hub = pygame.image.load("blocks//hub.png").convert_alpha()
+        self.hub = pygame.transform.scale(self.hub, (670, 65))
 
         x = self.background.levelMaker.startXPosition
         y = self.background.levelMaker.startYPosition
@@ -68,11 +75,10 @@ class level:
 
         # Tiempo
         self.totalElapsedTime += elapsedTime
-        """
         # Tiempo maximo para pasar etapa
-        if self.totalElapsedTime > 100:
+        if self.totalElapsedTime > 200:
             self.gameOver = True
-        """
+            self.deadMessage = "TIME'S UP!"
 
         # Brujula que apunta a player 2
         if  self.player2.Y <= -50 or self.player2.Y >= self.screenSize[1]:
@@ -109,12 +115,15 @@ class level:
         
         for sprite in self.background.group:
             sprite.activada = False             
-        self.player2.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.groupList)#-----------------#
-        self.player1.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.groupList)
+        self.player2.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.itemsGroup, self.background.groupList)#-----------------#
+        self.player1.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.itemsGroup, self.background.groupList)
         self.backgroundXMovementManager(self.player1, self.player2)
         self.backgroundYMovementManager(self.player1, self.player2)
         for torreta in self.background.levelMaker.torretas:
-            torreta.update(elapsedTime,self.background.group,[self.player1.X,self.player1.Y],self.background.xAdvance, self.background.yAdvance, self.player1, self.screenSize)
+            if torreta.color=='Blue':
+                torreta.update(elapsedTime,self.background.group,[self.player1.X,self.player1.Y],self.background.xAdvance, self.background.yAdvance, self.player1, self.screenSize)
+            elif torreta.color=='Green':
+                torreta.update(elapsedTime,self.background.group,[self.player2.X,self.player2.Y],self.background.xAdvance, self.background.yAdvance, self.player2, self.screenSize)
         self.background.update(elapsedTime, self.player1.X, self.player1.Y)
         
         """
@@ -152,6 +161,10 @@ class level:
         #################GAME_OVER##################################
         if self.player1.dead or self.player2.dead:
             self.gameOver = True
+            if self.player1.dead:
+                self.deadMessage = self.player1.deadMessage
+            else:
+                self.deadMessage = self.player2.deadMessage
                  
 
     # Dibuja en pantalla los sprites y el escenario
@@ -189,36 +202,27 @@ class level:
                 self.compass.image = self.compassImageRight
                 screen.blit(self.compass.image, ((self.screenSize[0] - 15), self.player2.Y))
 
-
-        # Aqui va por si se quiere escribir algo en Pantalla.
-        # Actualmente : Posicion mas otros 
-        textSurf  = self.font.render("("+str(int(self.player1.X))+" , "+str(int(self.player1.Y))+")" , True,(0, 0, 0))
-        textSurfqwe  = self.font.render("("+str(int(self.player2.X))+" , "+str(int(self.player2.Y))+")" , True,(0, 0, 0))
-        textSurf2 = self.font.render("walking : "+str(self.player1.walking) , True,(0, 0, 0))
-        textSurf3 = self.font.render("jumping : "+str(self.player1.jumping) , True,(0, 0, 0))
-        textSurf4 = self.font.render("falling : "+str(self.player1.falling) , True,(0, 0, 0))
-        textSurf5 = self.font.render("inertiaCount: "+str(self.player1.inertiaCounter) , True,(0, 0, 0))
-        textSurf6 = self.font.render("TIME: "+ str(int(self.totalElapsedTime)) , True,(0, 0, 0))
-        textSurf7 = self.font.render("LIVES (P1): "+ str(self.player1.lives) , True,(0, 0, 0))
-        textSurf8 = self.font.render("(P2): "+ str(self.player2.lives) , True,(0, 0, 0))
-        textSurf9 = self.font.render("Score (P1): "+ str(int(self.player1.score)) , True,(0, 0, 0))
-        textSurf10 = self.font.render("(P2): "+ str(int(self.player2.score)) , True,(0, 0, 0))
-        screen.blit(textSurf,  (800, 70))
-        screen.blit(textSurfqwe,  (800, 100))
-        screen.blit(textSurf2, (800, 130))
-        screen.blit(textSurf3, (800, 160))
-        screen.blit(textSurf4, (800, 190))
-        screen.blit(textSurf5, (800, 220))
-        screen.blit(textSurf6, (800, 350))
-        screen.blit(textSurf7, (800, 250))
-        screen.blit(textSurf8,  (900, 250))
-        screen.blit(textSurf9, (800, 300))
-        screen.blit(textSurf10, (900, 300))
+        # HUB SCREEN
+        screen.blit(self.hub,  (180, 0))
         
-        textSurf11 = self.font.render("wallStickLag: "+ str(int(self.player1.wallStickLag)) , True,(0, 0, 0))
-        screen.blit(textSurf11, (900, 400))
+        textSurf1 = self.font.render("P1 LIVES: " , True,(27, 141, 67))
+        textSurf2 = self.font.render("P2 LIVES: " , True,(0, 0, 255))
+        textSurf3 = self.font.render("P1 SCORE: " + str(int(self.player1.score)) , True, (27, 141, 67))
+        textSurf4 = self.font.render("P2 SCORE: " + str(int(self.player2.score)) , True, (0, 0, 255))
+        textSurf5 = self.font.render("TIME LEFT: " + str(200 - int(self.totalElapsedTime)) , True,(255, 0, 0))
+        
+        screen.blit(textSurf1,  (400, 10))
+        screen.blit(textSurf2,  (400, 40))
+        screen.blit(textSurf3,  (700, 10))
+        screen.blit(textSurf4,  (700, 40))
+        screen.blit(textSurf5,  (200, 10))
 
-
+        for i in range(self.player1.lives):
+            screen.blit(self.lifeSprite.image,  (490 + (i * 20), 10))
+        for i in range(self.player2.lives):
+            screen.blit(self.lifeSprite.image,  (490 + (i * 20), 40))
+        self.lifeSprite.update()
+ 
 
     # Intento de arreglar el algoritmo. Veamos como resulta
     def backgroundYMovementManager(self, player1, player2):

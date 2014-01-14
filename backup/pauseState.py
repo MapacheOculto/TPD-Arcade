@@ -14,7 +14,7 @@ class PauseState(gameObject):
 
     def update(self, elapsedTime):
         pressedKey = pygame.key.get_pressed()
-        button = self.joystickList[0].get_button(7) #or self.joystickList[1].get_button(7)##
+        button = self.joystickList[0].get_button(0) #or self.joystickList[1].get_button(7)##
         if button:
             self.systemState.changeState("playState")
         if pressedKey[K_q]:

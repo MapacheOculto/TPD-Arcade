@@ -1,4 +1,5 @@
 aaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaa
 aaaaaaaaa     <<
 aaaaaaaa      <<
 a aa       aaaaa
@@ -63,3 +64,5 @@ aaaaaaaaaaaaaaaa
 -
 levels//test.txt
 fondoDesierto
+-
+Multi 5 True 0 500 2 0.05

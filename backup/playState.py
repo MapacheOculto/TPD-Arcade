@@ -16,27 +16,8 @@ class playState(gameObject):
         self.systemState = systemState
 
         self.levelDictionary = {}
-        self.setLevels()
         self.currentLevel = None
         self.actualPath = None
-
-    def setLevels(self):
-        pass
-        """
-        self.level1 = level(self.joystickList,  self.screenSize, "levels//test.txt")
-        self.level2 = level(self.joystickList,  self.screenSize, "levels//test2.txt")
-        self.level3 = level(self.joystickList,  self.screenSize, "levels//castle2.txt")
-        self.level4 = level(self.joystickList,  self.screenSize, "levels//level1.txt")
-        self.level5 = level(self.joystickList,  self.screenSize, "levels//level3.txt")
-        self.level6 = level(self.joystickList,  self.screenSize, "levels//castle.txt")
-        
-        self.levelDictionary.update({"level1":self.level1})
-        self.levelDictionary.update({"level2":self.level2})
-        self.levelDictionary.update({"level3":self.level3})
-        self.levelDictionary.update({"level4":self.level4})
-        self.levelDictionary.update({"level5":self.level5})
-        self.levelDictionary.update({"level6":self.level6})
-        """
 
     def update(self, elapsedTime):
         self.currentLevel.update(elapsedTime)
@@ -47,6 +28,7 @@ class playState(gameObject):
 
         if self.currentLevel.gameOver:
             self.systemState.changeState("gameOverState")
+            self.systemState.currentState.deadMessage = self.currentLevel.deadMessage
             self.currentLevel = level(self.joystickList, self.screenSize, self.actualPath)
 
         if self.currentLevel.background.endOfStageReached:

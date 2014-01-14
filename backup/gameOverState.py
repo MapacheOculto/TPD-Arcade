@@ -16,11 +16,11 @@ class gameOverState(gameObject):
     def update(self, elapsedTime):
         
         if len(self.joystickList) == 2:
-            retryButton = self.joystickList[1].get_button(7) or self.joystickList[0].get_button(7)
-            goBackButton = self.joystickList[1].get_button(3) or self.joystickList[0].get_button(3)
+            retryButton = self.joystickList[1].get_button(0) or self.joystickList[0].get_button(0)
+            goBackButton = self.joystickList[1].get_button(1) or self.joystickList[0].get_button(1)
         else:
-            retryButton = self.joystickList[0].get_button(7)
-            goBackButton = self.joystickList[0].get_button(3)
+            retryButton = self.joystickList[0].get_button(0)
+            goBackButton = self.joystickList[0].get_button(1)
 
         if retryButton:
             self.systemState.changeState("playState")
@@ -34,8 +34,11 @@ class gameOverState(gameObject):
         textSurf  = self.font1.render("GAME OVER" , True,(255, 0, 0))
         screen.blit(textSurf, (self.screenSize[0] / 2 - 200, 200))
         
-        textSurf2  = self.font2.render("press space to retry" , True,(255, 0, 0))
-        screen.blit(textSurf2, (self.screenSize[0] / 2 - 100, 400))
+        textSurf  = self.font2.render(self.deadMessage , True,(255, 0, 0))
+        screen.blit(textSurf, (self.screenSize[0] / 2 - 200, 300))
+        
+        textSurf2  = self.font2.render("press a to retry" , True,(255, 0, 0))
+        screen.blit(textSurf2, (self.screenSize[0] / 2 - 100, 450))
 
-        textSurf2  = self.font2.render("press tab to retrun to title screen" , True,(255, 0, 0))
-        screen.blit(textSurf2, (self.screenSize[0] / 2 - 100, 500))
+        textSurf2  = self.font2.render("press b to return to title screen" , True,(255, 0, 0))
+        screen.blit(textSurf2, (self.screenSize[0] / 2 - 100, 550))

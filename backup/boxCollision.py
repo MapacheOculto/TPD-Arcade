@@ -128,18 +128,16 @@ class boxCollision:
         bottomLeft = (rectangle.left, rectangle.top + rectangle.height)
         return vertexList[topLeft, topRight, bottomRight, bottomLeft]
 
-    def IndividualCollision(self, player, sprite, x1, y1):
+    def IndividualCollision(self, player,sprite, x1, y1):
         if pygame.sprite.collide_rect(player.sprite, sprite.sprite):
             rect = sprite.sprite.rect
             uncolor=sprite.color
             if uncolor != player.color and uncolor != "Todos":
-                #print('damage')
-                player.takeDamage()
-                return True
+                return 'Damage'
             
-            player.gainScore(10)
-            return True
             
+            return 'Points'
+        return False
         
 
             

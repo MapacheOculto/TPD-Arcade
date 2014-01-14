@@ -1,7 +1,7 @@
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aa                                                                            aa
 aa                                                                            aa
-aa                                                                            aa
+aa                                                 บ บ บ บ บ บ                aa
 aa                                                                            aa
 aa                                                                            aa
 aa                                                                             a
@@ -9,7 +9,7 @@ aa                                                                            @a
 aa                                                                        aaaaaa
 aa                                                                          aaaa
 aa             llllll                                                         aa
-aa             llllll                                                         aa
+aa             llllll                           บบบบบบบบบบบบบบ                aa
 aa                                            aa               aa             aa
 aa                                            aalllllllllllllllaawwwwwwwwwwwwwaa
 aa                                            aalllllllllllllllaawwwwwwwwwwwwwaa
@@ -21,3 +21,4 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 -
 levels//castle2.txt
 fondoDesierto
+-

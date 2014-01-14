@@ -11,14 +11,18 @@ import math
 
 # Relativo a los sonidos
 mixer.init()
-murunf = mixer.Sound('sounds//Murunf.mp3')
-murunf.set_volume(0.5)
+points = mixer.Sound('sounds//points.wav')
+points.set_volume(0.4)
+life = mixer.Sound('sounds//life.wav')
+life.set_volume(0.4)
 walk = mixer.Sound('sounds//walk2.wav')
 walk.set_volume(0.1)
 alert = mixer.Sound('sounds//jump.wav')
 alert.set_volume(0.1)
 slide=mixer.Sound('sounds//slide.wav')
 slide.set_volume(0.8)
+burn=mixer.Sound('sounds//burn1.wav')
+burn.set_volume(1)
 
 
 class Player:
@@ -32,7 +36,14 @@ class Player:
         self.jumpPath = []
         self.endJump = []
         self.wallJumpRPath = []
-        self.deathPath = []
+        self.runPath2 = []
+        self.path12 = []
+        self.startJumpPath2 = []
+        self.jumpPath2 = []
+        self.endJump2 = []
+        self.wallJumpRPath2 = []
+        self.deadPath = []
+        self.deadPath2 = []
        
         #ACCESORIOS
         self.movParab = movParab
@@ -42,6 +53,8 @@ class Player:
         self.sprite = pygame.sprite.Sprite()
         self.joystick = joystick
         self.colisionada = None ##INTENTAR HACERLO CON UNA LISTA Y VERIFICAR TODOS LOS QUE ESTA COLISIONANDO
+        self.font = pygame.font.SysFont("arial", 16)
+        self.font.set_bold(True)
 
         #POSICION Y OTROS INT
         self.X = x
@@ -85,7 +98,9 @@ class Player:
 
         # STAGE Y MUERTE
         self.exitStage = False
+        self.startDeadAnimation = False
         self.dead = False
+        self.deadMessage = ""
 
         #COLOR
         self.color = "Green"
@@ -113,31 +128,8 @@ class Player:
 
 
     # Metodo ve si esta cayendo, caminando, saltando, etc. Luego, actualiza bools y valores correspondientes
-    def update(self, elapsedTime, group, exitGroup, damageGroup, groupList):
+    def update(self, elapsedTime, group, exitGroup, damageGroup, itemsGroup, groupList):
         
-        ##IVAN
-            ##Plataformas no activadas (agregarlas a una lista de plataformas tocadas pa ver si siguen estando activadas o no
-        
-        #for sprite in group:
-        #    if sprite.activada == True:
-        #        #Verificar que sigue activada
-
-        #        #Si lo esta
-        #        if (pygame.sprite.collide_rect(self.sprite,sprite) and sprite.color == self.color): #o hay colision con el otro personaje
-        #            sprite.color = "Todos"
-        #        #Si no
-        #        else:
-        #            sprite.color = sprite.colororiginal
-        #            sprite.activada = False
-
-        #    else: sprite.activada = False
-        ##Colision de compañero
-        #newPos = pygame.Rect(self.companero.X+self.companero.deltaX, self.companero.Y+self.companero.deltaY, self.companero.sprite.rect.width, self.companero.sprite.rect.height)
-        #playerMoved = pygame.sprite.Sprite()
-        #playerMoved.rect = newPos
-
-
-
         clashingDown = self.clashManager.CheckCollision(self, group, self.X, self.Y + 1)
         clashingRight = self.clashManager.CheckCollision(self, group, self.X + 1, self.Y)
         clashingLeft = self.clashManager.CheckCollision(self, group, self.X - 1, self.Y) 
@@ -147,16 +139,10 @@ class Player:
 
         
         ## CAMBIO DE COLOR 
-        if self.joystick.get_button(4):
+        if self.id == 'p1':
            self.color = "Green"
-        if self.joystick.get_button(5):
+        elif self.id == 'p2':
            self.color = "Blue"
-        pressedKey = pygame.key.get_pressed()
-        if pressedKey[K_v]:
-           self.color = "Green"
-        if pressedKey[K_b]:
-           self.color = "Blue"
-        
 
         ## JOYSTICK
         if not self.joystick.get_button(0) and self.joystickButtonActivated:
@@ -182,13 +168,30 @@ class Player:
         else:
             self.freefall.stop()
             
+            
+        ## ITEMS
+        if self.clashManager.CheckCollision(self, itemsGroup, self.X, self.Y):
+            itemList = pygame.sprite.spritecollide(self.sprite, itemsGroup, False)
+            for item in itemList:
+                if self.lives == 10 and item.id == "life":
+                    self.score += 100
+                    points.play()
+                elif self.lives < 10 and item.id == "life":
+                    self.lives += 1
+                    life.play()
+                elif item.id == "points":
+                    self.score += 50
+                    points.play()
+                item.kill()
+            
 
-        ## MUERTE
+        ## LAVA O HIELO
         if self.clashManager.CheckCollision(self, damageGroup, self.X, self.Y):
             self.falling = False
             self.freefall.stop()
             self.startJump()
-            self.takeDamage()
+            self.takeDamage("damaging field")
+            burn.play()
 
 
         ## CAMBIO ETAPA
@@ -317,8 +320,6 @@ class Player:
         elif self.color == "Green":
             pygame.draw.circle(surface, (0,255,0), (int(self.X), int(self.Y) -5), 6)
 
-        #BORRAR-----------------------------------------------------------------------------------------------------------BORRAR
-        self.score += 0.5
             
                 
     # De acuerdo a los bools determinados en update, dibuja la animacion correspondiente
@@ -326,69 +327,111 @@ class Player:
         
         tempWidth = self.sprite.image.get_width()
         tempHeight = self.sprite.image.get_height()
+        actualPath = []
 
-        if self.walking:
-            if self.rightWallSliding:
-                self.animation(self.wallJumpRPath, len(self.wallJumpRPath))
-            elif self.leftWallSliding:
-                self.animation(self.wallJumpRPath, len(self.wallJumpRPath))
+
+        if self.startDeadAnimation:
+            if self.id == "p1":
+                actualPath = self.deadPath2
+            else:
+                actualPath = self.deadPath
+            if self.storyBoard.inProcess == False:
+                self.dead = True
+        elif self.walking:
+            if self.rightWallSliding or self.leftWallSliding:
+                if self.id == "p1":
+                    actualPath = self.wallJumpRPath2
+                else:
+                    actualPath = self.wallJumpRPath
+                self.animation(actualPath, len(actualPath))
             elif self.jumpStart:
-                self.animation(self.startJumpPath, len(self.startJumpPath))
+                if self.id == "p1":
+                    actualPath = self.startJumpPath2
+                else:
+                    actualPath = self.startJumpPath
                 if self.storyBoard.inProcess == False:
                     self.jumpStart = False
             elif self.jumping:
-                self.animation(self.jumpPath, len(self.jumpPath))
+                if self.id == "p1":
+                    actualPath = self.jumpPath2
+                else:
+                    actualPath = self.jumpPath
             elif (self.jumpEnd):
-                self.animation(self.endJump, len(self.endJump))
+                if self.id == "p1":
+                    actualPath = self.endJump2
+                else:
+                    actualPath = self.endJump
                 if self.storyBoard.inProcess == False:
                     self.jumpEnd = False
             elif self.falling:
-                self.animation(self.jumpPath, len(self.jumpPath))
-            elif not self.jumping: 
-                self.animation(self.runPath, len(self.runPath))
-
-        elif self.still:
-            
-            if self.rightWallSliding:
-                self.animation(self.wallJumpRPath, len(self.wallJumpRPath))
-            elif self.leftWallSliding:
-                self.animation(self.wallJumpRPath, len(self.wallJumpRPath))
+                if self.id == "p1":
+                    actualPath = self.jumpPath2
+                else:
+                    actualPath = self.jumpPath
+            else: 
+                if self.id == "p1":
+                    actualPath = self.runPath2
+                else:
+                    actualPath = self.runPath
+        else:
+            if self.rightWallSliding or self.leftWallSliding:
+                if self.id == "p1":
+                    actualPath = self.wallJumpRPath2
+                else:
+                    actualPath = self.wallJumpRPath
+                self.animation(actualPath, len(actualPath))
             elif self.jumpStart:
-                self.animation(self.startJumpPath, len(self.startJumpPath))
+                if self.id == "p1":
+                    actualPath = self.startJumpPath2
+                else:
+                    actualPath = self.startJumpPath
                 if self.storyBoard.inProcess == False:
                     self.jumpStart = False
             elif self.jumping:
-                self.animation(self.jumpPath, len(self.jumpPath))
+                if self.id == "p1":
+                    actualPath = self.jumpPath2
+                else:
+                    actualPath = self.jumpPath
             elif (self.jumpEnd):
-                self.animation(self.endJump, len(self.endJump))
+                if self.id == "p1":
+                    actualPath = self.endJump2
+                else:
+                    actualPath = self.endJump
                 if self.storyBoard.inProcess == False:
-                    self.jumpEnd = False      
+                    self.jumpEnd = False
             elif self.falling:
-                self.animation(self.jumpPath, len(self.jumpPath))
-            else:  #Se queda quieto
-                self.animation(self.path1, len(self.path1))
-
+                if self.id == "p1":
+                    actualPath = self.jumpPath2
+                else:
+                    actualPath = self.jumpPath
+            else:
+                if self.id == "p1":
+                    actualPath = self.path12
+                else:
+                    actualPath = self.path1
+        
+        self.animation(actualPath, len(actualPath))
 
         self.updateSpriteSize(tempWidth, tempHeight)
         surface = pygame.display.get_surface()
         surface.blit(self.sprite.image, self.sprite.rect)
 
-        ## COLOR RENDER
-        surface = pygame.display.get_surface()
-        if self.color == "Blue":
-            pygame.draw.circle(surface, (0,0,255), (int(self.X), int(self.Y) -5), 6)
-        elif self.color == "Green":
-            pygame.draw.circle(surface, (0,255,0), (int(self.X), int(self.Y) -5), 6)
+        textSurf = self.font.render(self.id , True,(0, 0, 0))
+        surface.blit(textSurf,  (int(self.X), int(self.Y) - 25))
         
         
     #---------------------------------------------------------------------------------------------
     #-DAÑO-O-GANAR-PUNTAJE-----------------------------------------------------------
-    def takeDamage(self):
+    def takeDamage(self, string):
         self.lives -= 1
         if self.score > 10:
             self.score -= 10
         if self.lives == 0:
-            self.dead = True
+            self.startDeadAnimation = True
+            if self.id == "p1":
+                self.deadMessage = "Player 1 died due to " + string + " damage"
+            elif self.id == "p2":
+                self.deadMessage = "Player 2 died due to " + string + " damage"
 
     def gainScore(self, value):
         self.score += value
@@ -596,39 +639,76 @@ class Player:
         self.runPath.append(pygame.image.load("walk//fire5.png").convert_alpha())
         self.runPath.append(pygame.image.load("walk//fire6.png").convert_alpha())
         
+        self.runPath2.append(pygame.image.load("walk//fire12.png").convert_alpha())
+        self.runPath2.append(pygame.image.load("walk//fire22.png").convert_alpha())
+        self.runPath2.append(pygame.image.load("walk//fire32.png").convert_alpha())
+        self.runPath2.append(pygame.image.load("walk//fire42.png").convert_alpha())
+        self.runPath2.append(pygame.image.load("walk//fire52.png").convert_alpha())
+        self.runPath2.append(pygame.image.load("walk//fire62.png").convert_alpha())
+        #"""
         self.path1.append(pygame.image.load("still//fire01.png").convert_alpha())
         self.path1.append(pygame.image.load("still//fire02.png").convert_alpha())
         self.path1.append(pygame.image.load("still//fire03.png").convert_alpha())
         self.path1.append(pygame.image.load("still//fire04.png").convert_alpha())
         
+        self.path12.append(pygame.image.load("still//fire012.png").convert_alpha())
+        self.path12.append(pygame.image.load("still//fire022.png").convert_alpha())
+        self.path12.append(pygame.image.load("still//fire032.png").convert_alpha())
+        self.path12.append(pygame.image.load("still//fire042.png").convert_alpha())
+        #"""
         self.startJumpPath.append(pygame.image.load("jumpStart//jumpStart1.png").convert_alpha())
         self.startJumpPath.append(pygame.image.load("jumpStart//jumpStart2.png").convert_alpha())
         self.startJumpPath.append(pygame.image.load("jumpStart//jumpStart3.png").convert_alpha())
         self.startJumpPath.append(pygame.image.load("jumpStart//jumpStart4.png").convert_alpha())
         
+        self.startJumpPath2.append(pygame.image.load("jumpStart//jumpStart12.png").convert_alpha())
+        self.startJumpPath2.append(pygame.image.load("jumpStart//jumpStart22.png").convert_alpha())
+        self.startJumpPath2.append(pygame.image.load("jumpStart//jumpStart32.png").convert_alpha())
+        self.startJumpPath2.append(pygame.image.load("jumpStart//jumpStart42.png").convert_alpha())
+        #"""
         self.jumpPath.append(pygame.image.load("jump//jumping1.png").convert_alpha())
         self.jumpPath.append(pygame.image.load("jump//jumping2.png").convert_alpha())
         self.jumpPath.append(pygame.image.load("jump//jumping3.png").convert_alpha())
         self.jumpPath.append(pygame.image.load("jump//jumping4.png").convert_alpha())
         
+        self.jumpPath2.append(pygame.image.load("jump//jumping12.png").convert_alpha())
+        self.jumpPath2.append(pygame.image.load("jump//jumping22.png").convert_alpha())
+        self.jumpPath2.append(pygame.image.load("jump//jumping32.png").convert_alpha())
+        self.jumpPath2.append(pygame.image.load("jump//jumping42.png").convert_alpha())
+        #"""
         self.endJump.append(pygame.image.load("jumpEnd//finishJump1.png").convert_alpha())
         self.endJump.append(pygame.image.load("jumpEnd//finishJump2.png").convert_alpha())
         self.endJump.append(pygame.image.load("jumpEnd//finishJump3.png").convert_alpha())
         self.endJump.append(pygame.image.load("jumpEnd//finishJump4.png").convert_alpha())
         self.endJump.append(pygame.image.load("jumpEnd//finishJump5.png").convert_alpha())
         self.endJump.append(pygame.image.load("jumpEnd//finishJump6.png").convert_alpha())
-
+        
+        self.endJump2.append(pygame.image.load("jumpEnd//finishJump12.png").convert_alpha())
+        self.endJump2.append(pygame.image.load("jumpEnd//finishJump22.png").convert_alpha())
+        self.endJump2.append(pygame.image.load("jumpEnd//finishJump32.png").convert_alpha())
+        self.endJump2.append(pygame.image.load("jumpEnd//finishJump42.png").convert_alpha())
+        self.endJump2.append(pygame.image.load("jumpEnd//finishJump52.png").convert_alpha())
+        self.endJump2.append(pygame.image.load("jumpEnd//finishJump62.png").convert_alpha())
+        #"""
         self.wallJumpRPath.append(pygame.image.load("wallJumpR//wallJump1.png").convert_alpha())
         self.wallJumpRPath.append(pygame.image.load("wallJumpR//wallJump2.png").convert_alpha())
         self.wallJumpRPath.append(pygame.image.load("wallJumpR//wallJump3.png").convert_alpha())
+        
+        self.wallJumpRPath2.append(pygame.image.load("wallJumpR//wallJump12.png").convert_alpha())
+        self.wallJumpRPath2.append(pygame.image.load("wallJumpR//wallJump22.png").convert_alpha())
+        self.wallJumpRPath2.append(pygame.image.load("wallJumpR//wallJump32.png").convert_alpha())
+        #"""
+        self.deadPath.append(pygame.image.load("muerte//dead1.png").convert_alpha())
+        self.deadPath.append(pygame.image.load("muerte//dead2.png").convert_alpha())
+        self.deadPath.append(pygame.image.load("muerte//dead3.png").convert_alpha())
+        self.deadPath.append(pygame.image.load("muerte//dead4.png").convert_alpha())
+        self.deadPath.append(pygame.image.load("muerte//dead5.png").convert_alpha())
+        self.deadPath.append(pygame.image.load("muerte//dead6.png").convert_alpha())
 
-        self.deathPath.append(pygame.image.load("muerte//jumping1.png").convert_alpha())
-        self.deathPath.append(pygame.image.load("muerte//jumping2.png").convert_alpha())
-        self.deathPath.append(pygame.image.load("muerte//jumping3.png").convert_alpha())
-        self.deathPath.append(pygame.image.load("muerte//jumping4.png").convert_alpha())
-        self.deathPath.append(pygame.image.load("muerte//jumping5.png").convert_alpha())
-        self.deathPath.append(pygame.image.load("muerte//jumping6.png").convert_alpha())
-        self.deathPath.append(pygame.image.load("muerte//jumping7.png").convert_alpha())
-        self.deathPath.append(pygame.image.load("muerte//jumping8.png").convert_alpha())
-        self.deathPath.append(pygame.image.load("muerte//jumping9.png").convert_alpha())
-        self.deathPath.append(pygame.image.load("muerte//jumping10.png").convert_alpha())
+        self.deadPath2.append(pygame.image.load("muerte//dead12.png").convert_alpha())
+        self.deadPath2.append(pygame.image.load("muerte//dead22.png").convert_alpha())
+        self.deadPath2.append(pygame.image.load("muerte//dead32.png").convert_alpha())
+        self.deadPath2.append(pygame.image.load("muerte//dead42.png").convert_alpha())
+        self.deadPath2.append(pygame.image.load("muerte//dead52.png").convert_alpha())
+        self.deadPath2.append(pygame.image.load("muerte//dead62.png").convert_alpha())
+        #"""

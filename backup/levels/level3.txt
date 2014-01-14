@@ -20,7 +20,7 @@ aaaaa         aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaa       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaa                                             aaaa
 aaaaaaa                                             aaaa
-aaaaaaaaa     O--G                                  aaaa
+aaaaaaaaa     P--G                                  aaaa
 aaaaaaaaa                                           aaaa
 aaaaaaaaaaa                                         aaaa
 aaa  aaaaaa                                         aaaa
@@ -37,3 +37,4 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 -
 levels//castle.txt
 fondoDesierto
+-
