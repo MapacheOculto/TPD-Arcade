@@ -31,6 +31,10 @@ class gameWorldState(object):
         self.deltaX = 0
         self.deltaY = 0
 
+        self.background = pygame.image.load("blocks//worldMap.jpeg").convert()
+        self.background = pygame.transform.scale(self.background, (self.screenSize[0],self.screenSize[1]))  
+
+
     # Update a las variables relevantes
     def update(self, elapsedTime):
 
@@ -90,7 +94,7 @@ class gameWorldState(object):
     # Dibuja sprite
     def render(self):
         screen = pygame.display.get_surface()
-        screen.fill((244, 164, 69))
+        screen.blit(self.background, (0,0))
         
         textSurf  = self.font1.render("GAME WORLD" , True,(0, 0, 0))
         screen.blit(textSurf, (self.screenSize[0] / 2 - 150, 50))

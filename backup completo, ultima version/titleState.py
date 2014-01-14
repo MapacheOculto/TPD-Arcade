@@ -41,10 +41,10 @@ class titleState(gameObject):
         direction = 0
         
         if len(self.joystickList) == 2:
-            startButton = self.joystickList[1].get_button(0) or self.joystickList[0].get_button(0)
+            startButton = self.joystickList[1].get_button(3) or self.joystickList[0].get_button(3)
             backButton = self.joystickList[1].get_button(2) or self.joystickList[0].get_button(2)
         else:
-            startButton = self.joystickList[0].get_button(0)
+            startButton = self.joystickList[0].get_button(3)
             backButton = self.joystickList[0].get_button(2)
 
         if abs(self.joystickList[0].get_axis(1)) > 0.3 and not self.activateHub:
