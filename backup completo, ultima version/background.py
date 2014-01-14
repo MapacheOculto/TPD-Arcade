@@ -73,7 +73,7 @@ class Background:
             self.moveBackGroundForward = False
             self.moveBackGroundBackward = False
             for sprite in self.group: # spriteList:
-                sprite.rect = pygame.Rect((sprite.rect.left + self.xAdvance, sprite.rect.top), (sprite.rect.width, sprite.rect.height))
+                sprite.rect = pygame.Rect((sprite.rect.left + self.xAdvance , sprite.rect.top), (sprite.rect.width, sprite.rect.height))
             for exitSprite in self.exitGroup:
                 exitSprite.rect = pygame.Rect((exitSprite.rect.left + self.xAdvance, exitSprite.rect.top), (exitSprite.rect.width, exitSprite.rect.height))
             for damageSprite in self.damageGroup:
@@ -114,6 +114,8 @@ class Background:
                 sprite.image = sprite.imagen2
             else:
                 sprite.image = sprite.imagenoriginal
+            sprite.rect.left = sprite.rect.left + sprite.delta_x
+            sprite.rect.right = sprite.rect.right + sprite.delta_x
         self.group.draw(surface)
         self.exitGroup.draw(surface)
         self.damageGroup.draw(surface)
