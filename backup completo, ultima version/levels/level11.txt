@@ -4,7 +4,7 @@ a                                               aaaaaaaa
 <                                                  aaaaa
 <                                                    aaa
 a @                                                   aa
-aaaa                                                  aa
+aaaa    P--G      O--B                                aa
 a  a                                                   a
 a  aaaa                                              % a
 a  a  a               &        &                       a

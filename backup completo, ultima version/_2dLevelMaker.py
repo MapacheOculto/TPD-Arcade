@@ -290,10 +290,12 @@ class _2dLevelMaker:
         elif character == "O":
              sprite.image = self.imageDictionary["blueAlpha"]
              sprite.imagen2 = self.imageDictionary["blue"]
+             sprite.delta_x = 10
              sprite.color = "Blue" 
         elif character == "P":
             sprite.image = self.imageDictionary["greenAlpha"]
             sprite.imagen2 = self.imageDictionary["green"]
+            sprite.delta_x = 10
             sprite.color = "Green"
         elif character == "Q":
             sprite.image = self.imageDictionary["blueAlpha"]

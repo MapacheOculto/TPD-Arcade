@@ -22,6 +22,8 @@ class Platform(pygame.sprite.Sprite):
     activada = False
     x_scale = 0
     y_scale = 0
+    delta_x = 0
+    delta_y = 0
 
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)

@@ -61,13 +61,14 @@ class boxCollision:
             for sprite in spriteListaux:
                 if sprite.color == player.color or sprite.color == "Todos" or sprite.activada :
                     rect = sprite.rect
-                    self.topY = rect.top
-                    self.bottomY = rect.top + rect.height
-                    self.rightX = rect.left + rect.width
-                    self.leftX = rect.left
+                    self.topY = rect.top + sprite.delta_y
+                    self.bottomY = rect.top + rect.height - sprite.delta_y
+                    self.rightX = rect.left + rect.width + sprite.delta_x
+                    self.leftX = rect.left - sprite.delta_x
                     if sprite.color == player.color:
                         sprite.activada = True
                     player.colisionada = sprite
+                    player.deltaX = player.deltaX + sprite.delta_x
                     return True
                 elif sprite.activada == False and sprite.tipo =="Color":
                     companeroPos = pygame.Rect(player.companero.X, player.companero.Y+1, player.companero.sprite.rect.width, player.companero.sprite.rect.height)
@@ -76,12 +77,13 @@ class boxCollision:
                     companeroMoved.rect = companeroPos
                     if companeroMoved.color == sprite.color and pygame.sprite.collide_rect(sprite,companeroMoved):
                         rect = sprite.rect
-                        self.topY = rect.top
-                        self.bottomY = rect.top + rect.height
-                        self.rightX = rect.left + rect.width
-                        self.leftX = rect.left                       
+                        self.topY = rect.top + sprite.delta_y
+                        self.bottomY = rect.top + rect.height - sprite.delta_y
+                        self.rightX = rect.left + rect.width + sprite.delta_x
+                        self.leftX = rect.left - sprite.delta_x                   
                         sprite.activada = True
                         player.colisionada = sprite
+                        player.deltaX = player.deltaX + sprite.delta_x
                         return True
                     else:
                      sprite.activada = False
@@ -91,12 +93,13 @@ class boxCollision:
                     companeroMoved.rect = companeroPos
                     if companeroMoved.color == sprite.color and pygame.sprite.collide_rect(sprite,companeroMoved):
                         rect = sprite.rect
-                        self.topY = rect.top
-                        self.bottomY = rect.top + rect.height
-                        self.rightX = rect.left + rect.width
-                        self.leftX = rect.left                       
+                        self.topY = rect.top + sprite.delta_y
+                        self.bottomY = rect.top + rect.height - sprite.delta_y
+                        self.rightX = rect.left + rect.width + sprite.delta_x
+                        self.leftX = rect.left - sprite.delta_x                
                         sprite.activada = True
                         player.colisionada = sprite
+                        player.deltaX = player.deltaX + sprite.delta_x
                         return True
                     else:
                       sprite.activada = False
@@ -106,12 +109,13 @@ class boxCollision:
                     companeroMoved.rect = companeroPos
                     if companeroMoved.color == sprite.color and pygame.sprite.collide_rect(sprite,companeroMoved):
                         rect = sprite.rect
-                        self.topY = rect.top
-                        self.bottomY = rect.top + rect.height
-                        self.rightX = rect.left + rect.width
-                        self.leftX = rect.left                       
+                        self.topY = rect.top + sprite.delta_y
+                        self.bottomY = rect.top + rect.height - sprite.delta_y
+                        self.rightX = rect.left + rect.width + sprite.delta_x
+                        self.leftX = rect.left - sprite.delta_x                
                         sprite.activada = True
                         player.colisionada = sprite
+                        player.deltaX = player.deltaX + sprite.delta_x
                         return True
                     else:
                      sprite.activada = False
