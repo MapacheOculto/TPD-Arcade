@@ -1,0 +1,27 @@
+﻿<?xml version="1.0"?>
+<Game>
+	<Title>Colors</Title>
+	<Code>COL</Code>
+	<Version>100</Version>
+	<Date>21-12-2013</Date>
+	<Description>Platformer de arcade co-op de 2 jugadores</Description>
+	<WebUpdate enable="true" repo="ftp://arcade.ing.puc.cl/games/COL/release/latest/UpdateInfo.xml"/>
+	<MainClass name="Colors" file="./games/Colors/Colors.py"/>
+	<CrashDump sendTo="jdheysen@uc.cl" prefix="[COL Crash]"/>
+	<Authors>
+		<Author name="José Rosenbluth"/>
+		<Author name="Cristian Henríquez"/>
+		<Author name="Iván Rubio"/>
+		
+	</Authors>
+	<Screenshots>
+		
+	</Screenshots>
+	<Services>
+		<Service name="HighscoreService" max="10" storage="global"/>
+		<Service name="SaveGameService" storage="removable" path="default"/>
+		<Service name="MetricService" report="1w" format="xml"/> 
+	</Services>
+	<AdditionalData>
+	</AdditionalData>
+</Game>

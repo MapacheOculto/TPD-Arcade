@@ -1,0 +1,24 @@
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a                            a              aaaaaaaaaaaa
+a @                          a                  aaaaaaaa
+aaaa                         % a                   aaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaa    a                       aaa
+aaaaaaaaaaaaaaaaaaaaaaaaa    a                       aaa
+aaa  %                       a                        aa
+aaa      aaaaaaaaaaaaaaaaaaaaa                        a    
+a                            %                         a
+a                                                     aa
+a                          <                           a
+a                          <                           a
+a                                                      a
+a                                                      a
+aaaaaaaaaaaaa     aaaaa     aaaa     aaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+-
+levels//testreal3.txt
+fondoDesierto
+-Torretas(color=Multi,Green o Blue) (rafaga), (movil=True o False), (angulo(cualquiera si es movil)), (velocidad), (timer_entre_rafaga=recomendado 2), (timer_entre_bala=recomendado 0.07)
+Blue 6 False 180 500 2 0.07
+Green 6 False 0 500 2 0.07
+Multi 6 True 0 500 2 0.07
