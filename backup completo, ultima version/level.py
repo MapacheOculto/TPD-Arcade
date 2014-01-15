@@ -21,7 +21,9 @@ alert.set_volume(0.1)
 slide=mixer.Sound('sounds//slide.wav')
 slide.set_volume(0.1)
 
+
 class level:
+
     
     # Constructor
     def __init__(self, joystickList, screenSize, initialPath):
@@ -80,9 +82,6 @@ class level:
     # Update de todas las variables relevantes
     def update(self, elapsedTime):
 
-        self.joystickButtonManager(0)
-        self.joystickButtonManager(1)
-        
         # Tiempo
         self.totalElapsedTime += elapsedTime
         if self.totalElapsedTime > 200:
@@ -143,9 +142,6 @@ class level:
             self.player2.Y = self.player1.Y
         #"""   
 
-        #######PAUSA(con joystick)##################################
-        if self.button2Pressed:
-            self.pauseGame = True
 
 
         ###########CAMBIO_DE_ETAPA##################################
@@ -475,28 +471,4 @@ class level:
 
         player2.X += self.background.xAdvance#---------------------------#
 
-        
-    ## JOYSTICK
-    def joystickButtonManager(self, id):
-        if id == 0:
-            if  (not self.joystickList[0].get_button(id) and self.joystickButtonActivated):
-                self.joystickButtonActivated = False
-                self.allowButtonPressing = True
-            if (self.joystickList[0].get_button(id) and self.joystickButtonActivated and not self.allowButtonPressing):
-                self.buttonPressed = False
-            if (self.joystickList[0].get_button(id) and not self.buttonPressed and self.allowButtonPressing):
-                self.allowButtonPressing = False
-                self.buttonPressed = True
-                self.joystickButtonActivated = True
-        elif id == 1:
-            if (not self.joystickList[0].get_button(id) and self.joystickButton2Activated):
-                self.joystickButton2Activated = False
-                self.allowButton2Pressing = True
-            if (self.joystickList[0].get_button(id) and self.joystickButton2Activated and not self.allowButton2Pressing):
-                self.button2Pressed = False
-            if (self.joystickList[0].get_button(id) and not self.button2Pressed and self.allowButton2Pressing):
-                self.allowButton2Pressing = False
-                self.button2Pressed = True
-                self.joystickButton2Activated = True
-        
 

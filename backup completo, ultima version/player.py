@@ -205,6 +205,8 @@ class Player:
             temporalDirection = self.joystick.get_axis(0)##
 
         self.deltaX = int( 4 * temporalDirection * elapsedTime * self.speed)
+        if abs(self.deltaX) > 30:
+            self.deltaX = 20 * temporalDirection
         if abs(self.deltaX) > 0:
             self.walk(group, self.deltaX)
             self.walking = True
