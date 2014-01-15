@@ -1,0 +1,22 @@
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a                                           ggggggggggggg
+a                                               ggggggggg
+<                                                  gggggg
+<                                                    gggg
+a @                                                   ggg
+aaaa                                                  ggg
+assa                                                  ggg
+assaaaa                                               ggg
+assassa                                               ggg
+assassaaaa                                             gg
+assassassa                                             gg
+assassassa                                             <<
+aaaaaaaaaa                                             <<
+ssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaa
+ssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaa
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssaaa
+sssssssssssssssssssssssssssssssssssssssssssssssssssssssaa
+-
+levels//testreal3.txt
+fondoDesierto
+-

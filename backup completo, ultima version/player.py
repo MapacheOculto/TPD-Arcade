@@ -217,16 +217,15 @@ class Player:
 
 
         ## DEFINE SI ESTA PEGADO A LA PARED
-        if (clashingRight or clashingLeft) and ((self.falling or self.jumping)) and not clashingDown:
+        if (clashingRight or clashingLeft) and not clashingDown and ((self.falling or self.jumping)):
             if clashingRight:
                 self.rightWallSliding = True
             elif clashingLeft:
-                self.leftWallSliding = True  
+                self.leftWallSliding = True
 
-            if (temporalDirection > 0 and clashingRight)or (temporalDirection < 0 and clashingLeft):
+            if (temporalDirection > 0 and clashingRight)or (temporalDirection < 0 and clashingLeft) and self.falling and not self.jumping:
                 self.wallStickLag = 5
                 self.pressedAgainstWall = True
-                self.jumping = False
                 self.freefall.stop()
                 self.deltaY = -2 ########################
                 if self.clashManager.CheckCollision(self, group, self.X, self.Y + 2):
@@ -241,21 +240,22 @@ class Player:
 
 
         ## SALTO DESDE PARED (ahora con joystick)
-        if self.rightWallSliding or self.leftWallSliding:##
-            if self.buttonPressed:##
+        if self.rightWallSliding or self.leftWallSliding:
+            if self.buttonPressed:
                 self.buttonPressed = False
-                self.freefall.stop()##
-                self.wallJumpStart(self.rightWallSliding)##
+                self.freefall.stop()
+                self.wallJumpStart(self.rightWallSliding)
         if self.wallJumping:
             self.updateWallJump(group, elapsedTime)
             
 
         ## SALTO NORMAL (ahora con joystick)
-        if self.buttonPressed and not self.falling and not self.jumping and not self.wallJumping :##
-            self.jumpStart = True##
-            self.startJump()##
+        if self.buttonPressed and not self.falling and not self.jumping and not self.wallJumping and clashingDown:##
+            self.jumpStart = True
+            self.startJump()
             self.buttonPressed = False
-        if self.jumping:# and not self.pressedAgainstWall:
+            alert.play()
+        if self.jumping and not self.pressedAgainstWall:
             self.updateJump(group, elapsedTime)
 
         
@@ -486,15 +486,18 @@ class Player:
         self.totalJumpTime += elapsedTime
         self.movParab.update(self.totalJumpTime)
         self.deltaY = int(self.movParab.deltaY)
-        if self.deltaY <= -50:############################################################################################
-            self.deltaY = -50############################################################################################
+        if self.deltaY <= -40:############################################################################################
+            self.deltaY = -40############################################################################################
 
         clashed = self.clashManager.CheckCollision(self, group, self.X, self.Y - self.deltaY)
 
         # Primera opcion : Que no haya colision y el salto aun no termine (setea vel terminal)
         if not clashed and self.movParab.inProcess:
-            if self.deltaY <= -50:############################################################################################
-                self.deltaY = -50 ############################################################################################
+            if self.deltaY < 0:
+                self.movParab.stop()
+                self.jumping = False
+                self.still = True
+                self.totalJumpTime = 0
         else:
             if clashed:
                 # Chequea si el choque fue contra algun techo.
@@ -584,8 +587,8 @@ class Player:
         self.totalJumpTime += elapsedTime
         self.freefall.update(self.totalJumpTime) 
         self.deltaY = int(self.freefall.deltaY) 
-        if abs(self.deltaY) >= 50:#######################################################################################
-            self.deltaY = -50###########################################################################
+        if abs(self.deltaY) >= 40:#######################################################################################
+            self.deltaY = -40###########################################################################
 
         ## Ver si al actualizar con freefall.Y se produce o no choque
         if self.clashManager.CheckCollision(self, group, self.X, self.Y - self.deltaY):
@@ -600,8 +603,8 @@ class Player:
             self.jumpEnd = True
             self.totalJumpTime = 0
         else:
-            if abs(self.deltaY) >= 50:#######################################################################################
-                self.deltaY = -50#######################################################################################
+            if abs(self.deltaY) >= 40:#######################################################################################
+                self.deltaY = -40#######################################################################################
 
 
     #Chequea si esta en caida libre o no

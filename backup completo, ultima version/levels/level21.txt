@@ -1,8 +1,8 @@
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aa                   aaaaaaaaaaa            aaaaaaaaaaa                                       aaaaaaaaa
 aa                   aaaaaaaaaa              aaaaaaaaaa                                       aaaaaaaaa
-aa                              %                                                                aaaaaa
-aa                    %                                                          &                  aaa
+aa                              %                       %                                        aaaaaa
+aa                                                                               &                  aaa
 aa                                                                F   Q   F                          <<
 aa                                                                                                   <<
 aa                                                                             aaaaaaaaaaaaaaaaaaaaaaaa

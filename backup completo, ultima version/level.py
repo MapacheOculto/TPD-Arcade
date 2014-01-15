@@ -212,6 +212,9 @@ class level:
         screen.blit(textSurf3,  (700, 10))
         screen.blit(textSurf4,  (700, 40))
         screen.blit(textSurf5,  (200, 10))
+        
+        textSurf6 = self.font.render("p1.jumping = : " + str(self.player1.jumping) , True,(255, 0, 0))
+        screen.blit(textSurf6,  (700, 200))
 
         for i in range(self.player1.lives):
             screen.blit(self.lifeSprite.image,  (490 + (i * 20), 10))

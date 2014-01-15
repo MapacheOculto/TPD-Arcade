@@ -1,24 +1,27 @@
-tttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-t                                        ttttttttttttttt
-t                                          ttttttttttttt
-t                                           tttttttttttt
-t                                             tttttttttt
-t                                               tttttttt
-t                                                  ttttt
-t                                                   tttt
-t @                                                 tttt
-tñññ                                                tttt
-tnnn                                                 ttt
-ttttñññ                                              ttt
-ttttnnn                                               tt
-tttttttñññ                                             t
-tttttttnnn                                             t
-tttttttttt                                             <
-ttttttttttñññ     aaaaa     aaaa     aaaa              <
-ttttttttttnnn     aaaaa     aaaa     aaaaññññññññ  ñññññ
-tttttttttttttlllllaaaaalllllaaaalllllaaaannnnnnnn  nnnnn
-ttttttttttttttttttaaaaatttttaaaatttttaaaattttttttttttttt
+ttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
+t                                        tttttttttttttttt
+t                                          tttttttttttttt
+t                                           ttttttttttttt
+t                                             ttttttttttt
+t                                               ttttttttt
+t                                                  tttttt
+t                                                   ttttt
+t @                                                 ttttt
+tñññ                                                ttttt
+tnnn                                                 tttt
+ttttñññ                                              tttt
+ttttnnn                                               ttt
+tttttttñññ                                             tt
+tttttttnnn                                             tt
+tttttttttt                                             <<
+ttttttttttñññ     aaaaa     aaaa     aaaa              <<
+ttttttttttnnn     aaaaa     aaaa     aaaañññññññ   ññññññ
+tttttttttttttlllllaaaaalllllaaaalllllaaaannnnnnn   nnnnnñ
+ttttttttttttttttttaaaaatttttaaaatttttaaaattttttt   tttttt
+ttttttttttttttttttaaaaatttttaaaatttttaaaatttttttllltttttt
+ttttttttttttttttttaaaaatttttaaaatttttaaaatttttttllltttttt
+ttttttttttttttttttaaaaatttttaaaatttttaaaatttttttttttttttt
 -
-levels//level11.txt
+levels//level12.txt
 fondoDesierto
 -
