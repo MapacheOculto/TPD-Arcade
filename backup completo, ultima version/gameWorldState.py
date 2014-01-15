@@ -35,10 +35,21 @@ class gameWorldState(object):
         self.background = pygame.transform.scale(self.background, (self.screenSize[0],self.screenSize[1]))  
         self.vortex = pygame.image.load("blocks//vortex.png").convert_alpha()
         self.vortex = pygame.transform.scale(self.vortex, (60, 60))
+        
+        self.buttonPressed = False##
+        self.joystickButtonActivated = True
+        self.allowButtonPressing = False
+        self.button2Pressed = False##
+        self.joystickButton2Activated = True
+        self.allowButton2Pressing = False
+
 
     # Update a las variables relevantes
     def update(self, elapsedTime):
 
+        self.joystickButtonManager(0)
+        self.joystickButtonManager(1)
+        
         # Parametros de iteracion
         playerInNode = self.playerInNode()
         temporalXDirection = 0
@@ -51,8 +62,9 @@ class gameWorldState(object):
         else:
             levelSelectionButton = self.joystickList[0].get_button(0)
             goBackButton = self.joystickList[0].get_button(1)
-        if levelSelectionButton and not self.moving:
-            self.systemState.changeState("playState") 
+            
+        if self.buttonPressed and not self.moving:    
+            self.changeState("playState")
             if self.playerPos == self.gameNodesList[0]:
                 actualPath = "levels//level11.txt"
             if self.playerPos == self.gameNodesList[1]:
@@ -67,8 +79,8 @@ class gameWorldState(object):
                 actualPath = "levels//castle.txt"
             self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath)
             self.systemState.currentState.actualPath = actualPath
-        elif goBackButton:
-            self.systemState.changeState("titleState")
+        elif self.button2Pressed:
+            self.changeState("titleState")
 
         # Obtiene si player apreto boton para desplazarse
         if abs(self.joystickList[0].get_axis(0)) > 0.3 and not self.moving and playerInNode:##
@@ -90,8 +102,43 @@ class gameWorldState(object):
         # Si se esta moviendo de un nodo a otro
         if self.moving:
             self.updateMovement()
+            
 
+    ## JOYSTICK
+    def joystickButtonManager(self, id):
+        if id == 0:
+            if  (not self.joystickList[0].get_button(id) and self.joystickButtonActivated):
+                self.joystickButtonActivated = False
+                self.allowButtonPressing = True
+            if (self.joystickList[0].get_button(id) and self.joystickButtonActivated and not self.allowButtonPressing):
+                self.buttonPressed = False
+            if (self.joystickList[0].get_button(id) and not self.buttonPressed and self.allowButtonPressing):
+                self.allowButtonPressing = False
+                self.buttonPressed = True
+                self.joystickButtonActivated = True
+        elif id == 1:
+            if (not self.joystickList[0].get_button(id) and self.joystickButton2Activated):
+                self.joystickButton2Activated = False
+                self.allowButton2Pressing = True
+            if (self.joystickList[0].get_button(id) and self.joystickButton2Activated and not self.allowButton2Pressing):
+                self.button2Pressed = False
+            if (self.joystickList[0].get_button(id) and not self.button2Pressed and self.allowButton2Pressing):
+                self.allowButton2Pressing = False
+                self.button2Pressed = True
+                self.joystickButton2Activated = True
 
+                
+    # ChangeState
+    def changeState(self, stateName):
+        self.systemState.changeState(stateName)
+        self.systemState.currentState.buttonPressed = False##
+        self.systemState.currentState.joystickButtonActivated = True
+        self.systemState.currentState.allowButtonPressing = False
+        self.systemState.currentState.button2Pressed = False##
+        self.systemState.currentState.joystickButton2Activated = True
+        self.systemState.currentState.allowButton2Pressing = False
+        
+        
     # Dibuja sprite
     def render(self):
         screen = pygame.display.get_surface()

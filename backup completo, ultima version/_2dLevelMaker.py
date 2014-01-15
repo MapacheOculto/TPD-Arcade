@@ -52,9 +52,6 @@ class _2dLevelMaker:
         lines = File.readlines()
         File.close()
 
-
-
-        
         caracteristicas=lines[len(lines)-indice_torreta]
 
         while not '-' in caracteristicas:
@@ -69,13 +66,8 @@ class _2dLevelMaker:
         self.caract=self.caracteristicas_torretas
 
 
-
         indice_torreta=0
 
-        
-
-        
-        
         
         ## ESTANDARIZAR ESTO
         #self.height = len(lines)
@@ -93,9 +85,7 @@ class _2dLevelMaker:
             self.numero_torretas_en_mapa+=lines[i].count('&')
         while len(self.caract)<self.numero_torretas_en_mapa:
             self.caract.append([])
-
-        
-        
+  
         for i in range(self.height):
             line = list(lines[i])
             for j in range(self.width):
@@ -109,6 +99,10 @@ class _2dLevelMaker:
                     self.createDamageField(j, i, 'w')
                 elif line[j] == 'a':
                     self.createSprite(lines,j, i, 'a')
+                elif line[j] == 'n':
+                    self.createSprite(lines,j, i, 'n')
+                elif line[j] == 'ñ':
+                    self.createSprite(lines,j, i, 'ñ')
                 elif line[j] == 'c':
                     self.createSprite(lines,j, i, 'c')
                 elif line[j] == 's':
@@ -276,6 +270,12 @@ class _2dLevelMaker:
         elif character == "t":
             sprite.image = self.imageDictionary["lowEarth"]
             sprite.imagen2 = self.imageDictionary["lowEarth"]
+        elif character == "n":
+            sprite.image = self.imageDictionary["grass"]
+            sprite.imagen2 = self.imageDictionary["grass"]
+        elif character == "ñ":
+            sprite.image = self.imageDictionary["topGrass"]
+            sprite.imagen2 = self.imageDictionary["topGrass"]
         elif character == "s":
             sprite.image = self.imageDictionary["sand"]
             sprite.imagen2 = self.imageDictionary["sand"]

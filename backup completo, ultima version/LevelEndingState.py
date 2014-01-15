@@ -16,23 +16,41 @@ class LevelEndingState(object):
         self.score2 = 0
         self.time = 0
 
+        self.buttonPressed = False##
+        self.joystickButtonActivated = True
+        self.allowButtonPressing = False
+        self.button2Pressed = False##
+        self.joystickButton2Activated = True
+        self.allowButton2Pressing = False
+
+
+    def changeState(self, stateName):
+        self.systemState.changeState(stateName)
+        self.systemState.currentState.buttonPressed = False##
+        self.systemState.currentState.joystickButtonActivated = True
+        self.systemState.currentState.allowButtonPressing = False
+        self.systemState.currentState.button2Pressed = False##
+        self.systemState.currentState.joystickButton2Activated = True
+        self.systemState.currentState.allowButton2Pressing = False
+
+            
     def setParams(self, time, score1, score2):
         self.time = time
         self.score1 = score1
         self.score2 = score2
 
-    def update(self, elapsedTime):
-        
-        if len(self.joystickList) == 2:
-            goBackButton = self.joystickList[1].get_button(7) or self.joystickList[0].get_button(7)
-        else:
-            goBackButton = self.joystickList[0].get_button(7)
 
-        if goBackButton:
+    def update(self, elapsedTime):
+
+        self.joystickButtonManager(0)
+        self.joystickButtonManager(1)
+
+        if self.buttonPressed:
             self.time = 0
             self.score1 = 0
             self.score2 = 0
-            self.systemState.changeState("gameWorldState")
+            self.changeState("gameWorldState")
+
 
     def render(self):
         screen = pygame.display.get_surface()
@@ -52,4 +70,25 @@ class LevelEndingState(object):
         screen.blit(textSurf5, (100, 600))
 
 
-
+    ## JOYSTICK
+    def joystickButtonManager(self, id):
+        if id == 0:
+            if  (not self.joystickList[0].get_button(id) and self.joystickButtonActivated):
+                self.joystickButtonActivated = False
+                self.allowButtonPressing = True
+            if (self.joystickList[0].get_button(id) and self.joystickButtonActivated and not self.allowButtonPressing):
+                self.buttonPressed = False
+            if (self.joystickList[0].get_button(id) and not self.buttonPressed and self.allowButtonPressing):
+                self.allowButtonPressing = False
+                self.buttonPressed = True
+                self.joystickButtonActivated = True
+        elif id == 1:
+            if (not self.joystickList[0].get_button(id) and self.joystickButton2Activated):
+                self.joystickButton2Activated = False
+                self.allowButton2Pressing = True
+            if (self.joystickList[0].get_button(id) and self.joystickButton2Activated and not self.allowButton2Pressing):
+                self.button2Pressed = False
+            if (self.joystickList[0].get_button(id) and not self.button2Pressed and self.allowButton2Pressing):
+                self.allowButton2Pressing = False
+                self.button2Pressed = True
+                self.joystickButton2Activated = True

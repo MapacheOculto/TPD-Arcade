@@ -47,8 +47,8 @@ class level:
         y = self.background.levelMaker.startYPosition
 
         if len(self.joystickList) == 2 and self.joystickList != None:
-            self.player1  = Player(self.joystickList[1], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y)
-            self.player2 = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y) #-----------------#
+            self.player1  = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y)
+            self.player2 = Player(self.joystickList[1], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y) #-----------------#
         else:
             self.player1 = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y)
             self.player2 = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y) #-----------------#
@@ -69,13 +69,22 @@ class level:
         self.horizontalCompassNeeded = False
         self.P1horizontalCompassNeeded = False
 
+        self.buttonPressed = False##
+        self.joystickButtonActivated = True
+        self.allowButtonPressing = False
+        self.button2Pressed = False##
+        self.joystickButton2Activated = True
+        self.allowButton2Pressing = False
+
   
     # Update de todas las variables relevantes
     def update(self, elapsedTime):
 
+        self.joystickButtonManager(0)
+        self.joystickButtonManager(1)
+        
         # Tiempo
         self.totalElapsedTime += elapsedTime
-        # Tiempo maximo para pasar etapa
         if self.totalElapsedTime > 200:
             self.gameOver = True
             self.deadMessage = "TIME'S UP!"
@@ -135,15 +144,8 @@ class level:
         #"""   
 
         #######PAUSA(con joystick)##################################
-        button = self.joystickList[0].get_button(8) #or self.joystickList[1].get_button(7)##
-        #button2 = self.joystickList[1].get_button(9) #or self.joystickList[1].get_button(7)##
-        if button:
+        if self.button2Pressed:
             self.pauseGame = True
-        pressedKey = pygame.key.get_pressed()
-        if pressedKey[K_TAB]:
-            self.pauseGame = True
-        #if button2:
-        #    self.gameOver = True
 
 
         ###########CAMBIO_DE_ETAPA##################################
@@ -308,7 +310,7 @@ class level:
 
             player1.Y -= player1.deltaY - self.background.yAdvance
             player2.Y += self.background.yAdvance
-        
+
         # Si player esta centrado y player 2 esta en la pantalla real, pero no en la ficticia
         # En este caso se ajusta la camara para que player 2 quede en la pantalla ficticia
         # Revisar que se respeten las deadZones
@@ -336,7 +338,7 @@ class level:
             self.background.yAdvance = -deltaP1
             player1.Y -= deltaP1
             player2.Y += self.background.yAdvance#------------------------------------------#
-
+            
         # Si ningun player esta en pantalla, esta se centra automaticamente en player 1
         # es una prueba
         elif not _2PlayerInRealScreen and not _1PlayerInRealScreen :
@@ -396,10 +398,10 @@ class level:
                 if player1.Y - player1.deltaY >= halfH:
                     deltaP1 = player1.Y - halfH
                     deltaBackground1 = abs(player1.deltaY) - abs(deltaP1)
-                    deltaBackground2 = min(deltaBackground1, deltaUpDeadZone)#######################################################33
+                    deltaBackground2 = - min(deltaBackground1, deltaUpDeadZone)#######################################################33
                     self.background.moveBackGroundUp = True
-                    self.background.yAdvance = - deltaBackground2
-                    deltaP1 -= abs(deltaBackground2 - deltaBackground1)
+                    self.background.yAdvance = deltaBackground2
+                    deltaP1 -= abs(abs(deltaBackground2) - abs(deltaBackground1))
                     player2.Y += self.background.yAdvance#-----------------#
                     player1.Y -= deltaP1
                 # Si caer lo sigue dejando sobre la linea
@@ -472,5 +474,29 @@ class level:
 
 
         player2.X += self.background.xAdvance#---------------------------#
+
+        
+    ## JOYSTICK
+    def joystickButtonManager(self, id):
+        if id == 0:
+            if  (not self.joystickList[0].get_button(id) and self.joystickButtonActivated):
+                self.joystickButtonActivated = False
+                self.allowButtonPressing = True
+            if (self.joystickList[0].get_button(id) and self.joystickButtonActivated and not self.allowButtonPressing):
+                self.buttonPressed = False
+            if (self.joystickList[0].get_button(id) and not self.buttonPressed and self.allowButtonPressing):
+                self.allowButtonPressing = False
+                self.buttonPressed = True
+                self.joystickButtonActivated = True
+        elif id == 1:
+            if (not self.joystickList[0].get_button(id) and self.joystickButton2Activated):
+                self.joystickButton2Activated = False
+                self.allowButton2Pressing = True
+            if (self.joystickList[0].get_button(id) and self.joystickButton2Activated and not self.allowButton2Pressing):
+                self.button2Pressed = False
+            if (self.joystickList[0].get_button(id) and not self.button2Pressed and self.allowButton2Pressing):
+                self.allowButton2Pressing = False
+                self.button2Pressed = True
+                self.joystickButton2Activated = True
         
 

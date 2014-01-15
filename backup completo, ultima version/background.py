@@ -137,9 +137,10 @@ class Background:
     def initImagesForBackground(self):
 
         # Sprites de 100x100
-        self.imageDictionary.update({"lowEarth" : pygame.image.load("blocks//lowEarth.tif").convert()})
+        self.imageDictionary.update({"lowEarth" : pygame.image.load("blocks//lowEarth.png").convert()})
         self.imageDictionary.update({"topCement" : pygame.image.load("blocks//topa2.png").convert()})
         self.imageDictionary.update({"grass" : pygame.image.load("blocks//grass.png").convert()})
+        self.imageDictionary.update({"topGrass" : pygame.image.load("blocks//grass2.png").convert()})
         self.imageDictionary.update({"lava" : pygame.image.load("blocks//lava4.png").convert()})  
         self.imageDictionary.update({"ice" : pygame.image.load("blocks//ice.png").convert()})
         self.imageDictionary.update({"green" : pygame.image.load("blocks//green.png").convert()})

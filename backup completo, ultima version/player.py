@@ -92,7 +92,6 @@ class Player:
         # Botones del joystick
         self.keyHeldPressed = False
         self.buttonPressed = False##
-        self.buttonHeldPressed = False##
         self.joystickButtonActivated = False
         self.allowButtonPressing = True
 

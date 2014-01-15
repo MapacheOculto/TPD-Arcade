@@ -33,19 +33,31 @@ class titleState(gameObject):
         self.titleBackground = pygame.image.load("blocks//titleBackground2.png").convert()
         self.titleBackground = pygame.transform.scale(self.titleBackground, (screenSize[0], screenSize[1]))
         self.activateHub = False
+
+        self.buttonPressed = False##
+        self.joystickButtonActivated = True
+        self.allowButtonPressing = False
+        self.button2Pressed = False##
+        self.joystickButton2Activated = True
+        self.allowButton2Pressing = False
         
 
     def update(self, elapsedTime):
-
+        
+        self.joystickButtonManager(0)
+        self.joystickButtonManager(1)
+        
         screen = pygame.display.get_surface()
         direction = 0
-        
+
+        """
         if len(self.joystickList) == 2:
-            startButton = self.joystickList[1].get_button(3) or self.joystickList[0].get_button(3)
-            backButton = self.joystickList[1].get_button(2) or self.joystickList[0].get_button(2)
+            startButton = self.joystickList[1].get_button(0) or self.joystickList[0].get_button(0)
+            backButton = self.joystickList[1].get_button(1) or self.joystickList[0].get_button(1)
         else:
-            startButton = self.joystickList[0].get_button(3)
-            backButton = self.joystickList[0].get_button(2)
+            startButton = self.joystickList[0].get_button(0)
+            backButton = self.joystickList[0].get_button(1)
+        """
 
         if abs(self.joystickList[0].get_axis(1)) > 0.3 and not self.activateHub:
             direction = self.joystickList[0].get_axis(1)
@@ -55,18 +67,53 @@ class titleState(gameObject):
         elif direction > 0 and self.pointer == 0:
             self.pointer = 1
         
-        if startButton and self.pointer == 0 and not self.activateHub:
+        if self.buttonPressed and self.pointer == 0 and not self.activateHub:
             select.play()
-            self.systemState.changeState("gameWorldState")
-        elif startButton and self.pointer == 1 and not self.activateHub:
+            self.changeState("gameWorldState")
+        elif self.buttonPressed and self.pointer == 1 and not self.activateHub:
             select.play()
             self.activateHub = True
-        elif backButton:
+        elif self.button2Pressed:
             goBack.play()
             self.activateHub = False
             self.font2.set_bold(True)
-    
-     
+
+
+    # ChangeState
+    def changeState(self, stateName):
+        self.systemState.changeState(stateName)
+        self.systemState.currentState.buttonPressed = False##
+        self.systemState.currentState.joystickButtonActivated = True
+        self.systemState.currentState.allowButtonPressing = False
+        self.systemState.currentState.button2Pressed = False##
+        self.systemState.currentState.joystickButton2Activated = True
+        self.systemState.currentState.allowButton2Pressing = False
+
+
+    ## JOYSTICK
+    def joystickButtonManager(self, id):
+        if id == 0:
+            if  (not self.joystickList[0].get_button(id) and self.joystickButtonActivated):
+                self.joystickButtonActivated = False
+                self.allowButtonPressing = True
+            if (self.joystickList[0].get_button(id) and self.joystickButtonActivated and not self.allowButtonPressing):
+                self.buttonPressed = False
+            if (self.joystickList[0].get_button(id) and not self.buttonPressed and self.allowButtonPressing):
+                self.allowButtonPressing = False
+                self.buttonPressed = True
+                self.joystickButtonActivated = True
+        elif id == 1:
+            if (not self.joystickList[0].get_button(id) and self.joystickButton2Activated):
+                self.joystickButton2Activated = False
+                self.allowButton2Pressing = True
+            if (self.joystickList[0].get_button(id) and self.joystickButton2Activated and not self.allowButton2Pressing):
+                self.button2Pressed = False
+            if (self.joystickList[0].get_button(id) and not self.button2Pressed and self.allowButton2Pressing):
+                self.allowButton2Pressing = False
+                self.button2Pressed = True
+                self.joystickButton2Activated = True
+            
+
     def render(self):
         screen = pygame.display.get_surface()
         screen.blit(self.titleBackground, (0,0))
@@ -88,7 +135,7 @@ class titleState(gameObject):
         screen.blit(textSurf3, (self.screenSize[0] / 2 - 100, 500))
             
         if self.activateHub:
-            screen.blit(self.instructionsHub,  (50, 50))
+            screen.blit(self.instructionsHub,  (50, 30))
             self.font2.set_bold(False)
             textSurf4  = self.font2.render("La meta del juego es llegar al fin de la etapa en cooperación con tu compañero, antes de que se les acabe el tiempo" , True, (0,0,0))
 
