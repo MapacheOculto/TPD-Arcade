@@ -32,10 +32,17 @@ class playState(gameObject):
         self.joystickButtonManager(1)
         
         self.currentLevel.update(elapsedTime)
+
+        score1 = self.currentLevel.player1.score
+        score2 = self.currentLevel.player2.score
+        hp1 = self.currentLevel.player1.lives
+        hp2 = self.currentLevel.player2.lives
+        time = self.currentLevel.totalElapsedTime
         
         if self.button2Pressed:
-            #self.currentLevel.pauseGame = False
+            
             self.changeState("pauseState")
+            self.systemState.currentState.setParams(time, score1, score2, hp1, hp2) 
 
         if self.currentLevel.gameOver:
             self.changeState("gameOverState")
@@ -43,9 +50,6 @@ class playState(gameObject):
             self.currentLevel = level(self.joystickList, self.screenSize, self.actualPath)
 
         if self.currentLevel.background.endOfStageReached:
-            score1 = self.currentLevel.player1.score
-            score2 = self.currentLevel.player2.score
-            time = self.currentLevel.totalElapsedTime
             self.changeState("levelEndingState")
             self.systemState.currentState.setParams(time, score1, score2) 
 

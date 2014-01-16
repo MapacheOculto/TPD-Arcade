@@ -19,6 +19,10 @@ class gameOverState(gameObject):
         self.button2Pressed = False##
         self.joystickButton2Activated = True
         self.allowButton2Pressing = False
+        
+        self.background = pygame.image.load("blocks//gameOver.jpg").convert_alpha()
+        self.background = pygame.transform.scale(self.background, (self.screenSize[0],self.screenSize[1]))  
+
 
 
     # ChangeState
@@ -31,7 +35,7 @@ class gameOverState(gameObject):
         self.systemState.currentState.joystickButton2Activated = True
         self.systemState.currentState.allowButton2Pressing = False
 
-            
+
     def update(self, elapsedTime):
         self.joystickButtonManager(0)
         self.joystickButtonManager(1)
@@ -51,19 +55,19 @@ class gameOverState(gameObject):
 
     def render(self):
         screen = pygame.display.get_surface()
-        screen.fill((0, 0, 0))
+        screen.blit(self.background, (0,0))
 
-        textSurf  = self.font1.render("GAME OVER" , True,(255, 0, 0))
-        screen.blit(textSurf, (self.screenSize[0] / 2 - 200, 200))
+        #textSurf  = self.font1.render("GAME OVER" , True,(255, 0, 0))
+        #screen.blit(textSurf, (self.screenSize[0] / 2 - 200, 200))
         
         textSurf  = self.font2.render(self.deadMessage , True,(255, 0, 0))
-        screen.blit(textSurf, (self.screenSize[0] / 2 - 200, 300))
+        screen.blit(textSurf, (self.screenSize[0] / 2 - 220, 350))
         
-        textSurf2  = self.font2.render("press a to retry" , True,(255, 0, 0))
-        screen.blit(textSurf2, (self.screenSize[0] / 2 - 100, 450))
+        textSurf2  = self.font2.render("presione a para tratar de nuevo" , True,(255, 0, 0))
+        screen.blit(textSurf2, (self.screenSize[0] / 2 - 160, 450))
 
-        textSurf2  = self.font2.render("press b to return to title screen" , True,(255, 0, 0))
-        screen.blit(textSurf2, (self.screenSize[0] / 2 - 100, 550))
+        textSurf2  = self.font2.render("presione b para volver al mapa" , True,(255, 0, 0))
+        screen.blit(textSurf2, (self.screenSize[0] / 2 - 160, 550))
 
 
     ## JOYSTICK

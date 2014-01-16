@@ -201,17 +201,17 @@ class level:
         # HUB SCREEN
         screen.blit(self.hub,  (180, 0))
         
-        textSurf1 = self.font.render("P1 LIVES: " , True,(27, 141, 67))
-        textSurf2 = self.font.render("P2 LIVES: " , True,(0, 0, 255))
-        textSurf3 = self.font.render("P1 SCORE: " + str(int(self.player1.score)) , True, (27, 141, 67))
-        textSurf4 = self.font.render("P2 SCORE: " + str(int(self.player2.score)) , True, (0, 0, 255))
-        textSurf5 = self.font.render("TIME LEFT: " + str(200 - int(self.totalElapsedTime)) , True,(255, 0, 0))
+        textSurf1 = self.font.render("P1 HP: " , True,(27, 141, 67))
+        textSurf2 = self.font.render("P2 HP: " , True,(0, 0, 255))
+        textSurf3 = self.font.render("Puntaje: " + str(int(self.player1.score)) , True, (27, 141, 67))
+        textSurf4 = self.font.render("Puntaje: " + str(int(self.player2.score)) , True, (0, 0, 255))
+        textSurf5 = self.font.render("Tiempo restante: " + str(200 - int(self.totalElapsedTime)) , True,(255, 0, 0))
         
         screen.blit(textSurf1,  (400, 10))
         screen.blit(textSurf2,  (400, 40))
         screen.blit(textSurf3,  (700, 10))
         screen.blit(textSurf4,  (700, 40))
-        screen.blit(textSurf5,  (200, 10))
+        screen.blit(textSurf5,  (190, 10))
         
         textSurf6 = self.font.render("p1.jumping = : " + str(self.player1.jumping) , True,(255, 0, 0))
         screen.blit(textSurf6,  (700, 200))

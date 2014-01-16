@@ -6,6 +6,8 @@ import math
 
 mixer.init() #you must initialize the mixer
 alert=mixer.Sound('sounds//walk.wav')
+plat = mixer.Sound('sounds//platform.wav')
+plat.set_volume(0.4)
 
 
 class boxCollision:
@@ -58,7 +60,9 @@ class boxCollision:
         self.spriteList = spriteListaux
 
         if len(spriteListaux) >= 1:
+            
             for sprite in spriteListaux:
+                    
                 if sprite.color == player.color or sprite.color == "Todos" or sprite.activada :
                     rect = sprite.rect
                     self.topY = rect.top
@@ -69,11 +73,13 @@ class boxCollision:
                         sprite.activada = True
                     player.colisionada = sprite
                     return True
-                elif sprite.activada == False and sprite.tipo =="Color":
+                
+                elif sprite.activada == False and sprite.tipo == "Color":
                     companeroPos = pygame.Rect(player.companero.X, player.companero.Y+1, player.companero.sprite.rect.width, player.companero.sprite.rect.height)
                     companeroMoved = Platform()
                     companeroMoved.color = player.companero.color
                     companeroMoved.rect = companeroPos
+
                     if companeroMoved.color == sprite.color and pygame.sprite.collide_rect(sprite,companeroMoved):
                         rect = sprite.rect
                         self.topY = rect.top
@@ -84,11 +90,13 @@ class boxCollision:
                         player.colisionada = sprite
                         return True
                     else:
-                     sprite.activada = False
+                        sprite.activada = False
+
                     companeroPos = pygame.Rect(player.companero.X+1, player.companero.Y, player.companero.sprite.rect.width, player.companero.sprite.rect.height)
                     companeroMoved = Platform()
                     companeroMoved.color = player.companero.color
                     companeroMoved.rect = companeroPos
+
                     if companeroMoved.color == sprite.color and pygame.sprite.collide_rect(sprite,companeroMoved):
                         rect = sprite.rect
                         self.topY = rect.top
@@ -99,11 +107,13 @@ class boxCollision:
                         player.colisionada = sprite
                         return True
                     else:
-                      sprite.activada = False
+                        sprite.activada = False
+
                     companeroPos = pygame.Rect(player.companero.X-1, player.companero.Y+1, player.companero.sprite.rect.width, player.companero.sprite.rect.height)
                     companeroMoved = Platform()
                     companeroMoved.color = player.companero.color
                     companeroMoved.rect = companeroPos
+
                     if companeroMoved.color == sprite.color and pygame.sprite.collide_rect(sprite,companeroMoved):
                         rect = sprite.rect
                         self.topY = rect.top
@@ -115,10 +125,11 @@ class boxCollision:
                         return True
                     else:
                      sprite.activada = False
+
             sprite.activada = False       
             return False
+
         else:
-            
             return False  
             
     def getVertex(self, rectangle):

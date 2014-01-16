@@ -191,7 +191,7 @@ class Player:
             floorY = self.clashManager.topY - (self.sprite.rect.height)
             self.deltaY = self.Y - floorY
             self.startJump()
-            self.takeDamage("damaging field")
+            self.takeDamage("daño de lava o hielo")
             burn.play()
 
 
@@ -431,9 +431,9 @@ class Player:
         if self.lives == 0:
             self.startDeadAnimation = True
             if self.id == "p1":
-                self.deadMessage = "Player 1 died due to " + string + " damage"
+                self.deadMessage = "Player 1 murio debido a " + string 
             elif self.id == "p2":
-                self.deadMessage = "Player 2 died due to " + string + " damage"
+                self.deadMessage = "Player 2 murio debido a " + string 
 
     def gainScore(self, value):
         self.score += value

@@ -2,6 +2,7 @@ import pygame
 from pygame import *
 from systemState import systemState
 from systemState import gameObject
+from storyBoard2 import StoryBoard2
 
 class LevelEndingState(object):
 
@@ -22,6 +23,19 @@ class LevelEndingState(object):
         self.button2Pressed = False##
         self.joystickButton2Activated = True
         self.allowButton2Pressing = False
+
+        self.storyboard = StoryBoard2()
+        self.player1Dictionary = []
+        self.player2Dictionary = []
+        self.initImageDict()
+
+        self.player1 = pygame.sprite.Sprite()
+        self.player2 = pygame.sprite.Sprite()
+        self.player1.image = pygame.image.load("still//fire01.png").convert_alpha()
+        self.player2.image = pygame.image.load("still//fire01.png").convert_alpha()
+        
+        self.background = pygame.image.load("blocks//levelEnd3.png").convert()
+        self.background = pygame.transform.scale(self.background, (self.screenSize[0],self.screenSize[1])) 
 
 
     def changeState(self, stateName):
@@ -54,22 +68,39 @@ class LevelEndingState(object):
 
     def render(self):
         screen = pygame.display.get_surface()
-        screen.fill((235, 100, 169))
+        screen.blit(self.background, (0,0))
 
-        textSurf  = self.font1.render("Level accomplished!" , True,(0, 0, 0))
-        screen.blit(textSurf, (self.screenSize[0] / 2 - 200, 100))
+        textSurf  = self.font1.render("Nivel completado!" , True,(0, 0, 0))
+        screen.blit(textSurf, (self.screenSize[0] / 2 - 200, 50))
 
-        textSurf2  = self.font2.render("press other button to retrun to world maps" , True,(0, 0, 0))
-        screen.blit(textSurf2, (self.screenSize[0] / 2 - 200, 250))
+        textSurf2  = self.font2.render("presione b para volver al mapa" , True,(0, 0, 0))
+        screen.blit(textSurf2, (self.screenSize[0] / 2 - 180, 685))
         
-        textSurf3  = self.font2.render("Stage completed in = " + str(self.time) + " seconds" ,True,(0, 0, 0))
-        screen.blit(textSurf3, (100, 400))
-        textSurf4  = self.font2.render("Player 1 score = " + str(self.score1) + "points" ,True,(0, 0, 0))
+        textSurf3  = self.font2.render("Nivel completado en = " + str(int(self.time)) + " segundos" ,True,(0, 0, 0))
+        screen.blit(textSurf3, (self.screenSize[0] / 2 - 200, 620))
+        
+        textSurf4  = self.font2.render("Puntaje player 1: " + str(self.score1) + " puntos" , True, (0, 0, 0))
         screen.blit(textSurf4, (100, 500))
-        textSurf5  = self.font2.render("Player 1 score = " + str(self.score2) + "points" ,True,(0, 0, 0))
-        screen.blit(textSurf5, (100, 600))
+        textSurf5  = self.font2.render("Puntaje player 2: " + str(self.score2) + " puntos" , True, (0, 0, 0))
+        screen.blit(textSurf5, (600, 500))
+        
+        self.animation(len(self.player1Dictionary), self.player1Dictionary, self.player1)
+        self.animation(len(self.player2Dictionary), self.player2Dictionary, self.player2)
+        self.player1.image = pygame.transform.scale(self.player1.image, (100,100))
+        self.player2.image = pygame.transform.scale(self.player2.image, (100,100))
+
+        screen.blit(self.player1.image,  (150, 350))
+        screen.blit(self.player2.image,  (650, 350))
 
 
+    # Ahora keys son las imagenes que se pasan a storyboard
+    def animation(self, number, images, sprite):
+        if self.storyboard.inProcess == False:
+            self.storyboard.play(number, images)
+        elif self.storyboard.inProcess:
+            return self.storyboard.update(sprite, False)
+
+        
     ## JOYSTICK
     def joystickButtonManager(self, id):
         if id == 0:
@@ -92,3 +123,46 @@ class LevelEndingState(object):
                 self.allowButton2Pressing = False
                 self.button2Pressed = True
                 self.joystickButton2Activated = True
+
+                
+    def initImageDict(self):
+
+        self.player1Dictionary.append(pygame.image.load("still//fire01.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("still//fire02.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("still//fire03.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("still//fire04.png").convert_alpha())
+
+        self.player2Dictionary.append(pygame.image.load("still//fire012.png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("still//fire022.png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("still//fire032.png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("still//fire042.png").convert_alpha())
+
+        """
+        self.player1Dictionary.append(pygame.image.load("end//dance2.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("end//dance3.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("end//dance4.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("end//dance5.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("end//dance6.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("end//dance7.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("end//dance8.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("end//dance9.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("end//dance10.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("end//dance11.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("end//dance12.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("end//dance13.png").convert_alpha())
+        self.player1Dictionary.append(pygame.image.load("end//dance14.png").convert_alpha())
+        
+        self.player2Dictionary.append(pygame.image.load("end//dance22 (1).png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("end//dance22 (2).png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("end//dance22 (3).png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("end//dance22 (4).png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("end//dance22 (5).png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("end//dance22 (6).png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("end//dance22 (7).png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("end//dance22 (8).png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("end//dance22 (9).png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("end//dance22 (10).png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("end//dance22 (11).png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("end//dance22 (12).png").convert_alpha())
+        self.player2Dictionary.append(pygame.image.load("end//dance22 (13).png").convert_alpha())
+        """

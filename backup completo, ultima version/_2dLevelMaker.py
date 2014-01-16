@@ -29,17 +29,18 @@ class _2dLevelMaker:
         self.lavaDict = lavaDict
         self.iceDict = iceDict
         self.itemsDict1 = itemsDict1
-        self.itemsDict2 = itemsDict2
-        
+        self.itemsDict2 = itemsDict2        
 
         # FILE Y SCREEN SIZE
         self.readFile(filePath)
         self.moveGroupElements(self.initialXAdvance, self.initialYAdvance)
 
+
     # INILICIALIZA NUEVA ETAPA
     def changeFile(self, filePath, group):
         self.group.empty()
         self.readFile(filePath)
+
 
     # CREA ETAPA A PARTIR DE FILE
     def readFile(self, filePath):    
@@ -60,6 +61,7 @@ class _2dLevelMaker:
             self.caracteristicas_torretas.append(caracteristicas)
             indice_torreta+=1
             caracteristicas=lines[len(lines)-indice_torreta]
+            
         self.caracteristicas_torretas.reverse()
         for c in range(len(self.caracteristicas_torretas)):
             self.caracteristicas_torretas[c]=self.caracteristicas_torretas[c].split(' ')
@@ -290,7 +292,7 @@ class _2dLevelMaker:
         elif character == "O":
              sprite.image = self.imageDictionary["blueAlpha"]
              sprite.imagen2 = self.imageDictionary["blue"]
-             sprite.color = "Blue" 
+             sprite.color = "Blue"
         elif character == "P":
             sprite.image = self.imageDictionary["greenAlpha"]
             sprite.imagen2 = self.imageDictionary["green"]
@@ -298,14 +300,14 @@ class _2dLevelMaker:
         elif character == "Q":
             sprite.image = self.imageDictionary["blueAlpha"]
             sprite.imagen2 = self.imageDictionary["blue"]
-            sprite.color = "Blue" 
+            sprite.color = "Blue"
         elif character == "F":
             sprite.image = self.imageDictionary["greenAlpha"]
             sprite.imagen2 = self.imageDictionary["green"]
-            sprite.color = "Green"    
+            sprite.color = "Green"
         else: 
-            sprite.image = self.imageDictionary["lava"]
-            sprite.imagen2 = self.imageDictionary["lava"]
+            sprite.image = self.imageDictionary["grass"]
+            sprite.imagen2 = self.imageDictionary["grass"]
             sprite.color = "Green"
 
         if character == "P" or character == "O":
@@ -347,6 +349,7 @@ class _2dLevelMaker:
             self.lastRect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
         sprite.colororiginal = sprite.color
         self.group.add(sprite); 
+
     
     # METODO QUE CREA SPRITES
     def createDamageField(self, j, i, character):

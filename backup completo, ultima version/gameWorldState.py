@@ -72,11 +72,11 @@ class gameWorldState(object):
             if self.playerPos == self.gameNodesList[2]:
                 actualPath = "levels//castle2.txt"
             if self.playerPos == self.gameNodesList[3]:
-                actualPath = "levels//level1.txt"
+                actualPath = "levels//test.txt"
             if self.playerPos == self.gameNodesList[4]:
                 actualPath = "levels//level3.txt"
             if self.playerPos == self.gameNodesList[5]:  
-                actualPath = "levels//castle.txt"
+                actualPath = "levels//level1.txt"
             self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath)
             self.systemState.currentState.actualPath = actualPath
         elif self.button2Pressed:
@@ -144,7 +144,7 @@ class gameWorldState(object):
         screen = pygame.display.get_surface()
         screen.blit(self.background, (0,0))
         
-        textSurf  = self.font1.render("GAME WORLD" , True,(0, 0, 0))
+        textSurf  = self.font1.render("Mapa del mundo" , True,(0, 0, 0))
         screen.blit(textSurf, (self.screenSize[0] / 2 - 150, 50))
 
         screen.blit(self.vortex, self.gameNodesList[0])
