@@ -444,7 +444,9 @@ class Player:
               
         if not clashed:
             self.deltaX = xAdvance
-        elif clashed:
+        #Cambio pa arreglar bug
+        elif clashed and (self.colisionada.id != "Horizontal" or self.colisionada.color != self.companero.color):
+            floorX = 2*self.X
             if xAdvance > 0:
                 floorX = self.clashManager.leftX - (self.sprite.rect.width)
             elif xAdvance < 0:

@@ -291,19 +291,25 @@ class _2dLevelMaker:
              sprite.image = self.imageDictionary["blueAlpha"]
              sprite.imagen2 = self.imageDictionary["blue"]
              sprite.delta_x = 10
+             sprite.id = "Horizontal"
              sprite.color = "Blue" 
         elif character == "P":
             sprite.image = self.imageDictionary["greenAlpha"]
             sprite.imagen2 = self.imageDictionary["green"]
-            sprite.delta_x = 1
+            #sprite.delta_x = 0
+            #sprite.delta_y = 5
+            sprite.tipo_movimiento = "0"
+            sprite.id = "Horizontal"
             sprite.color = "Green"
         elif character == "Q":
             sprite.image = self.imageDictionary["blueAlpha"]
             sprite.imagen2 = self.imageDictionary["blue"]
+            sprite.id = "Vertical"
             sprite.color = "Blue" 
         elif character == "F":
             sprite.image = self.imageDictionary["greenAlpha"]
             sprite.imagen2 = self.imageDictionary["green"]
+            sprite.id = "Vertical"
             sprite.color = "Green"    
         else: 
             sprite.image = self.imageDictionary["lava"]
