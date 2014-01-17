@@ -3,15 +3,17 @@ from pygame import *
 from systemState import systemState
 from systemState import gameObject
 from storyBoard2 import StoryBoard2
+from pygame import mixer
 
 class LevelEndingState(object):
 
-    def __init__(self, joystickList, screenSize, systemState):
+    def __init__(self, joystickList, screenSize, systemState, container):
         self.font1 = pygame.font.SysFont("arial", 50)
         self.font2 = pygame.font.SysFont("arial", 30)
         self.joystickList = joystickList
         self.screenSize = screenSize
         self.systemState = systemState
+        self.container = container
 
         self.score1 = 0
         self.score2 = 0
@@ -25,9 +27,8 @@ class LevelEndingState(object):
         self.allowButton2Pressing = False
 
         self.storyboard = StoryBoard2()
-        self.player1Dictionary = []
-        self.player2Dictionary = []
-        self.initImageDict()
+        self.player1Dictionary = self.container.path1
+        self.player2Dictionary = self.container.path12
 
         self.player1 = pygame.sprite.Sprite()
         self.player2 = pygame.sprite.Sprite()
@@ -63,7 +64,10 @@ class LevelEndingState(object):
             self.time = 0
             self.score1 = 0
             self.score2 = 0
+            pygame.mixer.music.fadeout(500)
             self.changeState("gameWorldState")
+            pygame.mixer.music.load("sounds//test.wav")
+            pygame.mixer.music.play()
 
 
     def render(self):
@@ -124,45 +128,3 @@ class LevelEndingState(object):
                 self.button2Pressed = True
                 self.joystickButton2Activated = True
 
-                
-    def initImageDict(self):
-
-        self.player1Dictionary.append(pygame.image.load("still//fire01.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("still//fire02.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("still//fire03.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("still//fire04.png").convert_alpha())
-
-        self.player2Dictionary.append(pygame.image.load("still//fire012.png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("still//fire022.png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("still//fire032.png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("still//fire042.png").convert_alpha())
-
-        """
-        self.player1Dictionary.append(pygame.image.load("end//dance2.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("end//dance3.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("end//dance4.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("end//dance5.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("end//dance6.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("end//dance7.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("end//dance8.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("end//dance9.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("end//dance10.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("end//dance11.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("end//dance12.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("end//dance13.png").convert_alpha())
-        self.player1Dictionary.append(pygame.image.load("end//dance14.png").convert_alpha())
-        
-        self.player2Dictionary.append(pygame.image.load("end//dance22 (1).png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("end//dance22 (2).png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("end//dance22 (3).png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("end//dance22 (4).png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("end//dance22 (5).png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("end//dance22 (6).png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("end//dance22 (7).png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("end//dance22 (8).png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("end//dance22 (9).png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("end//dance22 (10).png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("end//dance22 (11).png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("end//dance22 (12).png").convert_alpha())
-        self.player2Dictionary.append(pygame.image.load("end//dance22 (13).png").convert_alpha())
-        """

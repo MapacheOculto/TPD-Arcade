@@ -9,41 +9,40 @@ from pygame import mixer
 from platform import Platform
 import math
 
-# Relativo a los sonidos
-mixer.init()
-points = mixer.Sound('sounds//points.wav')
-points.set_volume(0.4)
-life = mixer.Sound('sounds//life.wav')
-life.set_volume(0.4)
-walk = mixer.Sound('sounds//walk2.wav')
-walk.set_volume(0.1)
-alert = mixer.Sound('sounds//jump.wav')
-alert.set_volume(0.1)
-slide=mixer.Sound('sounds//slide.wav')
-slide.set_volume(0.8)
-burn=mixer.Sound('sounds//burn1.wav')
-burn.set_volume(1)
-
 
 class Player:
     
-    def __init__(self, joystick, movParab, freefall, storyboard, x = 200, y = 120):
+    def __init__(self, joystick, movParab, freefall, storyboard, container, x = 200, y = 120):
+
+        # Paths para sonido
+        self.points = container.soundDictionary["point"]
+        self.points.set_volume(0.4)
+        self.life = container.soundDictionary["life"]
+        self.life.set_volume(0.4)
+        self.burn = container.soundDictionary["burn"]
+        self.burn.set_volume(1)
+        self.walk1 = container.soundDictionary["walk"]
+        self.walk1.set_volume(0.1)
+        self.jump = container.soundDictionary["jump"]
+        self.jump.set_volume(0.1)
+        self.slide = container.soundDictionary["slide1"]
+        self.slide.set_volume(0.1)
         
         ### Estos son los paths para las imagenes de las animaciones 
-        self.runPath = []
-        self.path1 = []
-        self.startJumpPath = []
-        self.jumpPath = []
-        self.endJump = []
-        self.wallJumpRPath = []
-        self.runPath2 = []
-        self.path12 = []
-        self.startJumpPath2 = []
-        self.jumpPath2 = []
-        self.endJump2 = []
-        self.wallJumpRPath2 = []
-        self.deadPath = []
-        self.deadPath2 = []
+        self.runPath = container.runPath
+        self.path1 = container.path1
+        self.startJumpPath = container.startJumpPath
+        self.jumpPath = container.jumpPath 
+        self.endJump = container.endJump
+        self.wallJumpRPath = container.wallJumpRPath
+        self.runPath2 = container.runPath2
+        self.path12 = container.path12
+        self.startJumpPath2 = container.startJumpPath2
+        self.jumpPath2 = container.jumpPath2
+        self.endJump2 = container.endJump2 
+        self.wallJumpRPath2 = container.wallJumpRPath2
+        self.deadPath = container.deadPath
+        self.deadPath2 = container.deadPath2
        
         #ACCESORIOS
         self.movParab = movParab
@@ -107,7 +106,6 @@ class Player:
 
         #INICIALIZADORES
         self.initSpriteData()
-        self.initImagesForAnimation()
 
 
     def initSpriteData(self):
@@ -128,7 +126,6 @@ class Player:
 
     # Metodo ve si esta cayendo, caminando, saltando, etc. Luego, actualiza bools y valores correspondientes
     def update(self, elapsedTime, group, exitGroup, damageGroup, itemsGroup, groupList):
-        
         clashingDown = self.clashManager.CheckCollision(self, group, self.X, self.Y + 1)
         clashingRight = self.clashManager.CheckCollision(self, group, self.X + 1, self.Y)
         clashingLeft = self.clashManager.CheckCollision(self, group, self.X - 1, self.Y) 
@@ -174,13 +171,13 @@ class Player:
             for item in itemList:
                 if self.lives == 10 and item.id == "life":
                     self.score += 100
-                    points.play()
+                    self.points.play()
                 elif self.lives < 10 and item.id == "life":
                     self.lives += 1
-                    life.play()
+                    self.life.play()
                 elif item.id == "points":
                     self.score += 50
-                    points.play()
+                    self.points.play()
                 item.kill()
             
 
@@ -192,7 +189,7 @@ class Player:
             self.deltaY = self.Y - floorY
             self.startJump()
             self.takeDamage("daño de lava o hielo")
-            burn.play()
+            self.burn.play()
 
 
         ## CAMBIO ETAPA
@@ -223,7 +220,7 @@ class Player:
             elif clashingLeft:
                 self.leftWallSliding = True
 
-            if (temporalDirection > 0 and clashingRight)or (temporalDirection < 0 and clashingLeft) and self.falling and not self.jumping:
+            if ((temporalDirection > 0 and clashingRight)or (temporalDirection < 0 and clashingLeft)) and self.falling and not self.jumping:
                 self.wallStickLag = 5
                 self.pressedAgainstWall = True
                 self.freefall.stop()
@@ -254,7 +251,7 @@ class Player:
             self.jumpStart = True
             self.startJump()
             self.buttonPressed = False
-            alert.play()
+            self.jump.play()
         if self.jumping and not self.pressedAgainstWall:
             self.updateJump(group, elapsedTime)
 
@@ -300,12 +297,12 @@ class Player:
         if self.inertiaActivated and self.inertiaCounter >= 0:
             self.calculateInertia(group, self.direction, clashingDown, elapsedTime)
         
-
+        """
         # SETEO DE BOOLS
         if self.wallJumping:
             self.walking = False
             self.still = False
-     
+        """
         
         # Al terminar de hacer update, deja listo el rectangulo con los nuevos valores
         self.direction = temporalDirection

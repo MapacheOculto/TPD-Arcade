@@ -10,26 +10,15 @@ from freefall import FreeFall
 from items import Items
 
 
-# Relativo a los sonidos
-mixer.init()
-murunf = mixer.Sound('sounds//Murunf.mp3')
-murunf.set_volume(0.1)
-walk = mixer.Sound('sounds//walk2.wav')
-walk.set_volume(0.1)
-alert = mixer.Sound('sounds//jump.wav')
-alert.set_volume(0.1)
-slide=mixer.Sound('sounds//slide.wav')
-slide.set_volume(0.1)
-
-
 class level:
 
     
     # Constructor
-    def __init__(self, joystickList, screenSize, initialPath):
+    def __init__(self, joystickList, screenSize, initialPath, container):
 
         self.screenSize = screenSize
         self.joystickList = joystickList
+        self.container = container
         self.font = pygame.font.SysFont("arial", 18)
         self.font.set_bold(True)
         self.pauseGame = False
@@ -37,8 +26,15 @@ class level:
         self.playerInDeadZone = False
         self.totalElapsedTime = 0
         self.deadMessage = ""
+        
+        self.walk  = self.container.soundDictionary["walk"]
+        self.walk.set_volume(0.1)
+        self.jump = self.container.soundDictionary["jump"]
+        self.jump.set_volume(0.1)
+        self.slide = self.container.soundDictionary["slide1"]
+        self.slide.set_volume(0.1)
 
-        self.background = Background(self.screenSize, initialPath)
+        self.background = Background(self.screenSize, initialPath, self.container)
 
         # Relacionado al hub
         self.lifeSprite = Items(self.background.itemAnimation2, pygame.Rect((0,0), (20,20)))
@@ -49,11 +45,11 @@ class level:
         y = self.background.levelMaker.startYPosition
 
         if len(self.joystickList) == 2 and self.joystickList != None:
-            self.player1  = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y)
-            self.player2 = Player(self.joystickList[1], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y) #-----------------#
+            self.player1  = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), self.container, x, y)
+            self.player2  = Player(self.joystickList[1], ProjectileMotion(), FreeFall(15), StoryBoard2(), self.container, x, y)
         else:
-            self.player1 = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y)
-            self.player2 = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y) #-----------------#
+            self.player1  = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), self.container, x, y)
+            self.player2  = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), self.container, x, y)
         self.player1.id = "p1"
         self.player2.id = "p2"
         
@@ -212,9 +208,7 @@ class level:
         screen.blit(textSurf3,  (700, 10))
         screen.blit(textSurf4,  (700, 40))
         screen.blit(textSurf5,  (190, 10))
-        
-        textSurf6 = self.font.render("p1.jumping = : " + str(self.player1.jumping) , True,(255, 0, 0))
-        screen.blit(textSurf6,  (700, 200))
+    
 
         for i in range(self.player1.lives):
             screen.blit(self.lifeSprite.image,  (490 + (i * 20), 10))

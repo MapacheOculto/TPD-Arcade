@@ -6,12 +6,13 @@ from systemState import gameObject
 class gameOverState(gameObject):
 
 
-    def __init__(self, joystickList, screenSize, systemState):
+    def __init__(self, joystickList, screenSize, systemState, container):
         self.font1 = pygame.font.SysFont("arial", 50)
         self.font2 = pygame.font.SysFont("arial", 30)
         self.joystickList = joystickList
         self.screenSize = screenSize
         self.systemState = systemState
+        self.container = container
 
         self.buttonPressed = False##
         self.joystickButtonActivated = True
@@ -48,9 +49,15 @@ class gameOverState(gameObject):
             goBackButton = self.joystickList[0].get_button(1)
 
         if self.buttonPressed:
+            pygame.mixer.music.fadeout(500)
             self.changeState("playState")
+            pygame.mixer.music.load('sounds//mainTheme.mp3')
+            pygame.mixer.music.play()
         elif self.button2Pressed:
+            pygame.mixer.music.fadeout(500)
             self.changeState("gameWorldState")
+            pygame.mixer.music.load('sounds//test.wav')
+            pygame.mixer.music.play()
 
 
     def render(self):

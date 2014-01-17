@@ -5,15 +5,14 @@ from systemState import systemState
 from systemState import gameObject
 from level import level
 
-mixer.init()
-pygame.mixer.music.load('sounds//desert.mp3')
 
 class playState(gameObject):
 
-    def __init__(self, joystickList, screenSize, systemState):
+    def __init__(self, joystickList, screenSize, systemState, container):
         self.joystickList = joystickList
         self.screenSize = screenSize
         self.systemState = systemState
+        self.container = container
 
         self.levelDictionary = {}
         self.currentLevel = None
@@ -41,17 +40,24 @@ class playState(gameObject):
         
         if self.button2Pressed:
             
+            pygame.mixer.music.set_volume(0.1)
             self.changeState("pauseState")
             self.systemState.currentState.setParams(time, score1, score2, hp1, hp2) 
 
         if self.currentLevel.gameOver:
+            pygame.mixer.music.fadeout(500)
             self.changeState("gameOverState")
             self.systemState.currentState.deadMessage = self.currentLevel.deadMessage
-            self.currentLevel = level(self.joystickList, self.screenSize, self.actualPath)
+            self.currentLevel = level(self.joystickList, self.screenSize, self.actualPath, self.container)
+            pygame.mixer.music.load("sounds//gameOver.ogg")
+            pygame.mixer.music.play()
 
         if self.currentLevel.background.endOfStageReached:
+            pygame.mixer.music.fadeout(500)
             self.changeState("levelEndingState")
             self.systemState.currentState.setParams(time, score1, score2) 
+            pygame.mixer.music.load("sounds//victory1.mp3")
+            pygame.mixer.music.play()
 
 
     def render(self):

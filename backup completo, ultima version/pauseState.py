@@ -4,16 +4,18 @@ from systemState import systemState
 from systemState import gameObject
 from storyBoard2 import StoryBoard2
 from items import Items
+from pygame import mixer
 
 class PauseState(gameObject):
 
 
-    def __init__(self, joystickList, screenSize, systemState):
+    def __init__(self, joystickList, screenSize, systemState, container):
         self.font1 = pygame.font.SysFont("arial", 50)
         self.font2 = pygame.font.SysFont("arial", 30)
         self.screenSize = screenSize
         self.joystickList = joystickList
         self.systemState = systemState
+        self.container = container
         
         self.buttonPressed = False##
         self.joystickButtonActivated = True
@@ -28,10 +30,9 @@ class PauseState(gameObject):
         self.player2.image = pygame.image.load("still//fire01.png").convert_alpha()
 
         self.storyboard = StoryBoard2()
-        self.stillDictionary1 = []
-        self.stillDictionary2 = []
-        self.itemDictionary = []
-        self.initImageDict()
+        self.stillDictionary1 = self.container.path1
+        self.stillDictionary2 = self.container.path12
+        self.itemDictionary = self.container.itemAnimation2
         
         self.score1 = 0
         self.score2 = 0
@@ -60,6 +61,7 @@ class PauseState(gameObject):
             
         if self.button2Pressed:
             self.changeState("playState")
+            pygame.mixer.music.set_volume(1)
 
 
     def render(self):
@@ -138,20 +140,3 @@ class PauseState(gameObject):
                 self.allowButton2Pressing = False
                 self.button2Pressed = True
                 self.joystickButton2Activated = True
-
-
-    def initImageDict(self):
-        self.stillDictionary2.append(pygame.image.load("still//fire01.png").convert_alpha())
-        self.stillDictionary2.append(pygame.image.load("still//fire02.png").convert_alpha())
-        self.stillDictionary2.append(pygame.image.load("still//fire03.png").convert_alpha())
-        self.stillDictionary2.append(pygame.image.load("still//fire04.png").convert_alpha())
-        
-        self.stillDictionary1.append(pygame.image.load("still//fire012.png").convert_alpha())
-        self.stillDictionary1.append(pygame.image.load("still//fire022.png").convert_alpha())
-        self.stillDictionary1.append(pygame.image.load("still//fire032.png").convert_alpha())
-        self.stillDictionary1.append(pygame.image.load("still//fire042.png").convert_alpha())
-
-        self.itemDictionary.append(pygame.image.load("blocks//points1.png").convert_alpha())
-        self.itemDictionary.append(pygame.image.load("blocks//points1.png").convert_alpha())   
-        self.itemDictionary.append(pygame.image.load("blocks//points2.png").convert_alpha())   
-        self.itemDictionary.append(pygame.image.load("blocks//points2.png").convert_alpha())

@@ -1,5 +1,6 @@
 import pygame
 from pygame import *
+from pygame import mixer
 from systemState import systemState
 from systemState import gameObject
 from storyBoard2 import StoryBoard2
@@ -9,12 +10,13 @@ from level import level
 class gameWorldState(object):
 
 
-    def __init__(self, joystickList, screenSize, systemState):
+    def __init__(self, joystickList, screenSize, systemState, container):
         self.font1 = pygame.font.SysFont("arial", 50)
         self.joystickList = joystickList
         self.screenSize = screenSize
         self.systemState = systemState
         self.storyboard = StoryBoard2()
+        self.container = container
 
         self.gameNodesList = []
         self.createNodes()
@@ -23,9 +25,8 @@ class gameWorldState(object):
         self.playerSprite.image = pygame.image.load("still//fire01.png").convert_alpha()
         self.playerSprite.image = pygame.transform.scale(self.playerSprite.image, (50,50))
         self.playerPos = self.gameNodesList[0]
-        self.stillDictionary = []
-        self.walkDictionary = []
-        self.initDictionaries()
+        self.stillDictionary = self.container.path12
+        self.walkDictionary = self.container.runPath2
     
         self.moving = False
         self.deltaX = 0
@@ -64,7 +65,12 @@ class gameWorldState(object):
             goBackButton = self.joystickList[0].get_button(1)
             
         if self.buttonPressed and not self.moving:    
+
             self.changeState("playState")
+            pygame.mixer.music.stop()
+            pygame.mixer.music.load('sounds//mainTheme.mp3')
+            pygame.mixer.music.play()
+            
             if self.playerPos == self.gameNodesList[0]:
                 actualPath = "levels//level11.txt"
             if self.playerPos == self.gameNodesList[1]:
@@ -77,8 +83,9 @@ class gameWorldState(object):
                 actualPath = "levels//level3.txt"
             if self.playerPos == self.gameNodesList[5]:  
                 actualPath = "levels//level1.txt"
-            self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath)
+            self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath, self.container)
             self.systemState.currentState.actualPath = actualPath
+
         elif self.button2Pressed:
             self.changeState("titleState")
 
@@ -153,14 +160,7 @@ class gameWorldState(object):
         screen.blit(self.vortex, self.gameNodesList[3])
         screen.blit(self.vortex, self.gameNodesList[4])
         screen.blit(self.vortex, self.gameNodesList[5])
-        """
-        pygame.draw.circle(screen, (0,0,255), self.gameNodesList[0], 20)
-        pygame.draw.circle(screen, (0,0,255), self.gameNodesList[1], 20)
-        pygame.draw.circle(screen, (0,0,255), self.gameNodesList[2], 20)
-        pygame.draw.circle(screen, (0,0,255), self.gameNodesList[3], 20)
-        pygame.draw.circle(screen, (0,0,255), self.gameNodesList[4], 20)
-        pygame.draw.circle(screen, (0,0,255), self.gameNodesList[5], 20)
-        """
+        
         self.playerSprite.image = pygame.transform.scale(self.playerSprite.image , (50, 50))
         screen.blit(self.playerSprite.image, self.playerPos)
 
@@ -203,19 +203,6 @@ class gameWorldState(object):
             self.deltaY = 0
             self.moving = False
     
-    def initDictionaries(self):
-        
-        self.walkDictionary.append(pygame.image.load("walk//fire12.png").convert_alpha())
-        self.walkDictionary.append(pygame.image.load("walk//fire22.png").convert_alpha())
-        self.walkDictionary.append(pygame.image.load("walk//fire32.png").convert_alpha())
-        self.walkDictionary.append(pygame.image.load("walk//fire42.png").convert_alpha())
-        self.walkDictionary.append(pygame.image.load("walk//fire52.png").convert_alpha())
-        self.walkDictionary.append(pygame.image.load("walk//fire62.png").convert_alpha())
-        
-        self.stillDictionary.append(pygame.image.load("still//fire012.png").convert_alpha())
-        self.stillDictionary.append(pygame.image.load("still//fire022.png").convert_alpha())
-        self.stillDictionary.append(pygame.image.load("still//fire032.png").convert_alpha())
-        self.stillDictionary.append(pygame.image.load("still//fire042.png").convert_alpha())
 
     
 
