@@ -214,14 +214,15 @@ class Player:
             self.walking = False
             self.still = True
 
-
+        ##CAMBIAR ACA PARA EVITAR GLITCH DE PLATAFORMAS VERTICALES
         ## DEFINE SI ESTA PEGADO A LA PARED
-        if (clashingRight or clashingLeft) and ((self.falling or self.jumping)) and not clashingDown:
-            if clashingRight:
+        if (clashingRight or clashingLeft) and ((self.falling or self.jumping)) and (not clashingDown or self.colisionada.id == "Vertical"): #or self.colisionada.id == "Vertical" or self.colisionada.color != self.companero.color:
+            if clashingRight : #or (temporalDirection > 0 and self.colisionada.id == "Vertical") :
                 self.rightWallSliding = True
-            elif clashingLeft:
+            elif clashingLeft :
                 self.leftWallSliding = True  
-
+                ##COMO INFO
+#(self.colisionada.id != "Horizontal" or self.colisionada.color != self.companero.color)
             if (temporalDirection > 0 and clashingRight)or (temporalDirection < 0 and clashingLeft):
                 self.wallStickLag = 5
                 self.pressedAgainstWall = True
@@ -230,6 +231,8 @@ class Player:
                 self.deltaY = -2 ########################
                 if self.clashManager.CheckCollision(self, group, self.X, self.Y + 2):
                     floorY = self.clashManager.topY - (self.sprite.rect.height)
+                    if (self.colisionada.id == "Vertical" or self.colisionada.color != self.companero.color):
+                        floorY = self.Y
                     self.deltaY = self.Y - floorY
             else:
                 self.pressedAgainstWall = False
