@@ -1,19 +1,19 @@
 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+z                                                            aaa
 z                                                              z
+z                                                           ºaaa
 z                                                              z
+z                                                           ºaaa
 z                                                              z
-z                                                              z
-z                                                              z
-z                                                              z
-z                                                              z
+z                                                           ºaaa
 z@                                                             z
-ññññ                                                           z
-nnnn                                                           z
-ttttñññ                                                        z
-ttttnnn                                                      aaa
-tttttttñññ                                                   aaa
-tttttttnnn                                                   aaa
-tttttttttt                                                    <<
+ññññ                                                        ºaaa
+nnnn º                                                       aaa
+ttttñññ                                                      aaa
+ttttnnn º                                                    aaa
+tttttttñññ           ººº         ººº                         aaa
+tttttttnnn           ººº         ººº                          <<
+tttttttttt º                                    *  *  *       <<
 ttttttttttñññ       aaaaa       aaaa                          <<
 ttttttttttnnnlllllllaaaaalllllllaaaalllllllaaaaññññññññññññaaaaa
 tttttttttttttlllllllaaaaalllllllaaaalllllllaaaannnnnnnnnnnnaaaaa

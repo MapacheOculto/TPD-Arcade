@@ -15,7 +15,9 @@ class Background:
     
 
     def __init__(self, screenSize, initialPath, container):
+
         self.container = container
+
         ## Path de los sprites normales
         self.imageDictionary = container.imageDictionary
         ## Path de las animaciones de fondo
@@ -94,6 +96,7 @@ class Background:
         self.yAdvance = 0
 
         self.group.update()
+        #self.zGroup.update()
         self.damageGroup.update()
         self.itemsGroup.update()
         
@@ -121,6 +124,7 @@ class Background:
             self.exitGroup.empty()
             self.damageGroup.empty()
             self.itemsGroup.empty()
+            self.zGroup.empty()
             #for group in self.groupList:
             #   group.empty()
             self.levelMaker = _2dLevelMaker(self.group, self.exitGroup, self.damageGroup, self.itemsGroup, self.zGroup, self.container, (self.width, self.height), self.levelMaker.nextStagePath)

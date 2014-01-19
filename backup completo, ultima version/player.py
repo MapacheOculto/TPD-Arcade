@@ -248,13 +248,13 @@ class Player:
             
 
         ## SALTO NORMAL (ahora con joystick)
-        if self.buttonPressed and not self.falling and not self.jumping and not self.wallJumping and clashingDown:##
+        if self.buttonPressed and not self.falling and not self.wallJumping and clashingDown:# and not self.jumping :##
             self.jumpStart = True
             self.startJump()
             self.buttonPressed = False
             self.jump.play()
         if self.jumping and not self.pressedAgainstWall:
-            self.updateJump(group, elapsedTime)
+            self.updateJump(group, zGroup, elapsedTime)
 
         
         ## INERCIA
@@ -480,7 +480,7 @@ class Player:
         self.jumping = True
         self.totalJumpTime = 0
 
-    def updateJump(self, group, elapsedTime):
+    def updateJump(self, group, zGroup, elapsedTime):
 
         self.totalJumpTime += elapsedTime
         self.movParab.update(self.totalJumpTime)
@@ -488,17 +488,18 @@ class Player:
         if self.deltaY <= -40:############################################################################################
             self.deltaY = -40############################################################################################
 
-        clashed = self.clashManager.CheckCollision(self, group, self.X, self.Y - self.deltaY)
+        clashed  = self.clashManager.CheckCollision(self, group, self.X, self.Y - self.deltaY)
+        clashed2 = self.clashManager.CheckCollision(self, zGroup, self.X, self.Y - self.deltaY)
 
         # Primera opcion : Que no haya colision y el salto aun no termine (setea vel terminal)
-        if not clashed and self.movParab.inProcess:
+        if not clashed and not clashed2 and self.movParab.inProcess:
             if self.deltaY < 0:
                 self.movParab.stop()
                 self.jumping = False
                 self.still = True
                 self.totalJumpTime = 0
         else:
-            if clashed:
+            if clashed or clashed2:
                 # Chequea si el choque fue contra algun techo.
                 if self.deltaY > 0:
                     roofY = self.clashManager.bottomY
@@ -553,9 +554,10 @@ class Player:
             self.deltaY = -1 #################################################################################################################
         
         clashed = self.clashManager.CheckCollision(self, group, self.X, self.Y - self.deltaY)
+        clashed2 = self.clashManager.CheckCollision(self, zGroup, self.X, self.Y - self.deltaY)
 
         # Primera opcion : Que no haya colision y el salto aun no termine (setea vel terminal)
-        if not clashed and self.movParab.inProcess:
+        if not clashed and not clashed2 and self.movParab.inProcess:
             if self.deltaY < 0:
                 if not self.playerTakenHorizontalControl:
                     self.inertiaActivated = True ###########################
@@ -565,7 +567,7 @@ class Player:
                 self.freefall.stop()
                 self.wallJumping = False
         else:
-            if clashed:
+            if clashed or clashed2:
                 # Chequea si el choque fue contra algun techo.
                 if self.deltaY > 0:
                     roofY = self.clashManager.bottomY

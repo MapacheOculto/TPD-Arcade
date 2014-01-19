@@ -1,22 +1,36 @@
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-a                                           ggggggggggggg
-a                                               ggggggggg
-<                                                  gggggg
-<                                                    gggg
-a @                                                   ggg
-aaaa                                                  ggg
-assa                                                  ggg
-assaaaa                                               ggg
-assassa                                               ggg
-assassaaaa                                             gg
-assassassa                                             gg
-assassassa                                             <<
-aaaaaaaaaa                                             <<
-ssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaa
-ssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaa
-ssssssssssssssssssssssssssssssssssssssssssssssssssssssaaa
-sssssssssssssssssssssssssssssssssssssssssssssssssssssssaa
+aaaazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzztt
+aaaa                                             tt
+aaaa                                             tt
+aaaa                                             tt
+aaaa                                             tt
+z                                                tt
+z                                                tt
+z@                   %                       %   tt
+aaaaсссссссссссссссссссссссссссссссссс           tt
+aaaaaannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn           tt
+aaattttttttttttttttttttttttttttttttttt           tt
+aatt                                             tt
+aatt                                             tt
+aatt                                             tt
+att                                              tt
+tt%                      %                       tt
+tt       сссссссссссссссссссссссссссссссссссссссссс
+t        nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+t        tttttttttttttttttttttttttttttttttttttttttt
+t                                       ttttttttttt
+t                                                tt
+t                                                <<
+t                                                <<
+t                    %                           <<
+tсссссссссссссссссссссссссссссссссссссссссссссссссс
+tnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
 -
 levels//level14.txt
 fondoDesierto
 -
+Green 1 False 180 500 1 0.07
+Blue 1 False 180 500 1 0.07
+Green 1 False 360 500 1 0.07
+Blue 1 False 360 500 1 0.07
+Green 1 False 180 500 1 0.07
+Blue 1 False 180 500 1 0.07

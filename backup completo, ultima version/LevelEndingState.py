@@ -75,7 +75,7 @@ class LevelEndingState(object):
         screen.blit(self.background, (0,0))
 
         textSurf  = self.font1.render("Nivel completado!" , True,(0, 0, 0))
-        screen.blit(textSurf, (self.screenSize[0] / 2 - 200, 50))
+        screen.blit(textSurf, (self.screenSize[0] / 2 - 185, 50))
 
         textSurf2  = self.font2.render("presione b para volver al mapa" , True,(0, 0, 0))
         screen.blit(textSurf2, (self.screenSize[0] / 2 - 180, 685))

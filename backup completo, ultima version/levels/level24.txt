@@ -1,0 +1,35 @@
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aa                                                              aaa
+aa                                                              aaa
+aa                                                              aaa
+aa                                                              aaa
+aa                                                              aaa
+aa                                                                z
+aa                                                                z
+aa                                                               @z
+aa                                                          aaaaaaa
+<                                                           aaaaaaa
+<                                                                aa
+aaaaaa      PG      PG      OB      OB      PG      OB           aa
+aaaaaa                                                           aa
+aaaaaa                                                           aa
+aa                                                               aa
+aa                                                         a     aa
+aa                                                               aa
+aa                                                               aa
+aa                                                           a   aa
+aa                                                               aa
+aa                                                               aa
+aa                                                         a     aa
+aa                                                               aa
+aa                                                               aa
+aalllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaa
+aalllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaa
+aalllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaa
+aalllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+-
+---
+fondoDesierto
+-Torretas(color=Multi,Green o Blue) (rafaga), (movil=True o False), (angulo(cualquiera si es movil)), (velocidad), (timer_entre_rafaga=recomendado 2), (timer_entre_bala=recomendado 0.07)

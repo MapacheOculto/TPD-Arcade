@@ -1,21 +1,28 @@
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-a                                           ggggggggggggg
-a                                               ggggggggg
-a                                                  gggggg
-a                                                    gggg
-a @                                                   ggg
-aaaa                                                  ggg
-assa                                                  ggg
-assaaaa                                               ggg
-assassa                                               ggg
-assassaaaa                                             gg
-assassassa                                             gg
-assassassa                                             <<
-aaaaaaaaaa                                             <<
-ssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaa
-ssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaa
-ssssssssssssssssssssssssssssssssssssssssssssssssssssssaaa
-sssssssssssssssssssssssssssssssssssssssssssssssssssssssaa
+tzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzaaa
+tt          ttttt                                        aaa
+tt          ttttt                                        aaa
+tt          ttttt                                        aaa
+tt          ttttt                                        aaa
+tt       tttttttt                                        aaa
+tt       tttttt                                          aaa
+tt       tttttt                                          aaa
+tt    tttttttt                    Q   F   Q   F          aaa
+tt    ttttttt                                             <<
+ttttttttttttt                 F                           <<
+ttttttt                                           aaaaaaaaaa
+ttttttt                                           aaaaaaaaaa
+ttttttt                    Q                         a    aa
+ttttt                                                a    aa
+tttt                                                 a    aa
+tttt                    F                            a    aa
+t                                                    a    aa
+z                                                    a    aa
+z                                                    a    aa
+z                                                    a    aa
+z@                                                   a    aa
+tññññññññññññññññññññññllllllllllllllllllllllllllllllallllaa
+tnnnnnnnnnnnnnnnnnnnnnnllllllllllllllllllllllllllllllallllaa
+ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttaa
 -
 ---
 fondoDesierto

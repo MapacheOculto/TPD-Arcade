@@ -107,7 +107,7 @@ class _2dLevelMaker:
                 elif line[j] == 'ñ':
                     self.createSprite(lines,j, i, 'ñ')
                 elif line[j] == 'z':
-                    self.createSprite(lines,j, i, 'z')
+                    self.createLimitWall(j, i)
                 elif line[j] == 'c':
                     self.createSprite(lines,j, i, 'c')
                 elif line[j] == 's':
@@ -148,6 +148,8 @@ class _2dLevelMaker:
                     else:
                         self.torretas.append(Turret((j*50)+25,(i*50)+25, 'Multi', 10, False, 135, 250,1,0.07, 'Cannon'))
                     indice_torreta+=1
+
+                    
                     
     # METODO POSICION INICIAL PERSONAJE. 
     def initPlayerPosition(self, j, i):
@@ -194,13 +196,15 @@ class _2dLevelMaker:
             sprite.rect = pygame.Rect((sprite.rect.left - xAdvance, sprite.rect.top - yAdvance), (sprite.rect.width, sprite.rect.height))
         for sprite in self.itemsGroup:
             sprite.rect = pygame.Rect((sprite.rect.left - xAdvance, sprite.rect.top - yAdvance), (sprite.rect.width, sprite.rect.height))
+        for sprite in self.zGroup:
+            sprite.rect = pygame.Rect((sprite.rect.left - xAdvance, sprite.rect.top - yAdvance), (sprite.rect.width, sprite.rect.height))
             
-
         for torreta in self.torretas:
             torreta.x-=xAdvance
             torreta.y-=yAdvance
             torreta.cannon[0]-=xAdvance
             torreta.cannon[1]-=yAdvance
+
 
     # METODO QUE CREA SALIDA
     def createExit(self, j, i):
@@ -213,6 +217,7 @@ class _2dLevelMaker:
         sprite.image = pygame.transform.scale(sprite.image, (self.stageScale, self.stageScale))
                                                
         self.exitGroup.add(sprite);
+
 
     #METODO QUE CREA PLATAFORMAS (tipo corresponde a horizontal o vertical)
     def createPlatform(self, lines, j, i, tipo):
@@ -256,6 +261,7 @@ class _2dLevelMaker:
                 if aux > 100000:
                     print "ERROR EN CREATEPLATFORM"
                     break
+                
 
     # METODO QUE CREA SPRITES (actualmente son todas plataformas)
     def createSprite(self,lines, j, i, character):
@@ -284,9 +290,6 @@ class _2dLevelMaker:
         elif character == "s":
             sprite.image = self.imageDictionary["sand"]
             sprite.imagen2 = self.imageDictionary["sand"]
-        elif character == "z":
-            sprite.image = self.imageDictionary["invisible"]
-            sprite.imagen2 = self.imageDictionary["invisible"]
         elif character == "b":##################
             sprite.image = self.imageDictionary["blueAlpha"]##################
             sprite.imagen2 = self.imageDictionary["blue"]##################
@@ -355,11 +358,24 @@ class _2dLevelMaker:
             self.lastRect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
         sprite.colororiginal = sprite.color
 
-        # ZGroup es el grupo de los sprites invisibles que no seran usables como pared por el personaje
-        if character == 'z':
-            self.zGroup.add(sprite);
-        else:
-            self.group.add(sprite); 
+        self.group.add(sprite)
+
+
+    def createLimitWall(self, j, i):
+        self.stageScale = 50
+        x = self.stageScale * (j)
+        y = self.stageScale * (i)
+        
+        sprite = Platform()
+        sprite.rect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
+        
+        # Define rectangulos que serviran para delimitar etapa y limitar movimiento de la camara
+        if i == 0 and j == 0:
+            self.firstRect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
+        elif i == (self.height - 1) and j == (self.width - 1):
+            self.lastRect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
+            
+        self.zGroup.add(sprite)
 
     
     # METODO QUE CREA SPRITES
@@ -371,19 +387,12 @@ class _2dLevelMaker:
 
         rect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
         
-        ###sprite = Platform()
         if character == "l":
-            ###sprite.image = self.imageDictionary["lava"]
             sprite = DamageField(self.lavaDict, rect)
         elif character == "w":
-            ###sprite.image = self.imageDictionary["water"]
             sprite = DamageField(self.iceDict, rect)
         else: 
-            ###sprite.image = self.imageDictionary["bricks"]
             sprite = DamageField(self.lavaDict, rect)
-
-        ###sprite.image = pygame.transform.scale(sprite.image, (self.stageScale, self.stageScale))
-        ###sprite.rect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
 
         # Define rectangulos que serviran para delimitar etapa y limitar movimiento de la camara
         if i == 1 and j == 0:
@@ -392,6 +401,7 @@ class _2dLevelMaker:
             self.lastRect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
         
         self.damageGroup.add(sprite)
+        
         
     # CREA ITEMS
     def createItem(self, lines, j, i, char):
@@ -406,11 +416,7 @@ class _2dLevelMaker:
             item.id = "life"
         
         self.itemsGroup.add(item)
-
-    # METODO PARA TENER LISTOS LOS DICT
-    def setDamageDictionaries(self):
-        self.lavaDic = {}
-        self.waterDic = {}
+        
 
 def string_a_bool(string):
     if string =='True':

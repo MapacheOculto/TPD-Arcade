@@ -1,21 +1,23 @@
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-a                                           ggggggggggggg
-a                                               ggggggggg
-<                                                  gggggg
-<                                                    gggg
-a @                                                   ggg
-aaaa                                                  ggg
-assa                                                  ggg
-assaaaa                                               ggg
-assassa                                               ggg
-assassaaaa                                             gg
-assassassa                                             gg
-assassassa                                             <<
-aaaaaaaaaa                                             <<
-ssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaa
-ssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaa
-ssssssssssssssssssssssssssssssssssssssssssssssssssssssaaa
-sssssssssssssssssssssssssssssssssssssssssssssssssssssssaa
+zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzaa
+aa                                                                             aa
+z                                                                              aa
+aa                                                                             aa
+z                                                                               <
+aa                                                                              <
+z                                                                               <
+aa      ññññññññññññ    P----G     O----B     P----G     O----B    ññññaaaaaaaaaz
+aa      nnnnnnnnnnnn                                               nnnnaaaaaaaaaz
+aa      tttttttttttt                                               ttttaaa   aaaz
+aa      tttttttttttt                                               ttttaa     aaz
+aa      tttttttttttt                                               tttta       az
+aa      tttttttttttt                                               tttta       az
+z       tttttttttttt                                               tttta       az
+z       ttttttttttttlllllllllllllllllllllllllllllllllllllllllllllllttttalllllllaz
+z@      ttttttttttttlllllllllllllllllllllllllllllllllllllllllllllllttttalllllllaz
+ññññññññttttttttttttlllllllllllllllllllllllllllllllllllllllllllllllttttalllllllaa
+nnnnnnnnttttttttttttlllllllllllllllllllllllllllllllllllllllllllllllttttalllllllaa
+ttttttttttttttttttttlllllllllllllllllllllllllllllllllllllllllllllllttttalllllllaa
+tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttatttttttaa
 -
 levels//level13.txt
 fondoDesierto

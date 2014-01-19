@@ -71,10 +71,10 @@ class gameWorldState(object):
 
         if self.playerPos == self.gameNodesList[0]:
             actualPath = "levels//level11.txt"
-            self.stageName = "Etapa 1"
+            self.stageName = "Tutorial"
         if self.playerPos == self.gameNodesList[1]:
             actualPath = "levels//level21.txt"
-            self.stageName = "Etapa 2"
+            self.stageName = "Castillo 1"
         if self.playerPos == self.gameNodesList[2]:
             actualPath = "levels//castle2.txt"
             self.stageName = "Etapa 3"
@@ -92,8 +92,8 @@ class gameWorldState(object):
             self.selectSound.play()
             self.changeState("playState")
             pygame.mixer.music.stop()
-            pygame.mixer.music.load('sounds//mainTheme.mp3')
-            pygame.mixer.music.play()
+            #pygame.mixer.music.load('sounds//mainTheme.mp3')
+            #pygame.mixer.music.play()
             
             self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath, self.container)
             self.systemState.currentState.actualPath = actualPath

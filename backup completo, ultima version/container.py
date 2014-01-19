@@ -71,11 +71,11 @@ class Container:
         self.imageDictionary.update({"sand" : pygame.image.load("blocks//sand.png").convert()})
         self.imageDictionary.update({"goldBrick" : pygame.image.load("blocks//goldBrick.png").convert()})
         self.imageDictionary.update({"exit" : pygame.image.load("blocks//exit.png").convert()})
-        self.imageDictionary.update({"invisible" : pygame.image.load("blocks//invisible.png").convert_alpha()})
 
         # imagenes de fondo
         self.imageDictionary.update({"fondo" : pygame.image.load("blocks//asddfg.jpg").convert()})
-        self.imageDictionary.update({"fondoDesierto" : pygame.image.load("blocks//fondoDesierto.png").convert()})
+        self.imageDictionary.update({"fondoDesierto" : pygame.image.load("blocks//background.png").convert_alpha()})
+        self.imageDictionary.update({"fondoDesierto2" : pygame.image.load("blocks//fondoDesierto.png").convert()})
 
         # Animacion lava
         self.lavaAnimation.append(pygame.image.load("blocks//lava1.png").convert_alpha())

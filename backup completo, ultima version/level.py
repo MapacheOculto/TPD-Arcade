@@ -28,6 +28,7 @@ class level:
         self.deadMessage = ""
         
         self.backgroundImage = self.container.imageDictionary["fondoDesierto"]
+        self.backgroundImage = pygame.transform.scale(self.backgroundImage, (self.screenSize[0], self.screenSize[1]))
         
         self.walk  = self.container.soundDictionary["walk"]
         self.walk.set_volume(0.1)
@@ -169,6 +170,7 @@ class level:
 
         # Render a las instancias del nivel
         screen.blit(self.backgroundImage, (0,0))
+        
         self.player1.render()   
         self.player2.render()
         self.background.render()
