@@ -55,6 +55,7 @@ class Player:
         self.font = pygame.font.SysFont("arial", 16)
         self.font.set_bold(True)
 
+
         #POSICION Y OTROS INT
         self.X = x
         self.Y = y
@@ -125,7 +126,7 @@ class Player:
 
 
     # Metodo ve si esta cayendo, caminando, saltando, etc. Luego, actualiza bools y valores correspondientes
-    def update(self, elapsedTime, group, exitGroup, damageGroup, itemsGroup, groupList):
+    def update(self, elapsedTime, group, exitGroup, damageGroup, itemsGroup, zGroup, groupList):
         clashingDown = self.clashManager.CheckCollision(self, group, self.X, self.Y + 1)
         clashingRight = self.clashManager.CheckCollision(self, group, self.X + 1, self.Y)
         clashingLeft = self.clashManager.CheckCollision(self, group, self.X - 1, self.Y) 
@@ -205,7 +206,7 @@ class Player:
         if abs(self.deltaX) > 30:
             self.deltaX = 20 * temporalDirection
         if abs(self.deltaX) > 0:
-            self.walk(group, self.deltaX)
+            self.walk(group, zGroup, self.deltaX)
             self.walking = True
             self.still = False
         else:
@@ -243,7 +244,7 @@ class Player:
                 self.freefall.stop()
                 self.wallJumpStart(self.rightWallSliding)
         if self.wallJumping:
-            self.updateWallJump(group, elapsedTime)
+            self.updateWallJump(group, zGroup, elapsedTime)
             
 
         ## SALTO NORMAL (ahora con joystick)
@@ -295,7 +296,7 @@ class Player:
 
         # INERCIA DE NUEVO
         if self.inertiaActivated and self.inertiaCounter >= 0:
-            self.calculateInertia(group, self.direction, clashingDown, elapsedTime)
+            self.calculateInertia(group, zGroup, self.direction, clashingDown, elapsedTime)
         
         """
         # SETEO DE BOOLS
@@ -436,13 +437,14 @@ class Player:
         self.score += value
     
     #-CAMINATA ----------------------------------------------------------------------
-    def walk(self, group, xAdvance):
+    def walk(self, group, zGroup, xAdvance):
 
         clashed = self.clashManager.CheckCollision(self, group, self.X + xAdvance, self.Y)
+        clashed2 = self.clashManager.CheckCollision(self, zGroup, self.X + xAdvance, self.Y)
               
-        if not clashed:
+        if not clashed and not clashed2:
             self.deltaX = xAdvance
-        elif clashed:
+        elif clashed or clashed2:
             if xAdvance > 0:
                 floorX = self.clashManager.leftX - (self.sprite.rect.width)
             elif xAdvance < 0:
@@ -453,17 +455,17 @@ class Player:
             self.still = True
 
     #-INERCIA------------------------------------------------------------------------
-    def calculateInertia(self, group, direction, clashingDown, elapsedTime):
+    def calculateInertia(self, group, zGroup, direction, clashingDown, elapsedTime):
         
         StopInertiaScale = self.inertiaCounter / self.inertiaFrames
         changeDirInertiaScale = (self.inertiaFrames - self.inertiaCounter) / self.inertiaFrames
 
         if self.deltaX != 0 and self.direction != 0:
-            self.walk(group, changeDirInertiaScale * self.deltaX)
+            self.walk(group, zGroup, changeDirInertiaScale * self.deltaX)
             self.inertiaCounter -= 1 ## SIRVEN PARA DIFERENCIAR LAS INERCIAS
         elif self.deltaX == 0:
             previousSpeed = int( 4 * elapsedTime * self.speed)
-            self.walk(group, previousSpeed * StopInertiaScale * self.inertiaDirection)
+            self.walk(group, zGroup, previousSpeed * StopInertiaScale * self.inertiaDirection)
             if clashingDown:
                 self.inertiaCounter -= 3 ## SIRVEN PARA DIFERENCIAR LAS INERCIAS
             
@@ -531,7 +533,7 @@ class Player:
         else:
             self.wallJumpDirection = 1
 
-    def updateWallJump(self, group, elapsedTime):
+    def updateWallJump(self, group, zGroup, elapsedTime):
 
         self.totalJumpTime += elapsedTime
         self.movParab.update(self.totalJumpTime)
@@ -541,7 +543,7 @@ class Player:
             self.playerTakenHorizontalControl = True
         if not self.playerTakenHorizontalControl and (self.contador >= 0 or self.deltaY > 0):
             previousSpeed = int( 6 * elapsedTime * self.speed)
-            self.walk(group, previousSpeed * self.wallJumpDirection)
+            self.walk(group, zGroup, previousSpeed * self.wallJumpDirection)
             self.contador -= 1
 
         # Parche para evitar que delta X tome valor cero por tres iteraciones en que

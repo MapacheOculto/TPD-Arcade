@@ -8,7 +8,7 @@ from items import Items
 
 class _2dLevelMaker:
         
-    def __init__(self, group, exitGroup, damageGroup,  itemsGroup, imageDictionary, lavaDict, iceDict, itemsDict1, itemsDict2, screenSize, filePath = "levels//ex1.txt"):
+    def __init__(self, group, exitGroup, damageGroup,  itemsGroup, zGroup, container, screenSize, filePath = "levels//ex1.txt"):
         # ATRIBUTOS
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
@@ -20,16 +20,17 @@ class _2dLevelMaker:
         self.exitGroup = exitGroup
         self.damageGroup = damageGroup
         self.itemsGroup = itemsGroup
+        self.zGroup = zGroup
         self.group2 = pygame.sprite.Group()
         self.torretas=[]
         self.caracteristicas_torretas=[]
 
         # SPRITES
-        self.imageDictionary = imageDictionary
-        self.lavaDict = lavaDict
-        self.iceDict = iceDict
-        self.itemsDict1 = itemsDict1
-        self.itemsDict2 = itemsDict2        
+        self.imageDictionary = container.imageDictionary
+        self.lavaDict = container.lavaAnimation
+        self.iceDict = container.iceAnimation
+        self.itemsDict1 = container.itemAnimation1
+        self.itemsDict2 = container.itemAnimation2       
 
         # FILE Y SCREEN SIZE
         self.readFile(filePath)
@@ -105,6 +106,8 @@ class _2dLevelMaker:
                     self.createSprite(lines,j, i, 'n')
                 elif line[j] == 'ñ':
                     self.createSprite(lines,j, i, 'ñ')
+                elif line[j] == 'z':
+                    self.createSprite(lines,j, i, 'z')
                 elif line[j] == 'c':
                     self.createSprite(lines,j, i, 'c')
                 elif line[j] == 's':
@@ -281,6 +284,9 @@ class _2dLevelMaker:
         elif character == "s":
             sprite.image = self.imageDictionary["sand"]
             sprite.imagen2 = self.imageDictionary["sand"]
+        elif character == "z":
+            sprite.image = self.imageDictionary["invisible"]
+            sprite.imagen2 = self.imageDictionary["invisible"]
         elif character == "b":##################
             sprite.image = self.imageDictionary["blueAlpha"]##################
             sprite.imagen2 = self.imageDictionary["blue"]##################
@@ -348,7 +354,12 @@ class _2dLevelMaker:
         elif i == (self.height - 1) and j == (self.width - 1):
             self.lastRect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
         sprite.colororiginal = sprite.color
-        self.group.add(sprite); 
+
+        # ZGroup es el grupo de los sprites invisibles que no seran usables como pared por el personaje
+        if character == 'z':
+            self.zGroup.add(sprite);
+        else:
+            self.group.add(sprite); 
 
     
     # METODO QUE CREA SPRITES
@@ -375,7 +386,7 @@ class _2dLevelMaker:
         ###sprite.rect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
 
         # Define rectangulos que serviran para delimitar etapa y limitar movimiento de la camara
-        if i == 0 and j == 0:
+        if i == 1 and j == 0:
             self.firstRect = pygame.Rect((x, y), (self.stageScale, self.stageScale))
         elif i == (self.height - 1) and j == (self.width - 1):
             self.lastRect = pygame.Rect((x, y), (self.stageScale, self.stageScale))

@@ -27,6 +27,8 @@ class level:
         self.totalElapsedTime = 0
         self.deadMessage = ""
         
+        self.backgroundImage = self.container.imageDictionary["fondoDesierto"]
+        
         self.walk  = self.container.soundDictionary["walk"]
         self.walk.set_volume(0.1)
         self.jump = self.container.soundDictionary["jump"]
@@ -119,8 +121,8 @@ class level:
         
         for sprite in self.background.group:
             sprite.activada = False             
-        self.player2.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.itemsGroup, self.background.groupList)#-----------------#
-        self.player1.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.itemsGroup, self.background.groupList)
+        self.player2.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.itemsGroup, self.background.zGroup, self.background.groupList)#-----------------#
+        self.player1.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.itemsGroup, self.background.zGroup,  self.background.groupList)
         self.backgroundXMovementManager(self.player1, self.player2)
         self.backgroundYMovementManager(self.player1, self.player2)
         for torreta in self.background.levelMaker.torretas:
@@ -166,9 +168,10 @@ class level:
         screen = pygame.display.get_surface()
 
         # Render a las instancias del nivel
+        screen.blit(self.backgroundImage, (0,0))
+        self.player1.render()   
+        self.player2.render()
         self.background.render()
-        self.player2.render()   #-----------------#
-        self.player1.render()
         for torreta in self.background.levelMaker.torretas:
             torreta.render()
 
@@ -211,9 +214,9 @@ class level:
     
 
         for i in range(self.player1.lives):
-            screen.blit(self.lifeSprite.image,  (490 + (i * 20), 10))
+            screen.blit(self.lifeSprite.image,  (470 + (i * 20), 10))
         for i in range(self.player2.lives):
-            screen.blit(self.lifeSprite.image,  (490 + (i * 20), 40))
+            screen.blit(self.lifeSprite.image,  (470 + (i * 20), 40))
         self.lifeSprite.update()
  
 

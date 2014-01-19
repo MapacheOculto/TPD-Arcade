@@ -1,8 +1,8 @@
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 a                                           ggggggggggggg
 a                                               ggggggggg
-<                                                  gggggg
-<                                                    gggg
+a                                                  gggggg
+a                                                    gggg
 a @                                                   ggg
 aaaa                                                  ggg
 assa                                                  ggg
@@ -17,6 +17,6 @@ ssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaa
 ssssssssssssssssssssssssssssssssssssssssssssssssssssssaaa
 sssssssssssssssssssssssssssssssssssssssssssssssssssssssaa
 -
-levels//level13.txt
+---
 fondoDesierto
 -

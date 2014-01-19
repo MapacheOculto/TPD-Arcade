@@ -26,6 +26,7 @@ class titleState(gameObject):
         self.playChoice = (0,0,0)
         self.readChoice = (0,0,0)
         self.readChoice2 = (0,0,0)
+        self.joystickActivated = False
         
         self.instructionsHub = pygame.image.load("blocks//hub.png").convert_alpha()
         self.instructionsHub = pygame.transform.scale(self.instructionsHub, (screenSize[0] - 100, screenSize[1] - 100))
@@ -53,13 +54,17 @@ class titleState(gameObject):
         screen = pygame.display.get_surface()
         direction = 0
 
-        if abs(self.joystickList[0].get_axis(1)) > 0.3 and not self.activateHub:
+        if abs(self.joystickList[0].get_axis(1)) < 0.2:
+            self.joystickActivated = False
+        elif abs(self.joystickList[0].get_axis(1)) >= 0.4 and not self.activateHub and not self.joystickActivated:
             direction = self.joystickList[0].get_axis(1)
 
         if direction < 0 and self.pointer > 0:
             self.pointer -= 1
+            self.joystickActivated = True
         elif direction > 0 and self.pointer < 2:
             self.pointer += 1
+            self.joystickActivated = True
         
         if self.buttonPressed and self.pointer == 0 and not self.activateHub:
             self.selectSound.play()
@@ -116,11 +121,13 @@ class titleState(gameObject):
             textSurf6  = self.font2.render("Przemyslaw Sikorski (Rezoner) - happy.mp3 - http://opengameart.org/" , True, (0,0,255))
             textSurf7  = self.font2.render("mrpoly - awesomeness.wav - http://opengameart.org/" , True, (0,0,255))
             textSurf8  = self.font2.render("Joseph Gilbert  (Kistol) - Game Over.ogg - http://opengameart.org/" , True, (0,0,255))
-            
+            textSurf9  = self.font2.render("Sonido de pausa : http://soundjax.com/pause-1.html", True, (0,0,255))
+
             screen.blit(textSurf5, (100, 150))
             screen.blit(textSurf6, (100, 200))
             screen.blit(textSurf7, (100, 250))
             screen.blit(textSurf8, (100, 300))
+            screen.blit(textSurf9, (100, 350))
 
         elif self.activateHub:
             screen.blit(self.instructionsHub,  (50, 30))

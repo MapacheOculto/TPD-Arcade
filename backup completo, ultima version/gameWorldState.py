@@ -12,12 +12,16 @@ class gameWorldState(object):
 
     def __init__(self, joystickList, screenSize, systemState, container):
         self.font1 = pygame.font.SysFont("arial", 50)
+        self.font2 = pygame.font.SysFont("arial", 30)
         self.joystickList = joystickList
         self.screenSize = screenSize
         self.systemState = systemState
         self.storyboard = StoryBoard2()
-        self.container = container
 
+        self.container = container
+        self.selectSound = self.container.soundDictionary["select"]
+        self.goBackSound = self.container.soundDictionary["back"]
+        
         self.gameNodesList = []
         self.createNodes()
 
@@ -31,8 +35,9 @@ class gameWorldState(object):
         self.moving = False
         self.deltaX = 0
         self.deltaY = 0
+        self.stageName = ""
 
-        self.background = pygame.image.load("blocks//worldMap.jpg").convert()
+        self.background = pygame.image.load("blocks//worldMap2.jpg").convert()
         self.background = pygame.transform.scale(self.background, (self.screenSize[0],self.screenSize[1]))  
         self.vortex = pygame.image.load("blocks//vortex.png").convert_alpha()
         self.vortex = pygame.transform.scale(self.vortex, (60, 60))
@@ -63,30 +68,38 @@ class gameWorldState(object):
         else:
             levelSelectionButton = self.joystickList[0].get_button(0)
             goBackButton = self.joystickList[0].get_button(1)
-            
-        if self.buttonPressed and not self.moving:    
 
+        if self.playerPos == self.gameNodesList[0]:
+            actualPath = "levels//level11.txt"
+            self.stageName = "Etapa 1"
+        if self.playerPos == self.gameNodesList[1]:
+            actualPath = "levels//level21.txt"
+            self.stageName = "Etapa 2"
+        if self.playerPos == self.gameNodesList[2]:
+            actualPath = "levels//castle2.txt"
+            self.stageName = "Etapa 3"
+        if self.playerPos == self.gameNodesList[3]:
+            actualPath = "levels//test.txt"
+            self.stageName = "Etapa 4"
+        if self.playerPos == self.gameNodesList[4]:
+            actualPath = "levels//level3.txt"
+            self.stageName = "Etapa 5"
+        if self.playerPos == self.gameNodesList[5]:  
+            actualPath = "levels//level1.txt"
+            self.stageName = "Etapa 6"
+
+        if self.buttonPressed and not self.moving:
+            self.selectSound.play()
             self.changeState("playState")
             pygame.mixer.music.stop()
             pygame.mixer.music.load('sounds//mainTheme.mp3')
             pygame.mixer.music.play()
             
-            if self.playerPos == self.gameNodesList[0]:
-                actualPath = "levels//level11.txt"
-            if self.playerPos == self.gameNodesList[1]:
-                actualPath = "levels//level21.txt"
-            if self.playerPos == self.gameNodesList[2]:
-                actualPath = "levels//castle2.txt"
-            if self.playerPos == self.gameNodesList[3]:
-                actualPath = "levels//test.txt"
-            if self.playerPos == self.gameNodesList[4]:
-                actualPath = "levels//level3.txt"
-            if self.playerPos == self.gameNodesList[5]:  
-                actualPath = "levels//level1.txt"
             self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath, self.container)
             self.systemState.currentState.actualPath = actualPath
 
         elif self.button2Pressed:
+            self.goBackSound.play()
             self.changeState("titleState")
 
         # Obtiene si player apreto boton para desplazarse
@@ -168,6 +181,9 @@ class gameWorldState(object):
             self.animation(len(self.walkDictionary), self.walkDictionary)
         elif not self.moving:
             self.animation(len(self.stillDictionary), self.stillDictionary)
+
+        textSurf2  = self.font2.render(self.stageName, True, (0, 0, 0))
+        screen.blit(textSurf2, (self.screenSize[0] / 2 - 125, 710))
 
 
     # Ahora keys son las imagenes que se pasan a storyboard

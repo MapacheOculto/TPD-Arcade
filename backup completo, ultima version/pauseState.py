@@ -60,6 +60,7 @@ class PauseState(gameObject):
         self.joystickButtonManager(1)
             
         if self.button2Pressed:
+            self.container.soundDictionary["pause"].play()
             self.changeState("playState")
             pygame.mixer.music.set_volume(1)
 

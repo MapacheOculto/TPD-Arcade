@@ -51,6 +51,7 @@ class Container:
         self.soundDictionary.update({"slide1" : mixer.Sound('sounds//slide.mp3')})
         self.soundDictionary.update({"slide2" : mixer.Sound('sounds//slide.wav')})
         self.soundDictionary.update({"walk" : mixer.Sound('sounds//walk.wav')})
+        self.soundDictionary.update({"pause" : mixer.Sound('sounds//pause.mp3')})
 
 
     # Deja todos los diccionarios listos con sus imagenes
@@ -70,6 +71,7 @@ class Container:
         self.imageDictionary.update({"sand" : pygame.image.load("blocks//sand.png").convert()})
         self.imageDictionary.update({"goldBrick" : pygame.image.load("blocks//goldBrick.png").convert()})
         self.imageDictionary.update({"exit" : pygame.image.load("blocks//exit.png").convert()})
+        self.imageDictionary.update({"invisible" : pygame.image.load("blocks//invisible.png").convert_alpha()})
 
         # imagenes de fondo
         self.imageDictionary.update({"fondo" : pygame.image.load("blocks//asddfg.jpg").convert()})

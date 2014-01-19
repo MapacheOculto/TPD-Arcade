@@ -39,7 +39,7 @@ class playState(gameObject):
         time = self.currentLevel.totalElapsedTime
         
         if self.button2Pressed:
-            
+            self.container.soundDictionary["pause"].play()
             pygame.mixer.music.set_volume(0.1)
             self.changeState("pauseState")
             self.systemState.currentState.setParams(time, score1, score2, hp1, hp2) 
