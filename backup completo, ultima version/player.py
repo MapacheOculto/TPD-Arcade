@@ -130,14 +130,14 @@ class Player:
     # Metodo ve si esta cayendo, caminando, saltando, etc. Luego, actualiza bools y valores correspondientes
     def update(self, elapsedTime, group, exitGroup, damageGroup, itemsGroup, groupList):
         
+        self.colisionada = None
         clashingDown = self.clashManager.CheckCollision(self, group, self.X, self.Y + 1)
         clashingRight = self.clashManager.CheckCollision(self, group, self.X + 1, self.Y)
         clashingLeft = self.clashManager.CheckCollision(self, group, self.X - 1, self.Y) 
         self.deltaX = 0
         self.deltaY = 0
         temporalDirection = 0
-
-        
+      
         ## CAMBIO DE COLOR 
         if self.id == 'p1':
            self.color = "Green"
@@ -231,9 +231,12 @@ class Player:
                 self.deltaY = -2 ########################
                 if self.clashManager.CheckCollision(self, group, self.X, self.Y + 2):
                     floorY = self.clashManager.topY - (self.sprite.rect.height)
-                    if (self.colisionada.id == "Vertical" or self.colisionada.color != self.companero.color):
+                    self.deltaY = self.Y - floorY   
+                    #self.deltaY = self.Y - floorY
+                    if (self.colisionada.id == "Vertical" or self.colisionada.id == "Horizontal" ):
                         floorY = self.Y
-                    self.deltaY = self.Y - floorY
+                        self.deltaY = self.Y - floorY
+                     
             else:
                 self.pressedAgainstWall = False
         else:
@@ -316,7 +319,9 @@ class Player:
             self.X += self.deltaX
         self.sprite.rect = pygame.Rect((self.X, self.Y), (self.sprite.rect.width, self.sprite.rect.height))
 
-
+        if self.colisionada != None:
+            if pygame.sprite.collide_rect(self.sprite,self.colisionada) and self.colisionada.id == "Horizontal":
+                self.Y = self.colisionada.rect.bottom
            ## COLOR
         surface = pygame.display.get_surface()
         if self.color == "Blue":

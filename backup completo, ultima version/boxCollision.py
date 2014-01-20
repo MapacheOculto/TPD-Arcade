@@ -67,7 +67,8 @@ class boxCollision:
                     self.leftX = rect.left 
                     if sprite.color == player.color:
                         sprite.activada = True
-                    player.colisionada = sprite                  
+                    player.colisionada = sprite          
+                         
                     return True
                 elif sprite.activada == False and sprite.tipo =="Color":
                     companeroPos = pygame.Rect(player.companero.X, player.companero.Y+1, player.companero.sprite.rect.width, player.companero.sprite.rect.height)
@@ -98,7 +99,7 @@ class boxCollision:
                         self.leftX = rect.left                
                         sprite.activada = True
                         player.colisionada = sprite
-                   
+                        
                         return True
                     else:
                       sprite.activada = False
@@ -114,7 +115,7 @@ class boxCollision:
                         self.leftX = rect.left              
                         sprite.activada = True
                         player.colisionada = sprite
-                     
+                        
                         return True
                     else:
                      sprite.activada = False
