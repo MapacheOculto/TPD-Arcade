@@ -1,11 +1,11 @@
 
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-a          Q                                aaaaaaaaaaaa
+a     F                                     aaaaaaaaaaaa
 a                                               aaaaaaaa
 <                                                  aaaaa
 <                                                    aaa
 a @                                                   aa
-aaaaO--BP--G      O--B                                aa
+aaaa    P--G      O--B                                aa
 a  a                                                   a
 a  aaaa                                              % a
 a  a  a               &        &                       a

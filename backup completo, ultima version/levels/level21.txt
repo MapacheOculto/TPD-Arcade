@@ -11,7 +11,7 @@ z                                         º º º      O-----B     º   º   º    ºa
 z                                         * * *                               ºaaaaaaaaaaaaaaaaaaaaaaaa
 z                             º º º      P-----G                                   aaaaaaaaaaaaaaaaaaaa
 z                             º º º                                                aaaaaaaaaaaaaaaaaaaa
-z                  º º       O-----B                                               a                 aa
+z   F              º º       O-----B                                               a                 aa
 z                  * *                                                             a                 aa
 z                P-----G                                                           a                 aa
 z        P---G                                                                     a                 aa

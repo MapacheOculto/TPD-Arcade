@@ -129,16 +129,19 @@ class Player:
 
         
 
+
     def update(self, elapsedTime, group, exitGroup, damageGroup, itemsGroup, zGroup, groupList):
 
         self.colisionada = None
+
         clashingDown = self.clashManager.CheckCollision(self, group, self.X, self.Y + 1)
         clashingRight = self.clashManager.CheckCollision(self, group, self.X + 1, self.Y)
         clashingLeft = self.clashManager.CheckCollision(self, group, self.X - 1, self.Y) 
         self.deltaX = 0
         self.deltaY = 0
         temporalDirection = 0
-      
+
+        
         ## CAMBIO DE COLOR 
         if self.id == 'p1':
            self.color = "Green"
@@ -236,12 +239,9 @@ class Player:
                 self.deltaY = -2 ########################
                 if self.clashManager.CheckCollision(self, group, self.X, self.Y + 2):
                     floorY = self.clashManager.topY - (self.sprite.rect.height)
-                    self.deltaY = self.Y - floorY   
-                    #self.deltaY = self.Y - floorY
-                    if (self.colisionada.id == "Vertical" or self.colisionada.id == "Horizontal" ):
+                    if (self.colisionada.id == "Vertical"):# or self.colisionada.color != self.companero.color):
                         floorY = self.Y
-                        self.deltaY = self.Y - floorY
-                     
+                    self.deltaY = self.Y - floorY
             else:
                 self.pressedAgainstWall = False
         else:
@@ -327,7 +327,9 @@ class Player:
 
         if self.colisionada != None:
             if pygame.sprite.collide_rect(self.sprite,self.colisionada) and self.colisionada.id == "Horizontal":
-                self.Y = self.colisionada.rect.bottom
+               self.Y = self.colisionada.rect.bottom
+
+
            ## COLOR
         surface = pygame.display.get_surface()
         if self.color == "Blue":
@@ -461,11 +463,9 @@ class Player:
             self.deltaX = xAdvance
 
         #Cambio pa arreglar bug
-        elif clashed and (self.colisionada.id != "Horizontal" or self.colisionada.color != self.companero.color):
-            floorX = 2*self.X
-
-        elif clashed or clashed2:
-
+  
+        elif (clashed and (self.colisionada.id != "Horizontal" or self.colisionada.color != self.companero.color)) or clashed2 :
+            floorX = self.X
             if xAdvance > 0:
                 floorX = self.clashManager.leftX - (self.sprite.rect.width)
             elif xAdvance < 0:

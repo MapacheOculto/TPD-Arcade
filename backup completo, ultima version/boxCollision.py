@@ -71,8 +71,7 @@ class boxCollision:
                     self.leftX = rect.left 
                     if sprite.color == player.color:
                         sprite.activada = True
-                    player.colisionada = sprite          
-                         
+                    player.colisionada = sprite                  
                     return True
                 
                 elif sprite.activada == False and sprite.tipo == "Color":
@@ -107,7 +106,7 @@ class boxCollision:
                         self.leftX = rect.left                
                         sprite.activada = True
                         player.colisionada = sprite
-                        
+                   
                         return True
                     else:
                         sprite.activada = False
@@ -125,7 +124,7 @@ class boxCollision:
                         self.leftX = rect.left              
                         sprite.activada = True
                         player.colisionada = sprite
-                        
+                     
                         return True
                     else:
                      sprite.activada = False
