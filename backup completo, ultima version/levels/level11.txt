@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 a          Q                                aaaaaaaaaaaa
 a                                               aaaaaaaa
@@ -16,7 +16,7 @@ a  a  a  aaaa     aaaaa     aaaa     aaaa              <
 aaaaaaaaaaaaa     aaaaa     aaaa     aaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaalllllaaaaalllllaaaawwwwwaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-=======
+
 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 z                                                           ºaaa
 z                                                              z
@@ -37,7 +37,7 @@ ttttttttttñññ       aaaaa       aaaa                          <<
 ttttttttttnnnlllllllaaaaalllllllaaaalllllllaaaaññññññññññññaaaaa
 tttttttttttttlllllllaaaaalllllllaaaalllllllaaaannnnnnnnnnnnaaaaa
 tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
->>>>>>> origin/branch-launcher
+
 -
 levels//level12.txt
 fondoDesierto

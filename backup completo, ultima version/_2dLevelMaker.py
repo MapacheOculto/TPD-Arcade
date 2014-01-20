@@ -302,13 +302,13 @@ class _2dLevelMaker:
         elif character == "O":
              sprite.image = self.imageDictionary["blueAlpha"]
              sprite.imagen2 = self.imageDictionary["blue"]
-<<<<<<< HEAD
+
              sprite.delta_x = 0
              sprite.id = "Horizontal"
              sprite.color = "Blue" 
-=======
+
              sprite.color = "Blue"
->>>>>>> origin/branch-launcher
+
         elif character == "P":
             sprite.image = self.imageDictionary["greenAlpha"]
             sprite.imagen2 = self.imageDictionary["green"]
@@ -320,7 +320,7 @@ class _2dLevelMaker:
         elif character == "Q":
             sprite.image = self.imageDictionary["blueAlpha"]
             sprite.imagen2 = self.imageDictionary["blue"]
-<<<<<<< HEAD
+
             sprite.id = "Vertical"
             sprite.color = "Blue" 
         elif character == "F":
@@ -328,13 +328,13 @@ class _2dLevelMaker:
             sprite.imagen2 = self.imageDictionary["green"]
             sprite.id = "Vertical"
             sprite.color = "Green"    
-=======
+
             sprite.color = "Blue"
         elif character == "F":
             sprite.image = self.imageDictionary["greenAlpha"]
             sprite.imagen2 = self.imageDictionary["green"]
             sprite.color = "Green"
->>>>>>> origin/branch-launcher
+
         else: 
             sprite.image = self.imageDictionary["grass"]
             sprite.imagen2 = self.imageDictionary["grass"]

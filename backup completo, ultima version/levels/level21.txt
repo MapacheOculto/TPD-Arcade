@@ -14,7 +14,7 @@ z                             º º º                                             
 z                  º º       O-----B                                               a                 aa
 z                  * *                                                             a                 aa
 z                P-----G                                                           a                 aa
-z                                                                                  a                 aa
+z        P---G                                                                     a                 aa
 z     @                    º º º º º º        * * * * * *          º º º º º º     a                 aa
 aaaaaaaaaaaaallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaaaaaaaaaaaaaaaaaaaa

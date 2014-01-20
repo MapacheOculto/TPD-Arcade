@@ -126,13 +126,12 @@ class Player:
 
 
     # Metodo ve si esta cayendo, caminando, saltando, etc. Luego, actualiza bools y valores correspondientes
-<<<<<<< HEAD
-    def update(self, elapsedTime, group, exitGroup, damageGroup, itemsGroup, groupList):
+
         
-        self.colisionada = None
-=======
+
     def update(self, elapsedTime, group, exitGroup, damageGroup, itemsGroup, zGroup, groupList):
->>>>>>> origin/branch-launcher
+
+        self.colisionada = None
         clashingDown = self.clashManager.CheckCollision(self, group, self.X, self.Y + 1)
         clashingRight = self.clashManager.CheckCollision(self, group, self.X + 1, self.Y)
         clashingLeft = self.clashManager.CheckCollision(self, group, self.X - 1, self.Y) 
@@ -220,7 +219,7 @@ class Player:
 
         ##CAMBIAR ACA PARA EVITAR GLITCH DE PLATAFORMAS VERTICALES
         ## DEFINE SI ESTA PEGADO A LA PARED
-<<<<<<< HEAD
+
         if (clashingRight or clashingLeft) and ((self.falling or self.jumping)) and (not clashingDown or self.colisionada.id == "Vertical"): #or self.colisionada.id == "Vertical" or self.colisionada.color != self.companero.color:
             if clashingRight : #or (temporalDirection > 0 and self.colisionada.id == "Vertical") :
                 self.rightWallSliding = True
@@ -229,15 +228,8 @@ class Player:
                 ##COMO INFO
 #(self.colisionada.id != "Horizontal" or self.colisionada.color != self.companero.color)
             if (temporalDirection > 0 and clashingRight)or (temporalDirection < 0 and clashingLeft):
-=======
-        if (clashingRight or clashingLeft) and not clashingDown and ((self.falling or self.jumping)):
-            if clashingRight:
-                self.rightWallSliding = True
-            elif clashingLeft:
-                self.leftWallSliding = True
 
-            if ((temporalDirection > 0 and clashingRight)or (temporalDirection < 0 and clashingLeft)) and self.falling and not self.jumping:
->>>>>>> origin/branch-launcher
+    
                 self.wallStickLag = 5
                 self.pressedAgainstWall = True
                 self.freefall.stop()
@@ -467,13 +459,13 @@ class Player:
               
         if not clashed and not clashed2:
             self.deltaX = xAdvance
-<<<<<<< HEAD
+
         #Cambio pa arreglar bug
         elif clashed and (self.colisionada.id != "Horizontal" or self.colisionada.color != self.companero.color):
             floorX = 2*self.X
-=======
+
         elif clashed or clashed2:
->>>>>>> origin/branch-launcher
+
             if xAdvance > 0:
                 floorX = self.clashManager.leftX - (self.sprite.rect.width)
             elif xAdvance < 0:
