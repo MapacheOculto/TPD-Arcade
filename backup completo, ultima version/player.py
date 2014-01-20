@@ -9,41 +9,40 @@ from pygame import mixer
 from platform import Platform
 import math
 
-# Relativo a los sonidos
-mixer.init()
-points = mixer.Sound('sounds//points.wav')
-points.set_volume(0.4)
-life = mixer.Sound('sounds//life.wav')
-life.set_volume(0.4)
-walk = mixer.Sound('sounds//walk2.wav')
-walk.set_volume(0.1)
-alert = mixer.Sound('sounds//jump.wav')
-alert.set_volume(0.1)
-slide=mixer.Sound('sounds//slide.wav')
-slide.set_volume(0.8)
-burn=mixer.Sound('sounds//burn1.wav')
-burn.set_volume(1)
-
 
 class Player:
     
-    def __init__(self, joystick, movParab, freefall, storyboard, x = 200, y = 120):
+    def __init__(self, joystick, movParab, freefall, storyboard, container, x = 200, y = 120):
+
+        # Paths para sonido
+        self.points = container.soundDictionary["point"]
+        self.points.set_volume(0.4)
+        self.life = container.soundDictionary["life"]
+        self.life.set_volume(0.4)
+        self.burn = container.soundDictionary["burn"]
+        self.burn.set_volume(1)
+        self.walk1 = container.soundDictionary["walk"]
+        self.walk1.set_volume(0.1)
+        self.jump = container.soundDictionary["jump"]
+        self.jump.set_volume(0.1)
+        self.slide = container.soundDictionary["slide1"]
+        self.slide.set_volume(0.1)
         
         ### Estos son los paths para las imagenes de las animaciones 
-        self.runPath = []
-        self.path1 = []
-        self.startJumpPath = []
-        self.jumpPath = []
-        self.endJump = []
-        self.wallJumpRPath = []
-        self.runPath2 = []
-        self.path12 = []
-        self.startJumpPath2 = []
-        self.jumpPath2 = []
-        self.endJump2 = []
-        self.wallJumpRPath2 = []
-        self.deadPath = []
-        self.deadPath2 = []
+        self.runPath = container.runPath
+        self.path1 = container.path1
+        self.startJumpPath = container.startJumpPath
+        self.jumpPath = container.jumpPath 
+        self.endJump = container.endJump
+        self.wallJumpRPath = container.wallJumpRPath
+        self.runPath2 = container.runPath2
+        self.path12 = container.path12
+        self.startJumpPath2 = container.startJumpPath2
+        self.jumpPath2 = container.jumpPath2
+        self.endJump2 = container.endJump2 
+        self.wallJumpRPath2 = container.wallJumpRPath2
+        self.deadPath = container.deadPath
+        self.deadPath2 = container.deadPath2
        
         #ACCESORIOS
         self.movParab = movParab
@@ -55,6 +54,7 @@ class Player:
         self.colisionada = None ##INTENTAR HACERLO CON UNA LISTA Y VERIFICAR TODOS LOS QUE ESTA COLISIONANDO
         self.font = pygame.font.SysFont("arial", 16)
         self.font.set_bold(True)
+
 
         #POSICION Y OTROS INT
         self.X = x
@@ -92,7 +92,6 @@ class Player:
         # Botones del joystick
         self.keyHeldPressed = False
         self.buttonPressed = False##
-        self.buttonHeldPressed = False##
         self.joystickButtonActivated = False
         self.allowButtonPressing = True
 
@@ -108,7 +107,6 @@ class Player:
 
         #INICIALIZADORES
         self.initSpriteData()
-        self.initImagesForAnimation()
 
 
     def initSpriteData(self):
@@ -128,9 +126,13 @@ class Player:
 
 
     # Metodo ve si esta cayendo, caminando, saltando, etc. Luego, actualiza bools y valores correspondientes
+<<<<<<< HEAD
     def update(self, elapsedTime, group, exitGroup, damageGroup, itemsGroup, groupList):
         
         self.colisionada = None
+=======
+    def update(self, elapsedTime, group, exitGroup, damageGroup, itemsGroup, zGroup, groupList):
+>>>>>>> origin/branch-launcher
         clashingDown = self.clashManager.CheckCollision(self, group, self.X, self.Y + 1)
         clashingRight = self.clashManager.CheckCollision(self, group, self.X + 1, self.Y)
         clashingLeft = self.clashManager.CheckCollision(self, group, self.X - 1, self.Y) 
@@ -175,13 +177,13 @@ class Player:
             for item in itemList:
                 if self.lives == 10 and item.id == "life":
                     self.score += 100
-                    points.play()
+                    self.points.play()
                 elif self.lives < 10 and item.id == "life":
                     self.lives += 1
-                    life.play()
+                    self.life.play()
                 elif item.id == "points":
                     self.score += 50
-                    points.play()
+                    self.points.play()
                 item.kill()
             
 
@@ -192,8 +194,8 @@ class Player:
             floorY = self.clashManager.topY - (self.sprite.rect.height)
             self.deltaY = self.Y - floorY
             self.startJump()
-            self.takeDamage("damaging field")
-            burn.play()
+            self.takeDamage("daño de lava o hielo")
+            self.burn.play()
 
 
         ## CAMBIO ETAPA
@@ -206,8 +208,10 @@ class Player:
             temporalDirection = self.joystick.get_axis(0)##
 
         self.deltaX = int( 4 * temporalDirection * elapsedTime * self.speed)
+        if abs(self.deltaX) > 30:
+            self.deltaX = 20 * temporalDirection
         if abs(self.deltaX) > 0:
-            self.walk(group, self.deltaX)
+            self.walk(group, zGroup, self.deltaX)
             self.walking = True
             self.still = False
         else:
@@ -216,6 +220,7 @@ class Player:
 
         ##CAMBIAR ACA PARA EVITAR GLITCH DE PLATAFORMAS VERTICALES
         ## DEFINE SI ESTA PEGADO A LA PARED
+<<<<<<< HEAD
         if (clashingRight or clashingLeft) and ((self.falling or self.jumping)) and (not clashingDown or self.colisionada.id == "Vertical"): #or self.colisionada.id == "Vertical" or self.colisionada.color != self.companero.color:
             if clashingRight : #or (temporalDirection > 0 and self.colisionada.id == "Vertical") :
                 self.rightWallSliding = True
@@ -224,9 +229,17 @@ class Player:
                 ##COMO INFO
 #(self.colisionada.id != "Horizontal" or self.colisionada.color != self.companero.color)
             if (temporalDirection > 0 and clashingRight)or (temporalDirection < 0 and clashingLeft):
+=======
+        if (clashingRight or clashingLeft) and not clashingDown and ((self.falling or self.jumping)):
+            if clashingRight:
+                self.rightWallSliding = True
+            elif clashingLeft:
+                self.leftWallSliding = True
+
+            if ((temporalDirection > 0 and clashingRight)or (temporalDirection < 0 and clashingLeft)) and self.falling and not self.jumping:
+>>>>>>> origin/branch-launcher
                 self.wallStickLag = 5
                 self.pressedAgainstWall = True
-                self.jumping = False
                 self.freefall.stop()
                 self.deltaY = -2 ########################
                 if self.clashManager.CheckCollision(self, group, self.X, self.Y + 2):
@@ -246,22 +259,23 @@ class Player:
 
 
         ## SALTO DESDE PARED (ahora con joystick)
-        if self.rightWallSliding or self.leftWallSliding:##
-            if self.buttonPressed:##
+        if self.rightWallSliding or self.leftWallSliding:
+            if self.buttonPressed:
                 self.buttonPressed = False
-                self.freefall.stop()##
-                self.wallJumpStart(self.rightWallSliding)##
+                self.freefall.stop()
+                self.wallJumpStart(self.rightWallSliding)
         if self.wallJumping:
-            self.updateWallJump(group, elapsedTime)
+            self.updateWallJump(group, zGroup, elapsedTime)
             
 
         ## SALTO NORMAL (ahora con joystick)
-        if self.buttonPressed and not self.falling and not self.jumping and not self.wallJumping :##
-            self.jumpStart = True##
-            self.startJump()##
+        if self.buttonPressed and not self.falling and not self.wallJumping and clashingDown:# and not self.jumping :##
+            self.jumpStart = True
+            self.startJump()
             self.buttonPressed = False
-        if self.jumping:# and not self.pressedAgainstWall:
-            self.updateJump(group, elapsedTime)
+            self.jump.play()
+        if self.jumping and not self.pressedAgainstWall:
+            self.updateJump(group, zGroup, elapsedTime)
 
         
         ## INERCIA
@@ -303,14 +317,14 @@ class Player:
 
         # INERCIA DE NUEVO
         if self.inertiaActivated and self.inertiaCounter >= 0:
-            self.calculateInertia(group, self.direction, clashingDown, elapsedTime)
+            self.calculateInertia(group, zGroup, self.direction, clashingDown, elapsedTime)
         
-
+        """
         # SETEO DE BOOLS
         if self.wallJumping:
             self.walking = False
             self.still = False
-     
+        """
         
         # Al terminar de hacer update, deja listo el rectangulo con los nuevos valores
         self.direction = temporalDirection
@@ -438,23 +452,28 @@ class Player:
         if self.lives == 0:
             self.startDeadAnimation = True
             if self.id == "p1":
-                self.deadMessage = "Player 1 died due to " + string + " damage"
+                self.deadMessage = "Player 1 murio debido a " + string 
             elif self.id == "p2":
-                self.deadMessage = "Player 2 died due to " + string + " damage"
+                self.deadMessage = "Player 2 murio debido a " + string 
 
     def gainScore(self, value):
         self.score += value
     
     #-CAMINATA ----------------------------------------------------------------------
-    def walk(self, group, xAdvance):
+    def walk(self, group, zGroup, xAdvance):
 
         clashed = self.clashManager.CheckCollision(self, group, self.X + xAdvance, self.Y)
+        clashed2 = self.clashManager.CheckCollision(self, zGroup, self.X + xAdvance, self.Y)
               
-        if not clashed:
+        if not clashed and not clashed2:
             self.deltaX = xAdvance
+<<<<<<< HEAD
         #Cambio pa arreglar bug
         elif clashed and (self.colisionada.id != "Horizontal" or self.colisionada.color != self.companero.color):
             floorX = 2*self.X
+=======
+        elif clashed or clashed2:
+>>>>>>> origin/branch-launcher
             if xAdvance > 0:
                 floorX = self.clashManager.leftX - (self.sprite.rect.width)
             elif xAdvance < 0:
@@ -465,17 +484,17 @@ class Player:
             self.still = True
 
     #-INERCIA------------------------------------------------------------------------
-    def calculateInertia(self, group, direction, clashingDown, elapsedTime):
+    def calculateInertia(self, group, zGroup, direction, clashingDown, elapsedTime):
         
         StopInertiaScale = self.inertiaCounter / self.inertiaFrames
         changeDirInertiaScale = (self.inertiaFrames - self.inertiaCounter) / self.inertiaFrames
 
         if self.deltaX != 0 and self.direction != 0:
-            self.walk(group, changeDirInertiaScale * self.deltaX)
+            self.walk(group, zGroup, changeDirInertiaScale * self.deltaX)
             self.inertiaCounter -= 1 ## SIRVEN PARA DIFERENCIAR LAS INERCIAS
         elif self.deltaX == 0:
             previousSpeed = int( 4 * elapsedTime * self.speed)
-            self.walk(group, previousSpeed * StopInertiaScale * self.inertiaDirection)
+            self.walk(group, zGroup, previousSpeed * StopInertiaScale * self.inertiaDirection)
             if clashingDown:
                 self.inertiaCounter -= 3 ## SIRVEN PARA DIFERENCIAR LAS INERCIAS
             
@@ -490,22 +509,26 @@ class Player:
         self.jumping = True
         self.totalJumpTime = 0
 
-    def updateJump(self, group, elapsedTime):
+    def updateJump(self, group, zGroup, elapsedTime):
 
         self.totalJumpTime += elapsedTime
         self.movParab.update(self.totalJumpTime)
         self.deltaY = int(self.movParab.deltaY)
-        if self.deltaY <= -50:############################################################################################
-            self.deltaY = -50############################################################################################
+        if self.deltaY <= -40:############################################################################################
+            self.deltaY = -40############################################################################################
 
-        clashed = self.clashManager.CheckCollision(self, group, self.X, self.Y - self.deltaY)
+        clashed  = self.clashManager.CheckCollision(self, group, self.X, self.Y - self.deltaY)
+        clashed2 = self.clashManager.CheckCollision(self, zGroup, self.X, self.Y - self.deltaY)
 
         # Primera opcion : Que no haya colision y el salto aun no termine (setea vel terminal)
-        if not clashed and self.movParab.inProcess:
-            if self.deltaY <= -50:############################################################################################
-                self.deltaY = -50 ############################################################################################
+        if not clashed and not clashed2 and self.movParab.inProcess:
+            if self.deltaY < 0:
+                self.movParab.stop()
+                self.jumping = False
+                self.still = True
+                self.totalJumpTime = 0
         else:
-            if clashed:
+            if clashed or clashed2:
                 # Chequea si el choque fue contra algun techo.
                 if self.deltaY > 0:
                     roofY = self.clashManager.bottomY
@@ -540,7 +563,7 @@ class Player:
         else:
             self.wallJumpDirection = 1
 
-    def updateWallJump(self, group, elapsedTime):
+    def updateWallJump(self, group, zGroup, elapsedTime):
 
         self.totalJumpTime += elapsedTime
         self.movParab.update(self.totalJumpTime)
@@ -550,7 +573,7 @@ class Player:
             self.playerTakenHorizontalControl = True
         if not self.playerTakenHorizontalControl and (self.contador >= 0 or self.deltaY > 0):
             previousSpeed = int( 6 * elapsedTime * self.speed)
-            self.walk(group, previousSpeed * self.wallJumpDirection)
+            self.walk(group, zGroup, previousSpeed * self.wallJumpDirection)
             self.contador -= 1
 
         # Parche para evitar que delta X tome valor cero por tres iteraciones en que
@@ -560,9 +583,10 @@ class Player:
             self.deltaY = -1 #################################################################################################################
         
         clashed = self.clashManager.CheckCollision(self, group, self.X, self.Y - self.deltaY)
+        clashed2 = self.clashManager.CheckCollision(self, zGroup, self.X, self.Y - self.deltaY)
 
         # Primera opcion : Que no haya colision y el salto aun no termine (setea vel terminal)
-        if not clashed and self.movParab.inProcess:
+        if not clashed and not clashed2 and self.movParab.inProcess:
             if self.deltaY < 0:
                 if not self.playerTakenHorizontalControl:
                     self.inertiaActivated = True ###########################
@@ -572,7 +596,7 @@ class Player:
                 self.freefall.stop()
                 self.wallJumping = False
         else:
-            if clashed:
+            if clashed or clashed2:
                 # Chequea si el choque fue contra algun techo.
                 if self.deltaY > 0:
                     roofY = self.clashManager.bottomY
@@ -593,8 +617,8 @@ class Player:
         self.totalJumpTime += elapsedTime
         self.freefall.update(self.totalJumpTime) 
         self.deltaY = int(self.freefall.deltaY) 
-        if abs(self.deltaY) >= 50:#######################################################################################
-            self.deltaY = -50###########################################################################
+        if abs(self.deltaY) >= 40:#######################################################################################
+            self.deltaY = -40###########################################################################
 
         ## Ver si al actualizar con freefall.Y se produce o no choque
         if self.clashManager.CheckCollision(self, group, self.X, self.Y - self.deltaY):
@@ -609,8 +633,8 @@ class Player:
             self.jumpEnd = True
             self.totalJumpTime = 0
         else:
-            if abs(self.deltaY) >= 50:#######################################################################################
-                self.deltaY = -50#######################################################################################
+            if abs(self.deltaY) >= 40:#######################################################################################
+                self.deltaY = -40#######################################################################################
 
 
     #Chequea si esta en caida libre o no

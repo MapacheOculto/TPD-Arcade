@@ -5,38 +5,59 @@ from systemState import systemState
 from systemState import gameObject
 from level import level
 
-mixer.init()
-pygame.mixer.music.load('sounds//desert.mp3')
 
 class playState(gameObject):
 
-    def __init__(self, joystickList, screenSize, systemState):
+    def __init__(self, joystickList, screenSize, systemState, container):
         self.joystickList = joystickList
         self.screenSize = screenSize
         self.systemState = systemState
+        self.container = container
 
         self.levelDictionary = {}
         self.currentLevel = None
         self.actualPath = None
 
-    def update(self, elapsedTime):
-        self.currentLevel.update(elapsedTime)
+        self.buttonPressed = False
+        self.joystickButtonActivated = True
+        self.allowButtonPressing = False
+        self.button2Pressed = False
+        self.joystickButton2Activated = True
+        self.allowButton2Pressing = False
+
         
-        if self.currentLevel.pauseGame:
-            self.currentLevel.pauseGame = False
-            self.systemState.changeState("pauseState")
+    def update(self, elapsedTime):
+        self.joystickButtonManager(0)
+        self.joystickButtonManager(1)
+        
+        self.currentLevel.update(elapsedTime)
+
+        score1 = self.currentLevel.player1.score
+        score2 = self.currentLevel.player2.score
+        hp1 = self.currentLevel.player1.lives
+        hp2 = self.currentLevel.player2.lives
+        time = self.currentLevel.totalElapsedTime
+        
+        if self.button2Pressed:
+            self.container.soundDictionary["pause"].play()
+            pygame.mixer.music.set_volume(0.1)
+            self.changeState("pauseState")
+            self.systemState.currentState.setParams(time, score1, score2, hp1, hp2) 
 
         if self.currentLevel.gameOver:
-            self.systemState.changeState("gameOverState")
+            pygame.mixer.music.fadeout(500)
+            self.changeState("gameOverState")
             self.systemState.currentState.deadMessage = self.currentLevel.deadMessage
-            self.currentLevel = level(self.joystickList, self.screenSize, self.actualPath)
+            self.currentLevel = level(self.joystickList, self.screenSize, self.actualPath, self.container)
+            pygame.mixer.music.load("sounds//gameOver.ogg")
+            pygame.mixer.music.play()
 
         if self.currentLevel.background.endOfStageReached:
-            score1 = self.currentLevel.player1.score
-            score2 = self.currentLevel.player2.score
-            time = self.currentLevel.totalElapsedTime
-            self.systemState.changeState("levelEndingState")
+            pygame.mixer.music.fadeout(500)
+            self.changeState("levelEndingState")
             self.systemState.currentState.setParams(time, score1, score2) 
+            pygame.mixer.music.load("sounds//victory1.mp3")
+            pygame.mixer.music.play()
 
 
     def render(self):
@@ -44,3 +65,39 @@ class playState(gameObject):
         screen.fill((0, 200, 255))
         
         self.currentLevel.render()
+
+
+    # ChangeState
+    def changeState(self, stateName):
+        self.systemState.changeState(stateName)
+        self.systemState.currentState.buttonPressed = False
+        self.systemState.currentState.joystickButtonActivated = True
+        self.systemState.currentState.allowButtonPressing = False
+        self.systemState.currentState.button2Pressed = False
+        self.systemState.currentState.joystickButton2Activated = True
+        self.systemState.currentState.allowButton2Pressing = False
+
+
+    ## JOYSTICK
+    def joystickButtonManager(self, id):
+        if id == 0:
+            if  (not self.joystickList[0].get_button(id) and self.joystickButtonActivated):
+                self.joystickButtonActivated = False
+                self.allowButtonPressing = True
+            if (self.joystickList[0].get_button(id) and self.joystickButtonActivated and not self.allowButtonPressing):
+                self.buttonPressed = False
+            if (self.joystickList[0].get_button(id) and not self.buttonPressed and self.allowButtonPressing):
+                self.allowButtonPressing = False
+                self.buttonPressed = True
+                self.joystickButtonActivated = True
+        elif id == 1:
+            if (not self.joystickList[0].get_button(id) and self.joystickButton2Activated):
+                self.joystickButton2Activated = False
+                self.allowButton2Pressing = True
+            if (self.joystickList[0].get_button(id) and self.joystickButton2Activated and not self.allowButton2Pressing):
+                self.button2Pressed = False
+            if (self.joystickList[0].get_button(id) and not self.button2Pressed and self.allowButton2Pressing):
+                self.allowButton2Pressing = False
+                self.button2Pressed = True
+                self.joystickButton2Activated = True
+

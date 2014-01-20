@@ -1,3 +1,4 @@
+# -*- coding: cp1252 -*-
 import pygame
 from pygame import *
 from boxCollision import boxCollision
@@ -60,11 +61,11 @@ class Bala():
     
         if not clashingDown and not clashingRight and not clashingUp and not clashingLeft:
             if clashingDown_player=='Damage' or clashingRight_player=='Damage' or clashingUp_player=='Damage' or clashingLeft_player=='Damage':
-                player.takeDamage('bullet')
+                player.takeDamage('daño de proyectil')
                 explode.play()
                 return
             elif clashingDown_player2=='Damage' or clashingRight_player2=='Damage' or clashingUp_player2=='Damage' or clashingLeft_player2=='Damage':
-                other_player.takeDamage('bullet')
+                other_player.takeDamage('daño de proyectil')
                 explode.play()
                 return False
 
@@ -142,7 +143,7 @@ class Proyectil:
         
         if not clashingDown and not clashingRight and not clashingUp and not clashingLeft:
             if clashingDown_player=='Damage' or clashingRight_player=='Damage' or clashingUp_player=='Damage' or clashingLeft_player=='Damage':
-                player.takeDamage('bullet')
+                player.takeDamage('daño de proyectil')
                 explode.play()
                 return False
 
@@ -151,7 +152,7 @@ class Proyectil:
                 points.play()
                 return False
             elif clashingDown_player2=='Damage' or clashingRight_player2=='Damage' or clashingUp_player2=='Damage' or clashingLeft_player2=='Damage':
-                other_player.takeDamage('bullet')
+                other_player.takeDamage('daño de proyectil')
                 explode.play()
                 return False
 

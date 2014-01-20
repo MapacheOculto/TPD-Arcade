@@ -10,24 +10,15 @@ from freefall import FreeFall
 from items import Items
 
 
-# Relativo a los sonidos
-mixer.init()
-murunf = mixer.Sound('sounds//Murunf.mp3')
-murunf.set_volume(0.1)
-walk = mixer.Sound('sounds//walk2.wav')
-walk.set_volume(0.1)
-alert = mixer.Sound('sounds//jump.wav')
-alert.set_volume(0.1)
-slide=mixer.Sound('sounds//slide.wav')
-slide.set_volume(0.1)
-
 class level:
+
     
     # Constructor
-    def __init__(self, joystickList, screenSize, initialPath):
+    def __init__(self, joystickList, screenSize, initialPath, container):
 
         self.screenSize = screenSize
         self.joystickList = joystickList
+        self.container = container
         self.font = pygame.font.SysFont("arial", 18)
         self.font.set_bold(True)
         self.pauseGame = False
@@ -35,8 +26,17 @@ class level:
         self.playerInDeadZone = False
         self.totalElapsedTime = 0
         self.deadMessage = ""
+        
+        self.walk  = self.container.soundDictionary["walk"]
+        self.walk.set_volume(0.1)
+        self.jump = self.container.soundDictionary["jump"]
+        self.jump.set_volume(0.1)
+        self.slide = self.container.soundDictionary["slide1"]
+        self.slide.set_volume(0.1)
 
-        self.background = Background(self.screenSize, initialPath)
+        self.background = Background(self.screenSize, initialPath, self.container)        
+        self.backgroundImage = self.container.imageDictionary[self.background.levelMaker.actualBackgroundKey]
+        self.backgroundImage = pygame.transform.scale(self.backgroundImage, (self.screenSize[0], self.screenSize[1]))
 
         # Relacionado al hub
         self.lifeSprite = Items(self.background.itemAnimation2, pygame.Rect((0,0), (20,20)))
@@ -47,11 +47,11 @@ class level:
         y = self.background.levelMaker.startYPosition
 
         if len(self.joystickList) == 2 and self.joystickList != None:
-            self.player1  = Player(self.joystickList[1], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y)
-            self.player2 = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y) #-----------------#
+            self.player1  = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), self.container, x, y)
+            self.player2  = Player(self.joystickList[1], ProjectileMotion(), FreeFall(15), StoryBoard2(), self.container, x, y)
         else:
-            self.player1 = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y)
-            self.player2 = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), x, y) #-----------------#
+            self.player1  = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), self.container, x, y)
+            self.player2  = Player(self.joystickList[0], ProjectileMotion(), FreeFall(15), StoryBoard2(), self.container, x, y)
         self.player1.id = "p1"
         self.player2.id = "p2"
         
@@ -69,13 +69,19 @@ class level:
         self.horizontalCompassNeeded = False
         self.P1horizontalCompassNeeded = False
 
+        self.buttonPressed = False##
+        self.joystickButtonActivated = True
+        self.allowButtonPressing = False
+        self.button2Pressed = False##
+        self.joystickButton2Activated = True
+        self.allowButton2Pressing = False
+
   
     # Update de todas las variables relevantes
     def update(self, elapsedTime):
 
         # Tiempo
         self.totalElapsedTime += elapsedTime
-        # Tiempo maximo para pasar etapa
         if self.totalElapsedTime > 200:
             self.gameOver = True
             self.deadMessage = "TIME'S UP!"
@@ -115,8 +121,8 @@ class level:
         
         for sprite in self.background.group:
             sprite.activada = False             
-        self.player2.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.itemsGroup, self.background.groupList)#-----------------#
-        self.player1.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.itemsGroup, self.background.groupList)
+        self.player2.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.itemsGroup, self.background.zGroup, self.background.groupList)#-----------------#
+        self.player1.update(elapsedTime, self.background.group, self.background.exitGroup, self.background.damageGroup, self.background.itemsGroup, self.background.zGroup,  self.background.groupList)
         self.backgroundXMovementManager(self.player1, self.player2)
         self.backgroundYMovementManager(self.player1, self.player2)
         for torreta in self.background.levelMaker.torretas:
@@ -134,23 +140,18 @@ class level:
             self.player2.Y = self.player1.Y
         #"""   
 
-        #######PAUSA(con joystick)##################################
-        button = self.joystickList[0].get_button(8) #or self.joystickList[1].get_button(7)##
-        #button2 = self.joystickList[1].get_button(9) #or self.joystickList[1].get_button(7)##
-        if button:
-            self.pauseGame = True
-        pressedKey = pygame.key.get_pressed()
-        if pressedKey[K_TAB]:
-            self.pauseGame = True
-        #if button2:
-        #    self.gameOver = True
 
 
         ###########CAMBIO_DE_ETAPA##################################
         if self.player1.exitStage or self.player2.exitStage:
             self.player1.exitStage = False
             self.player2.exitStage = False
+
             self.background.changeBackground()
+
+            self.backgroundImage = self.container.imageDictionary[self.background.backgroundKey]
+            self.backgroundImage = pygame.transform.scale(self.backgroundImage, (self.screenSize[0], self.screenSize[1]))
+            
             self.player1.X = self.background.levelMaker.startXPosition
             self.player1.Y = self.background.levelMaker.startYPosition
             self.player2.X = self.background.levelMaker.startXPosition 
@@ -172,9 +173,11 @@ class level:
         screen = pygame.display.get_surface()
 
         # Render a las instancias del nivel
+        screen.blit(self.backgroundImage, (0,0))
+        
+        self.player1.render()   
+        self.player2.render()
         self.background.render()
-        self.player2.render()   #-----------------#
-        self.player1.render()
         for torreta in self.background.levelMaker.torretas:
             torreta.render()
 
@@ -203,22 +206,23 @@ class level:
         # HUB SCREEN
         screen.blit(self.hub,  (180, 0))
         
-        textSurf1 = self.font.render("P1 LIVES: " , True,(27, 141, 67))
-        textSurf2 = self.font.render("P2 LIVES: " , True,(0, 0, 255))
-        textSurf3 = self.font.render("P1 SCORE: " + str(int(self.player1.score)) , True, (27, 141, 67))
-        textSurf4 = self.font.render("P2 SCORE: " + str(int(self.player2.score)) , True, (0, 0, 255))
-        textSurf5 = self.font.render("TIME LEFT: " + str(200 - int(self.totalElapsedTime)) , True,(255, 0, 0))
+        textSurf1 = self.font.render("P1 HP: " , True,(27, 141, 67))
+        textSurf2 = self.font.render("P2 HP: " , True,(0, 0, 255))
+        textSurf3 = self.font.render("Puntaje: " + str(int(self.player1.score)) , True, (27, 141, 67))
+        textSurf4 = self.font.render("Puntaje: " + str(int(self.player2.score)) , True, (0, 0, 255))
+        textSurf5 = self.font.render("Tiempo restante: " + str(200 - int(self.totalElapsedTime)) , True,(255, 0, 0))
         
         screen.blit(textSurf1,  (400, 10))
         screen.blit(textSurf2,  (400, 40))
         screen.blit(textSurf3,  (700, 10))
         screen.blit(textSurf4,  (700, 40))
-        screen.blit(textSurf5,  (200, 10))
+        screen.blit(textSurf5,  (190, 10))
+    
 
         for i in range(self.player1.lives):
-            screen.blit(self.lifeSprite.image,  (490 + (i * 20), 10))
+            screen.blit(self.lifeSprite.image,  (470 + (i * 20), 10))
         for i in range(self.player2.lives):
-            screen.blit(self.lifeSprite.image,  (490 + (i * 20), 40))
+            screen.blit(self.lifeSprite.image,  (470 + (i * 20), 40))
         self.lifeSprite.update()
  
 
@@ -308,7 +312,7 @@ class level:
 
             player1.Y -= player1.deltaY - self.background.yAdvance
             player2.Y += self.background.yAdvance
-        
+
         # Si player esta centrado y player 2 esta en la pantalla real, pero no en la ficticia
         # En este caso se ajusta la camara para que player 2 quede en la pantalla ficticia
         # Revisar que se respeten las deadZones
@@ -336,7 +340,7 @@ class level:
             self.background.yAdvance = -deltaP1
             player1.Y -= deltaP1
             player2.Y += self.background.yAdvance#------------------------------------------#
-
+            
         # Si ningun player esta en pantalla, esta se centra automaticamente en player 1
         # es una prueba
         elif not _2PlayerInRealScreen and not _1PlayerInRealScreen :
@@ -396,10 +400,10 @@ class level:
                 if player1.Y - player1.deltaY >= halfH:
                     deltaP1 = player1.Y - halfH
                     deltaBackground1 = abs(player1.deltaY) - abs(deltaP1)
-                    deltaBackground2 = min(deltaBackground1, deltaUpDeadZone)#######################################################33
+                    deltaBackground2 = - min(deltaBackground1, deltaUpDeadZone)#######################################################33
                     self.background.moveBackGroundUp = True
-                    self.background.yAdvance = - deltaBackground2
-                    deltaP1 -= abs(deltaBackground2 - deltaBackground1)
+                    self.background.yAdvance = deltaBackground2
+                    deltaP1 -= abs(abs(deltaBackground2) - abs(deltaBackground1))
                     player2.Y += self.background.yAdvance#-----------------#
                     player1.Y -= deltaP1
                 # Si caer lo sigue dejando sobre la linea
@@ -472,5 +476,5 @@ class level:
 
 
         player2.X += self.background.xAdvance#---------------------------#
-        
+
 

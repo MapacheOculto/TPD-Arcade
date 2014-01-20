@@ -1,0 +1,24 @@
+zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzaa
+aa                                                                             aa
+z º                                                                            aa
+aa                                                                             aa
+z º       º  º  º    º           º          º          º          º             <
+aa        º  º  º    º           º          º          º          º     * * *   <
+z º                  º           º          º          º          º    * * * *  <
+aa     ºññññññññññññ º   P----G     O----B     P----G     O----B  ºññññaaaaaaaaaz
+aa     ºnnnnnnnnnnnn º                                            ºnnnnaaaaaaaaaz
+aa     ºtttttttttttt º                                            ºttttaaa   aaaz
+aa     ºttt      ttt º                                            ºttttaa     aaz
+aa     ºttt      ttt º            º   º               º   º       ºtttta       az
+aa     ºttt      ttt º           º  *  º             º  *  º      ºtttta       az
+z      ºttt      ttt º           ººººººº             ººººººº      ºtttta       az
+z      ºttt      tttlllllllllllllllllllllllllllllllllllllllllllllllttttalllllllaz
+z@      ttt      tttlllllllllllllllllllllllllllllllllllllllllllllllttttalllllllaz
+ññññññññttt      tttlllllllllllllllllllllllllllllllllllllllllllllllttttalllllllaa
+nnnnnnnnttt      tttlllllllllllllllllllllllllllllllllllllllllllllllttttalllllllaa
+ttttttttttt      tttlllllllllllllllllllllllllllllllllllllllllllllllttttalllllllaa
+tttttttttttzzzzzzttttttttttttttttttttttttttttttttttttttttttttttttttttttatttttttaa
+-
+levels//level13.txt
+fondoDesierto
+-
