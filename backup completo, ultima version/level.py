@@ -27,9 +27,6 @@ class level:
         self.totalElapsedTime = 0
         self.deadMessage = ""
         
-        self.backgroundImage = self.container.imageDictionary["fondoDesierto"]
-        self.backgroundImage = pygame.transform.scale(self.backgroundImage, (self.screenSize[0], self.screenSize[1]))
-        
         self.walk  = self.container.soundDictionary["walk"]
         self.walk.set_volume(0.1)
         self.jump = self.container.soundDictionary["jump"]
@@ -37,7 +34,9 @@ class level:
         self.slide = self.container.soundDictionary["slide1"]
         self.slide.set_volume(0.1)
 
-        self.background = Background(self.screenSize, initialPath, self.container)
+        self.background = Background(self.screenSize, initialPath, self.container)        
+        self.backgroundImage = self.container.imageDictionary[self.background.levelMaker.actualBackgroundKey]
+        self.backgroundImage = pygame.transform.scale(self.backgroundImage, (self.screenSize[0], self.screenSize[1]))
 
         # Relacionado al hub
         self.lifeSprite = Items(self.background.itemAnimation2, pygame.Rect((0,0), (20,20)))
@@ -147,7 +146,12 @@ class level:
         if self.player1.exitStage or self.player2.exitStage:
             self.player1.exitStage = False
             self.player2.exitStage = False
+
             self.background.changeBackground()
+
+            self.backgroundImage = self.container.imageDictionary[self.background.backgroundKey]
+            self.backgroundImage = pygame.transform.scale(self.backgroundImage, (self.screenSize[0], self.screenSize[1]))
+            
             self.player1.X = self.background.levelMaker.startXPosition
             self.player1.Y = self.background.levelMaker.startYPosition
             self.player2.X = self.background.levelMaker.startXPosition 

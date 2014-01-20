@@ -1,21 +1,21 @@
 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzaaaaaaaaaaaaaaaaaaaaaaaa
 z                                                                                             aaaaaaaaa
-z                                                                                             aaaaaaaaa
-z                               %                       %                                        aaaaaa
+z                               %                       %                                     aaaaaaaaa
+z                                                                                                aaaaaa
 z                                                                                &                  aaa
-z                                                                 F   Q   F                          <<
-z                                                                                                    <<
-z                                                                              aaaaaaaaaaaaaaaaaaaaaaaa
-z      %                                              º º º                    aaaaaaaaaaaaaaaaaaaaaaaa
-z                                                    O-----B                   aaaaaaaaaaaaaaaaaaaaaaaa
-z                                           * *                                aaaaaaaaaaaaaaaaaaaaaaaa
-z                                        P-----G                                   aaaaaaaaaaaaaaaaaaaa
+z                                                                ºF  ºQ  ºF                * *       <<
+z                                                                º   º   º                * * *      <<
+z      %                                              º º º      º   º   º    ºaaaaaaaaaaaaaaaaaaaaaaaa
+z                                                     º º º      º   º   º    ºaaaaaaaaaaaaaaaaaaaaaaaa
+z                                         º º º      O-----B     º   º   º    ºaaaaaaaaaaaaaaaaaaaaaaaa
+z                                         * * *                               ºaaaaaaaaaaaaaaaaaaaaaaaa
+z                             º º º      P-----G                                   aaaaaaaaaaaaaaaaaaaa
 z                             º º º                                                aaaaaaaaaaaaaaaaaaaa
-z                            O-----B                                               a                 aa
+z                  º º       O-----B                                               a                 aa
 z                  * *                                                             a                 aa
 z                P-----G                                                           a                 aa
 z                                                                                  a                 aa
-z     @                                       * * * * * *          º º º º º º     a                 aa
+z     @                    º º º º º º        * * * * * *          º º º º º º     a                 aa
 aaaaaaaaaaaaallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaaaaaaaaaaaaaaaaaaaa
@@ -26,7 +26,7 @@ fondoDesierto
 -Torretas(color=Multi,Green o Blue) (rafaga), (movil=True o False), (angulo(cualquiera si es movil)), (velocidad), (timer_entre_rafaga=recomendado 2), (timer_entre_bala=recomendado 0.07)
 Multi 5 True 0 500 2 0.07
 Green 5 True 0 500 2 0.07
-Multi 10 True 135 300 2 0.07
+Multi 10 False 135 300 2 0.07
 Multi 1 True 135 300 0.5 0.07
 
 

@@ -2,26 +2,26 @@ aaaazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzztt
 aaaa                                             tt
 aaaa                                             tt
 aaaa                                             tt
-aaaa                                             tt
-z                                                tt
-z                                                tt
-z@                   %                       %   tt
-aaaaсссссссссссссссссссссссссссссссссс           tt
-aaaaaannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn           tt
-aaattttttttttttttttttttttttttttttttttt           tt
-aatt                                             tt
-aatt                                             tt
-aatt                                             tt
-att                                              tt
-tt%                      %                       tt
-tt       сссссссссссссссссссссссссссссссссссссссссс
-t        nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
-t        tttttttttttttttttttttttttttttttttttttttttt
-t                                       ttttttttttt
-t                                                tt
+aaaa                   є                         tt
+z         є       є    є                 є * є   tt
+z                                        є   є   tt
+z@    є       є        %                 є * є   tt
+aaaaсссссссссссссссссссссссссссссссссс   є   є   tt
+aaaaaannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn   є * є   tt
+aaattttttttttttttttttttttttttttttttttt   є   є   tt
+aatt                                     є * є   tt
+aatt                    є                є   є   tt
+aatt                    є                є * є   tt
+att   *                                          tt
+tt  *                   %                        tt
+tt    *  сссссссссссссссссссссссссссссссссссссссссс
+t   *    nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+t     *  tttttttttttttttttttttttttttttttttttttttttt
+t   *                                   ttttttttttt
+t     *                є                         tt
+t   *                  є                         <<
 t                                                <<
-t                                                <<
-t                    %                           <<
+t                      %   є  є  є  є  є         <<
 tсссссссссссссссссссссссссссссссссссссссссссссссссс
 tnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
 -

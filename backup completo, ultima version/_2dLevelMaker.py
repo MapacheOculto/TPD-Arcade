@@ -14,6 +14,7 @@ class _2dLevelMaker:
         self.screenHeight = screenSize[1]
         self.initialXAdvance = 0
         self.initialYAdvance = 0
+        #self.actualBackgroundKey = ""
 
         # GRUPOS (general, daninos, colores)
         self.group = group
@@ -79,7 +80,7 @@ class _2dLevelMaker:
         self.width = len(lines[0]) - 1
 
         self.nextStagePath = lines[self.height + 1].rstrip()
-        self.nextBackgroundKey = lines[self.height + 2].rstrip()
+        self.actualBackgroundKey = lines[self.height + 2].rstrip()
 
 
         self.numero_torretas_en_mapa=0

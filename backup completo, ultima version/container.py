@@ -75,7 +75,7 @@ class Container:
         # imagenes de fondo
         self.imageDictionary.update({"fondo" : pygame.image.load("blocks//asddfg.jpg").convert()})
         self.imageDictionary.update({"fondoDesierto" : pygame.image.load("blocks//background.png").convert_alpha()})
-        self.imageDictionary.update({"fondoDesierto2" : pygame.image.load("blocks//fondoDesierto.png").convert()})
+        self.imageDictionary.update({"fondo2" : pygame.image.load("blocks//background3.png").convert()})
 
         # Animacion lava
         self.lavaAnimation.append(pygame.image.load("blocks//lava1.png").convert_alpha())

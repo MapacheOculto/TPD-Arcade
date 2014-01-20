@@ -1,28 +1,29 @@
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaazzzaaaaaaa
-aaaa         %         %       %        %                aa @ aaaaaaa
-aaaa                                                     aa   aaaaaaa
-aaaa                                                     aa   aaaaaaa
-<                                                        aa   aaaaaaa
-<                                                        aa   aaaaaaa
-<                                                        aa        aa
-aaaa                                                     aa        aa
-aaaa    O---B   P---G                                              aa
-aaaa                                                               aa
-a a                     O----B                                     aa
-a a                                                                aa
-a a                              P----G                            aa
-a a                                                                aa
-a a                                       O----B                   aa
-a a                                                  *****         aa
-a a                                                  *****         aa
-a a                                                  aaaaaaaaaaaaaaaa
+aaaaa %      %         %       %        %                aa @ aaaaaaa
+aaaaa                                                    aa º aaaaaaa
+aaaaa                                                    aa º aaaaaaa
+<                                                        aa º aaaaaaa
+<                                                        aa º aaaaaaa
+<        º º    º º º                                    aa º      aa
+aaaaa    º º    º º º                                    aa º      aa
+aaaaa   O---B   P---G    º º º                              º      aa
+aaaaa                    º º º                              º      aa
+a aº                     O---B    º º º                     º      aa
+a aº                              º º º                     º      aa
+a aº                              P---G    º º º            º      aa
+a aº                                       º º º                   aa
+a aº                                       O---B                   aa
+a aº                                                  * *          aa
+a aº                                                 * * *         aa
+a aº  *   *   *   *           º   º   º   º          aaaaaaaaaaaaaaaa
 alallllllllllllllllllllllllllllllllllllllllllllllllllaaaaaaaaaaaaaaaa
 alallllllllllllllllllllllllllllllllllllllllllllllllllaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 -
 levels//level24.txt
-fondoDesierto
+fondo2
 -Torretas(color=Multi,Green o Blue) (rafaga), (movil=True o False), (angulo(cualquiera si es movil)), (velocidad), (timer_entre_rafaga=recomendado 2), (timer_entre_bala=recomendado 0.07)
+Blue 1 False 270 500 0.1 0.07
 Green 1 False 270 500 0.1 0.07
 Blue 1 False 270 500 0.1 0.07
 Green 1 False 270 500 0.1 0.07

@@ -119,7 +119,6 @@ class Background:
 
     def changeBackground(self):
         if self.levelMaker.nextStagePath != "---":
-            self.backgroundKey = self.levelMaker.nextBackgroundKey
             self.group.empty()
             self.exitGroup.empty()
             self.damageGroup.empty()
@@ -128,5 +127,6 @@ class Background:
             #for group in self.groupList:
             #   group.empty()
             self.levelMaker = _2dLevelMaker(self.group, self.exitGroup, self.damageGroup, self.itemsGroup, self.zGroup, self.container, (self.width, self.height), self.levelMaker.nextStagePath)
+            self.backgroundKey = self.levelMaker.actualBackgroundKey
         elif self.levelMaker.nextStagePath == "---":
             self.endOfStageReached = True

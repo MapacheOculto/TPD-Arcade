@@ -1,46 +1,46 @@
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-z              %       %       %       %               aa
+aaa            %       %       %       %              *aa
+aaa                                                   *aa
+aaa                                                    aa
+aaa                                                    aa
 z                                                      aa
 z                                                      aa
-z                                                      aa
-z                                                      aa
-z                                                      aa
-z @                                                    aa
-aaaaa                                                  aa
-aaaaa                                                  aa
-aaaaaaaaaa    O--B    P--G    O--B    P--G    aaaaa    aa
-aaaaaaaaaa                                    aaaaa    aa
-aaaaaaaaaallllllllllllllllllllllllllllllllllllaaaaa    aa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa    aa
-a          %       %       %       %                   aa
-a                                                      aa
-a                                                      aa
-a                                                      aa
-a                                                      aa
-a                                                      aa
-a                                             *****    aa
-a                                             *****    aa
-a                                             *****    aa
-a  aaa    O--B    P--G    O--B    P--G     aaaaaaaaaaaaaa
-a  aaa                                       aaaaaaaaaaaa
-a  aaalllllllllllllllllllllllllllllllllllllllaa        aa
-a  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa        aa
-a                                                      aa
-a                                                      aa
-a                                                      aa
-a                                                      aa
-a                                                      aa
-a                                                      aa
-aaaaaa     OBPGOBPGOBPGOBPGOBPGOBPG                    aa
-aaaaaa                                                 aa
-aa  aa                                aa   aa          aa
-aa  aallllllllllllllllllllllllllllllllaa   aallllllllllaa
-aa  aallllllllllllllllllllllllllllllllaa   aallllllllllaa
+z @                                                 º ºaa
+aaaaa                                               º ºaa
+aaaaa                                               º ºaa
+aaaaaaaaaa    O--B    P--G    O--B    P--G    aaaaa º ºaa
+aaaaaaaaaa    º  º    º  º    º  º    º  º    aaaaa º ºaa
+aaaaaaaaaallllllllllllllllllllllllllllllllllllaaaaa º ºaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa º ºaa
+a*         %       %       %       %                º ºaa
+a*                                                  º ºaa
+a                                                   º ºaa
+a                                                   º ºaa
+a                                                   º ºaa
+a                                                   º ºaa
+a º                                                 º ºaa
+a º                                            * *     aa
+a º                                           * * *    aa
+a ºaaa    O--B    P--G    O--B    P--G     aaaaaaaaaaaaaa
+a ºaaa    º  º    º  º    º  º    º  º     aaaaaaaaaaaaaa
+a ºaaalllllllllllllllllllllllllllllllllllllaaaa   *****aa
+a ºaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa   ºººººaa
+a º                                                   ºaa
+a º                                                   ºaa
+a º                                                   ºaa
+a º                                                   ºaa
+a º          º * º º º * º º º * º                    ºaa
+a                                                     ºaa
+aaaaaa     OBPGOBPGOBPGOBPGOBPGOBPG      º            ºaa
+aaaaaa      º º º º º º º º º º º º      º            ºaa
+aa  aa                                aa º aa         ºaa
+aa  aallllllllllllllllllllllllllllllllaa º aallllllllllaa
+aa  aallllllllllllllllllllllllllllllllaa º aallllllllllaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<<<aaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 -
 levels//level23.txt
-fondoDesierto
+fondo2
 -Torretas(color=Multi,Green o Blue) (rafaga), (movil=True o False), (angulo(cualquiera si es movil)), (velocidad), (timer_entre_rafaga=recomendado 2), (timer_entre_bala=recomendado 0.07)
 Blue 2 False 270 500 2 0.07
 Green 2 False 270 500 2 0.07
