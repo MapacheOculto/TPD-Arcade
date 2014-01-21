@@ -129,6 +129,7 @@ class level:
             torreta.update(elapsedTime,self.background.group,self.background.xAdvance, self.background.yAdvance, self.player1, self.player2,self.screenSize)
             
         self.background.update(elapsedTime, self.player1.X, self.player1.Y)
+
         
         """
         # DISTANCIA PERSONAJES (TEMPORAL)
@@ -139,7 +140,6 @@ class level:
             self.player2.X = self.player1.X
             self.player2.Y = self.player1.Y
         #"""   
-
 
 
         ###########CAMBIO_DE_ETAPA##################################
@@ -248,7 +248,7 @@ class level:
         _2playerBottomLimit = height - 100
         _2PlayerInScreen = player2.Y >= _2playerUpperLimit and player2.Y <= _2playerBottomLimit
         # El 50 es para tomar en cuenta la altura del personaje
-        _2PlayerInRealScreen = player2.Y >= -50 and player2.Y <= height
+        _2PlayerInRealScreen = _2PlayerInScreen  #player2.Y >= -50 and player2.Y <= height
         _1PlayerInRealScreen = player1.Y >= -50 and player1.Y <= height
                 
         deltaDownDeadZone = abs(firstRect.top) # Background moving down
@@ -291,7 +291,7 @@ class level:
             # Player 1 esta cayendo
             elif player2.Y > _2playerUpperLimit and (player2.Y + player1.deltaY < _2playerUpperLimit):
                 self.background.moveBackGroundUp = True
-                deltaBackground = - player2.Y 
+                deltaBackground = player2.Y # antes era (-), asi que si cualquier bug aparece, volver a eso
                 deltaBackground = -min(deltaBackground , deltaUpDeadZone)#######################################################33
                 deltaP1 = (-1) * abs(player1.deltaY - deltaBackground)
                 self.background.yAdvance = deltaBackground
@@ -312,39 +312,11 @@ class level:
 
             player1.Y -= player1.deltaY - self.background.yAdvance
             player2.Y += self.background.yAdvance
-
-        # Si player esta centrado y player 2 esta en la pantalla real, pero no en la ficticia
-        # En este caso se ajusta la camara para que player 2 quede en la pantalla ficticia
-        # Revisar que se respeten las deadZones
-        elif _2PlayerInRealScreen and _1PlayerInRealScreen and not _2PlayerInScreen and not player2.jumping and not player2.falling and not player2.wallJumping:
-            
-            """ ERROR DE QUE SE LLAMA A DELTAP1 ANTES DE ASIGNARLE UN VALOR """
-
-            # Player 2 esta asomando por la parte superior de la pantalla. Background debe bajar para incluirlo
-            # Player 1 debe moverse en la misma direccion que background. Cuidar que se respeten las deadzones
-            if player2.Y <= 0 and player2.Y + 50 >= _2playerUpperLimit:
-                deltaP1 = player2.Y
-                self.background.moveBackGroundDown = True
-                #deltaBackground = min(deltaP1, deltaDownDeadZone)#######################################################33
-                #player1.Y -= deltaP1 - deltaBackground
-
-            # Player 2 esta asomando por la parte inferior de la pantalla. Background debe subir para incluirlo
-            # Player 1 debe moverse en la misma direccion que background. Cuidar que se respeten las deadzones
-            elif player2.Y <= height and player2.Y >= _2playerBottomLimit: #_2playerBottomLimit:
-                deltaP1 = player2.Y - _2playerBottomLimit
-                self.background.moveBackGroundUp = True
-                #deltaBackground = -min(deltaP1, deltaUpDeadZone)#######################################################33
-                #player1.Y -= deltaP1 - deltaBackground
-        
-            #self.background.yAdvance  = deltaBackground
-            self.background.yAdvance = -deltaP1
-            player1.Y -= deltaP1
-            player2.Y += self.background.yAdvance#------------------------------------------#
             
         # Si ningun player esta en pantalla, esta se centra automaticamente en player 1
         # es una prueba
         elif not _2PlayerInRealScreen and not _1PlayerInRealScreen :
-            pass
+            self.jump.play()
         
         # Si player 1 no esta centrado : 
         # Si player 2 esta en pantalla, se centrara sujeto a que no quede fuera de pantalla ficticia

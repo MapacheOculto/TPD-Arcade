@@ -52,7 +52,7 @@ class gameOverState(gameObject):
             pygame.mixer.music.fadeout(500)
             self.changeState("playState")
             pygame.mixer.music.load('sounds//mainTheme.mp3')
-            pygame.mixer.music.play()
+            pygame.mixer.music.play(2)
         elif self.button2Pressed:
             pygame.mixer.music.fadeout(500)
             self.changeState("gameWorldState")

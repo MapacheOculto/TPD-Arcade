@@ -93,7 +93,7 @@ class gameWorldState(object):
             self.changeState("playState")
             pygame.mixer.music.stop()
             pygame.mixer.music.load('sounds//mainTheme.mp3')
-            pygame.mixer.music.play()
+            pygame.mixer.music.play(2)
             
             self.systemState.currentState.currentLevel = level(self.joystickList,  self.screenSize, actualPath, self.container)
             self.systemState.currentState.actualPath = actualPath
