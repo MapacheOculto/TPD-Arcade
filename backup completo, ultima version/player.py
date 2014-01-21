@@ -230,7 +230,7 @@ class Player:
                 self.leftWallSliding = True  
                 ##COMO INFO
 #(self.colisionada.id != "Horizontal" or self.colisionada.color != self.companero.color)
-            if (temporalDirection > 0 and clashingRight)or (temporalDirection < 0 and clashingLeft):
+            if ((temporalDirection > 0 and clashingRight)or (temporalDirection < 0 and clashingLeft)) and self.falling and not self.jumping:
 
     
                 self.wallStickLag = 5
@@ -465,7 +465,7 @@ class Player:
         #Cambio pa arreglar bug
   
         elif (clashed and (self.colisionada.id != "Horizontal" or self.colisionada.color != self.companero.color)) or clashed2 :
-            floorX = self.X
+            floorX = 2*self.X
             if xAdvance > 0:
                 floorX = self.clashManager.leftX - (self.sprite.rect.width)
             elif xAdvance < 0:

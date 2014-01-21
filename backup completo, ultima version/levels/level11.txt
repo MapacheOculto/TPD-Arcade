@@ -1,22 +1,3 @@
-
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-a     F                                     aaaaaaaaaaaa
-a                                               aaaaaaaa
-<                                                  aaaaa
-<                                                    aaa
-a @                                                   aa
-aaaa    P--G      O--B                                aa
-a  a                                                   a
-a  aaaa                                              % a
-a  a  a               &        &                       a
-a  a  aaaa                                           % a
-a  a  a  a                                             a
-a  a  a  a                                             <
-a  a  a  aaaa     aaaaa     aaaa     aaaa              <
-aaaaaaaaaaaaa     aaaaa     aaaa     aaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaalllllaaaaalllllaaaawwwwwaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 z                                                           ºaaa
 z                                                              z
