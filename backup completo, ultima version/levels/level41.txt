@@ -44,7 +44,7 @@ a  a  %     aaab   a
 a           a      a
 aPGOBaaaaaaaa    a a
 a               a  a
-a     <<<      a   a
+a              a   a
 aOBPGaaaaaaaaaa    a
 a    a *      º º ºa
 a % %a *      º º ºa
@@ -52,7 +52,7 @@ aaaaaa      a º º ºa
 a <<       aaaºaºaºa
 aaaaaaaaaaaaaaaaaaaa
 -
-levels//level42.txt
+---
 fondo2
 -Torretas(color=Multi,Green o Blue) (rafaga), (movil=True o False), (angulo(cualquiera si es movil)), (velocidad), (timer_entre_rafaga=recomendado 2), (timer_entre_bala=recomendado 0.07)
 Blue 3 False 0 500 2 0.07
