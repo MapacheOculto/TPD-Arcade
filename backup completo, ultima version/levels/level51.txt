@@ -1,0 +1,52 @@
+zzzzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+zaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+z                            a                  F                                          a                                                   a
+z                            a              *                                              a                                                   a
+z             *              a            O--B                                             a                                                   a
+z            * *             a        *                                                    a                                                   a
+z          * * * *           a      P--G                                                   a                                                   a
+z        * *a * * * *        a                  Q                                          a                                                   a
+z      * * * * * * * *       a    * alllla                             *                   a                                                   a
+z @    O--B  P--G  O--B      a  O--Baaaaaaa  *     *            *           *              a                                                   a
+z                            a            a  *     *        *                    *         a                                                   a
+aaaaaaaaaaaa     aaaaaaaaaaaaaaaaaaaaa    aaaaaa aaaaaaaaP-----------GaO-----------Ba      a                                                   a
+a          a     a        a     a    a    a    aaa      a             a             a*     a                                                   a
+a          a  *  a        aaaaaaa    a    a             alllllllllllllallllllllllllla      a                                                   a
+a          a     a                   a    a             aaaaaaaaaaaaaaaaaaaaaaaaaaaaa     *a                                                   a
+a          a  *  a    aa  aa         a    a                      a                  Q      a                                                   a
+a          a     a  a        a       a    a                      a                         a                                                   a
+a          a  *  a   aaaaaaaa        a    a                      a    %               *    a                                                   a
+a          a     a                   a    a                      a                         a                                                   a
+a          a     aaaaaaaaaaaaaaaaaaaaa    a                      a                         a                                                   a
+a          a                              a                      a                  F     *aaaaaaaaaaaaaaa                                     a
+a          a  %     *  *  *  *          % a                      a                         a             a                                     a
+a          a                        aa    a                      a    %                    a             a                                     a
+a          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa                      a                         a     *       a                                     a
+a                                                                a                         a       * *   a                                     a
+a                                                                aaaaa     aaaaaaaaaaaaaaaaaaP--Ga       a                                     a
+a                                                                a                         aa    Q       a                                     a
+a                                                                a * *                     aa            aaaaaaaaaaaaaaaaaaa                   a
+a                                                                a                         aa                              <                   a
+a                                                                a * *              *      aa                              <                   a
+a                                                                a                  a      aa                              <                   a
+a                                                                a * *            * a *     a   aaaaaaaaaaP-GO-BP-GO-Baaaaaa                   a
+a                                                                aaaaaaaaO-BaaP-Gaaaaaaaa       a                                              a
+a                                                                a      a* *aa* *a      a       a                                              a
+a                                                                a      a   aa   a      aaaa    a                                              a
+a                                                                       a* *aa* *a         a   aaaaa                                           a
+a                                                                       a   aa   a         aaaaa                                               a
+a                                                                       a* *aa* *a             a                                               a
+a                                                                       a   aa   a             a                                               a
+a                                                                       alllaallla                                                             a
+a                                                                       aaaaaaaaaa                                                             a
+a                                                                                                                                              a
+a                                                                                                                                              a
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+-
+levels//level14.txt
+fondo2
+-Torretas(color=Multi,Green o Blue) (rafaga), (movil=True o False), (angulo(cualquiera si es movil)), (velocidad), (timer_entre_rafaga=recomendado 2), (timer_entre_bala=recomendado 0.07)
+Blue 4 False 0 500 2 0.07
+Multi 4 False 90 600 2 0.07
+Multi 4 False 90 200 2 0.07
+Green 4 False 0 500 2 0.07
