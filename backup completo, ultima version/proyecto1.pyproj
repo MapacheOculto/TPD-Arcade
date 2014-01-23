@@ -19,6 +19,9 @@
     <Compile Include="boxCollision.py" />
     <Compile Include="freefall.py" />
     <Compile Include="gameOverState.py" />
+    <Compile Include="gameWorldState.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="level.py" />
     <Compile Include="MAIN.py" />
     <Compile Include="pauseState.py" />

@@ -79,10 +79,10 @@ class gameWorldState(object):
             actualPath = "levels//castle2.txt"
             self.stageName = "Etapa 3"
         if self.playerPos == self.gameNodesList[3]:
-            actualPath = "levels//test.txt"
+            actualPath = "levels//level41.txt"
             self.stageName = "Etapa 4"
         if self.playerPos == self.gameNodesList[4]:
-            actualPath = "levels//level3.txt"
+            actualPath = "levels//level51.txt"
             self.stageName = "Etapa 5"
         if self.playerPos == self.gameNodesList[5]:  
             actualPath = "levels//level1.txt"
