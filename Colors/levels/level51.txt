@@ -1,0 +1,40 @@
+llllttttttttttttttttt
+llllttFtttttttttttttt
+lllltt             <<
+lllltt             <<
+lllltt      Qtttttttt
+lllllll  บบ  llllllll
+llllttl      lttlllll
+llllttl      lttlllll
+llllttlF     &ttlllll
+llllttl      lttlllll
+llllttl  บบ  lttlllll
+lllltt&      lttlllll
+llllttl     Qlttlllll
+llllttl      lttlllll
+llllttl      lttlllll
+llllttlF     &ttlllll
+llllttl  บบ  lttlllll
+lllltt&      lttlllll
+llllttl      lttlllll
+llllttl      lttlllll
+llllttl     Qlttlllll
+llllttl  บบ  lttlllll
+llllttl      lttlllll
+llllttl      &ttlllll
+llllttl      lttlllll
+llllttl   @  lttlllll
+llllttl      lttlllll
+llllttlllltlllttlllll
+llllttllllllltttlllll
+llllttttttttttttlllll
+lllllllllllllllllllll
+-
+levels//level52.txt
+fondoDesierto
+-
+Green 4 False 135 400 2 0.06
+Blue 4 False 45 400 2 0.06
+Green 4 False 135 400 2 0.06
+Blue 4 False 45 400 2 0.06
+Green 4 False 135 400 2 0.06
