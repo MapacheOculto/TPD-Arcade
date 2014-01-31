@@ -1,0 +1,60 @@
+aaaaw                   waaaa                                                            z
+aaaaw          @        waaaa                                                            z
+aaaaw                   waaaa                                                            z
+aaaaw                   waaaa                                                            z
+aaaaw                   waaaa                                                            z
+aaaaw                   waaaa                                                            z
+aaaaw                   waaaa                                                            z
+aaaaw                   waaaa                                                            z
+aaaaw                   waaaa                                                            z
+aaaaw                   waaaa                                                            z
+aaaaw                   waaaa                                                            z
+aaaaw                   waaaa                                                            z
+aaaaw                   waaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaw                   waaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaw                   waaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaw                                   % % % % % %                                  aaaaa
+aaaaw                                                                                aaaaa
+aaaaw                                                                                aaaaa
+aaaaw                                                                                aaaaa
+aaaaw                                                                                aaaaa
+aaaaw                                                                                aaaaa
+aaaaw                                                                                <aaaa
+aaaaw                                                                                <aaaa
+aaaaw                                                                                <aaaa
+aaaaw                          aaaaa                                                 <aaaa
+aaaaw                          aaaaa            aaa                                  aaaaa
+aaaaw %                         aaaaa           aaaa                           %     aaaaa
+aaaaw %                 aa                    aaaaaaaa                         %     aaaaa
+aaaaw %                aaaa                  aaaaaaaaaa                        %     aaaaa
+aaaaw %               aaaaaa               aaaaaaaaaaaaaa      aaaaaaa               aaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+-
+---
+fondoDesierto
+-
+Multi 5 False 270 400 2 0.06
+Multi 5 False 270 400 2 0.06
+Multi 5 False 270 400 2 0.06
+Multi 5 False 270 400 2 0.06
+Multi 5 False 270 400 2 0.06
+Multi 5 False 270 400 2 0.06
+Multi 5 False 0 400 2 0.06
+Multi 5 False 180 400 2 0.06
+Multi 5 False 0 400 2 0.06
+Multi 5 False 180 400 2 0.06
+Multi 5 False 0 400 2 0.06
+Multi 5 False 180 400 2 0.06
+Multi 5 False 0 400 2 0.06
+
+
+
+
+
+
+
+ 

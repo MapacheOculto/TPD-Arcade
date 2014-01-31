@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<Game>
+	<Title>Colors</Title>
+	<Code>NAD</Code>
+	<Version>100</Version>
+	<Date>21-12-2013</Date>
+	<Description>Platformer de arcade co-op de 2 jugadores</Description>
+	<MainClass name="Colors" file="./games/Colors/MAIN.py"/>
+	<CrashDump sendTo="iirubio@uc.cl" prefix="[NAD Crash]"/>
+	<Authors>
+		<Author name="José Rosenbluth"/>
+		<Author name="Cristian Henríquez"/>
+		<Author name="Iván Rubio"/>
+		
+	</Authors>
+	<Screenshots>
+		<Screenshot src="./games/Colors/blocks/blue.png"/>	
+	</Screenshots>
+	<Services>		
+	</Services>
+	<AdditionalData>
+	</AdditionalData>
+</Game>

@@ -1,0 +1,41 @@
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aa                                                              aaa
+aa                  บบบบบบบบ                                    aaa
+aa                  บบบบบบบบ                                    aaa
+aa                 aaaaaaaaaa                                   aaa
+aa           บ                                                  aaa
+aa           บ                                                  aaa
+aa           a                                                  aaa
+aa     บ  บ                                                     aaa
+aa     บ  บ                                                     aaa
+aa     a  a                                                     aaa
+aa                                                                z
+aa              บ        บ       บ      บ        บ                z
+aa              บ        บ       บ      บ        บ               @z
+aa              บ        บ       บ      บ        บ         aaaaaaaa
+<                                                          aaaaaaaa
+<           บบ      บบ      บบ      บบ      บบ      บบ           aa
+aaaaaaบ     PG      PG      OB      OB      PG      OB           aa
+aaaaaaบ                                                          aa
+aaaaaaบ                                                    บ     aa
+aa              บ        บ       บ      บ        บ         *     aa
+aa              บ        บ       บ      บ        บ         a     aa
+aa              บ        บ       บ      บ        บ           บ   aa
+aa              บ        บ       บ      บ        บ           *   aa
+aa                     * * *                                 a   aa
+aa                     aaaaa                               บ     aa
+aa                                                         *     aa
+aa                                                         a     aa
+aa                                                               aa
+aa                                                               aa
+aa        บ  บ  บ  บ  บ  บ  บ  บ  บ  บ  บ  บ  บ  บ  บ            aa
+aalllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaa
+aalllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaa
+aalllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaa
+aalllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+-
+---
+fondo2
+-Torretas(color=Multi,Green o Blue) (rafaga), (movil=True o False), (angulo(cualquiera si es movil)), (velocidad), (timer_entre_rafaga=recomendado 2), (timer_entre_bala=recomendado 0.07)

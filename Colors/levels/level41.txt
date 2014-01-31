@@ -1,0 +1,66 @@
+aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+a                  a
+a %      @      b% a
+a       aaaa       a
+a                  a
+a                  a
+a  &     aa     &  a
+a       aaaa       a
+a       aaaa       a
+aP----GaaaaaaO----Ba
+a                  a
+a     *  *  *      a
+aO----BaaaaaaP----Ga
+a                  a
+a      *  *  *     a
+aP----GaaaaaaO----Ba
+a                  a
+a            rrrrrra
+aO----Ba    aP----Ga
+a *    a*ºº*a    * a
+a *    a*ºº*a    * a
+a *    ar  ra    * a
+a      a    a      a
+allla  a*  *a  allla
+aaaaa  a    a  aaaaa
+aº     a*  *a     ºa
+a      aaa  a      a
+a  allla *  allla  a
+a  aaaaa   aaaaaaa a
+a      a *  a      a
+a      aaa  a      a
+aO----Ba  * aP----Ga
+a     aa   aaa     a
+a     arrraaaa     a
+a     a      a     a 
+a  %  alllllla  %  a
+a     aaaaaaaa     a
+a                  a
+aaaaº*ºa    aº*ºaaaa
+a**aaaaa    aaaaa  a
+aPGa        a**b   a
+a  a  %     aaab   a
+a           a      a
+aPGOBaaaaaaaa    a a
+a               a  a
+a              a   a
+aOBPGaaaaaaaaaa    a
+a    a *      º º ºa
+a % %a *      º º ºa
+aaaaaa      a º º ºa
+a <<       aaaºaºaºa
+aaaaaaaaaaaaaaaaaaaa
+-
+---
+fondo2
+-Torretas(color=Multi,Green o Blue) (rafaga), (movil=True o False), (angulo(cualquiera si es movil)), (velocidad), (timer_entre_rafaga=recomendado 2), (timer_entre_bala=recomendado 0.07)
+Blue 3 False 0 500 2 0.07
+Green 3 False 180 500 2 0.07
+Green 4 False 25 500 1 0.07
+Blue 4 False 155 500 1 0.07
+Blue 1 False 90 500 2 0.07
+Green 0 False 90 500 2 0.07
+Multi 5 True 0 800 1 0.07
+Green 2 False 90 800 1 0.07
+Blue 2 False 90 800 1 0.07

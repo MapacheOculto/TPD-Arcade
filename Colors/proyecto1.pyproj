@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{e4bd1147-f394-4372-b4df-eaadb9e87b90}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>MAIN.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Compile Include="background.py" />
+    <Compile Include="boxCollision.py" />
+    <Compile Include="freefall.py" />
+    <Compile Include="gameOverState.py" />
+    <Compile Include="gameWorldState.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="level.py" />
+    <Compile Include="MAIN.py" />
+    <Compile Include="pauseState.py" />
+    <Compile Include="platform.py" />
+    <Compile Include="player.py" />
+    <Compile Include="playState.py" />
+    <Compile Include="projectileMotion.py" />
+    <Compile Include="storyBoard2.py" />
+    <Compile Include="systemState.py" />
+    <Compile Include="titleState.py" />
+    <Compile Include="_2dLevelMaker.py" />
+    <Content Include="blocks\arrowDown.png" />
+    <Content Include="blocks\arrowUp.png" />
+    <Content Include="blocks\blue.png" />
+    <Content Include="blocks\earth2.png" />
+    <Content Include="blocks\fondoDesierto.png" />
+    <Content Include="blocks\goldBrick.png" />
+    <Content Include="blocks\grass.png" />
+    <Content Include="blocks\green.png" />
+    <Content Include="blocks\ice.png" />
+    <Content Include="blocks\ice2.png" />
+    <Content Include="blocks\lava.png" />
+    <Content Include="blocks\lava0.png" />
+    <Content Include="blocks\lava1.png" />
+    <Content Include="blocks\lava2.png" />
+    <Content Include="blocks\lava4.png" />
+    <Content Include="blocks\lava4t.png" />
+    <Content Include="blocks\poison.png" />
+    <Content Include="blocks\sand.png" />
+    <Content Include="blocks\topa2.png" />
+    <Content Include="blocks\topa2e.png" />
+    <Content Include="blocks\asddfg.jpg" />
+    <Content Include="blocks\blue2.jpg" />
+    <Content Include="jump\jumping1.png" />
+    <Content Include="jump\jumping2.png" />
+    <Content Include="jump\jumping3.png" />
+    <Content Include="jump\jumping4.png" />
+    <Content Include="jumpEnd\finishJump1.png" />
+    <Content Include="jumpEnd\finishJump2.png" />
+    <Content Include="jumpEnd\finishJump3.png" />
+    <Content Include="jumpEnd\finishJump4.png" />
+    <Content Include="jumpEnd\finishJump5.png" />
+    <Content Include="jumpEnd\finishJump6.png" />
+    <Content Include="jumpStart\jumpStart1.png" />
+    <Content Include="jumpStart\jumpStart2.png" />
+    <Content Include="jumpStart\jumpStart3.png" />
+    <Content Include="jumpStart\jumpStart4.png" />
+    <Content Include="levels\asd.txt" />
+    <Content Include="levels\castle.txt" />
+    <Content Include="levels\castle2.txt" />
+    <Content Include="levels\level1.txt" />
+    <Content Include="levels\level2.txt" />
+    <Content Include="levels\level3.txt" />
+    <Content Include="levels\test.txt" />
+    <Content Include="levels\test2.txt" />
+    <Content Include="levels\test3.txt" />
+    <Content Include="muerte\jumping1.png" />
+    <Content Include="muerte\jumping10.png" />
+    <Content Include="muerte\jumping2.png" />
+    <Content Include="muerte\jumping3.png" />
+    <Content Include="muerte\jumping4.png" />
+    <Content Include="muerte\jumping5.png" />
+    <Content Include="muerte\jumping6.png" />
+    <Content Include="muerte\jumping7.png" />
+    <Content Include="muerte\jumping8.png" />
+    <Content Include="muerte\jumping9.png" />
+    <Content Include="still\fire01.png" />
+    <Content Include="still\fire02.png" />
+    <Content Include="still\fire03.png" />
+    <Content Include="still\fire04.png" />
+    <Content Include="walk\fire1.png" />
+    <Content Include="walk\fire2.png" />
+    <Content Include="walk\fire3.png" />
+    <Content Include="walk\fire4.png" />
+    <Content Include="walk\fire5.png" />
+    <Content Include="walk\fire6.png" />
+    <Content Include="wallJumpL\wallJump1.png" />
+    <Content Include="wallJumpL\wallJump2.png" />
+    <Content Include="wallJumpL\wallJump3.png" />
+    <Content Include="wallJumpR\wallJump1.png" />
+    <Content Include="wallJumpR\wallJump2.png" />
+    <Content Include="wallJumpR\wallJump3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="blocks" />
+    <Folder Include="jump" />
+    <Folder Include="jumpEnd" />
+    <Folder Include="jumpStart" />
+    <Folder Include="levels" />
+    <Folder Include="muerte" />
+    <Folder Include="still" />
+    <Folder Include="walk" />
+    <Folder Include="wallJumpL" />
+    <Folder Include="wallJumpR" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+</Project>
