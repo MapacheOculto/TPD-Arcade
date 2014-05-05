@@ -1,12 +1,12 @@
 import pygame
 from pygame.locals import *
 from pygame import mixer
-from platform import Platform
+from platforms import Platform
 import math
 
 mixer.init() #you must initialize the mixer
 alert=mixer.Sound('sounds//walk.wav')
-plat = mixer.Sound('sounds//platform.wav')
+plat = mixer.Sound('sounds//platform1.wav')
 plat.set_volume(0.4)
 
 

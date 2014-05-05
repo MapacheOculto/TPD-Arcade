@@ -12,10 +12,9 @@ from container import Container
 
 
 # FUNCION PRINCIPAL QUE CORRE CODIGO
-class MAIN():
 
     # Relacionado a pygame
-    def main(self):
+def main():
 
         # Relacionado a pygame
         pygame.init()
@@ -32,26 +31,26 @@ class MAIN():
             joystickList[i].init()
 
         # Se inicializa systemState, la clase que va a apuntar a la instancia del estado en que se encuentre el juego
-        systemState = systemState()
+        system_State = systemState()
             
         # Se inicializan los distintos estados de juego posibles
-        playState = playState(joystickList, screenSize, systemState, container)
-        menuState = titleState(joystickList, screenSize, systemState, container)
-        gameOverState = gameOverState(joystickList, screenSize, systemState, container)
-        pauseState = PauseState(joystickList, screenSize, systemState, container)
-        worldMapState = gameWorldState(joystickList, screenSize, systemState, container)
-        levelEndingState = LevelEndingState(joystickList, screenSize, systemState, container)
+        play_State = playState(joystickList, screenSize, system_State, container)
+        menu_State = titleState(joystickList, screenSize, system_State, container)
+        game_OverState = gameOverState(joystickList, screenSize, system_State, container)
+        pause_State = PauseState(joystickList, screenSize, system_State, container)
+        world_MapState = gameWorldState(joystickList, screenSize, system_State, container)
+        level_EndingState = LevelEndingState(joystickList, screenSize, system_State, container)
             
         # Se agregan estos estados a la instancia de systemState
-        systemState.append(playState, "playState")
-        systemState.append(menuState, "titleState")
-        systemState.append(pauseState, "pauseState")
-        systemState.append(gameOverState, "gameOverState")
-        systemState.append(levelEndingState, "levelEndingState")
-        systemState.append(worldMapState, "gameWorldState")
+        system_State.append(play_State, "playState")
+        system_State.append(menu_State, "titleState")
+        system_State.append(pause_State, "pauseState")
+        system_State.append(game_OverState, "gameOverState")
+        system_State.append(level_EndingState, "levelEndingState")
+        system_State.append(world_MapState, "gameWorldState")
             
         # Se elije el estado de juego con el que se comenzara
-        systemState.changeState("titleState")
+        system_State.changeState("titleState")
             
         # Timer para el tiempo transcurrido
         ticker = pygame.time.Clock()    
@@ -69,15 +68,18 @@ class MAIN():
                     exit()
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_SPACE:
-                        if systemState.currentState == systemState.stateDictionary["playState"]:
-                            systemState.currentState.level1.player1.keyHeldPressed = False
-                            systemState.currentState.level1.player2.keyHeldPressed = False
+                        if system_State.currentState == system_State.stateDictionary["playState"]:
+                            system_State.currentState.level1.player1.keyHeldPressed = False
+                            system_State.currentState.level1.player2.keyHeldPressed = False
                     if event.key == K_TAB:
                         pass
            
             # Se actualiza y dibuja el estado seleccionado
-            systemState.update(elapsedTime)
-            systemState.render()
+            system_State.update(elapsedTime)
+            system_State.render()
 
             # se actualiza lo relativo a pygame
             pygame.display.update()
+            
+if __name__ == "__main__":
+    main()

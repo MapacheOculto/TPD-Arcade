@@ -6,7 +6,7 @@ from projectileMotion import ProjectileMotion
 from freefall import FreeFall
 from boxCollision import boxCollision
 from pygame import mixer
-from platform import Platform
+#from platform import Platform
 import math
 
 

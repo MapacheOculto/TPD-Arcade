@@ -96,7 +96,7 @@ class PauseState(gameObject):
         textSurf4  = self.font2.render("Puntaje player 2: " + str(self.score2), True,(0, 0, 0))
         screen.blit(textSurf4, (120, 550))
         
-        textSurf5  = self.font2.render("Tiempo restante : "  + str(int(200 - self.time)), True,(255, 0, 0))
+        textSurf5  = self.font2.render("Tiempo restante : "  + str(int(150 - self.time)), True,(255, 0, 0))
         screen.blit(textSurf5, (self.screenSize[0] / 2 - 143, 690))
 
 

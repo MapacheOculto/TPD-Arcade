@@ -5,7 +5,7 @@ from storyBoard2 import StoryBoard2
 from projectileMotion import ProjectileMotion
 from freefall import FreeFall
 from _2dLevelMaker import _2dLevelMaker
-from platform import Platform
+from platforms import Platform
 
 mixer.init() #you must initialize the mixer
 alert=mixer.Sound('sounds//jump.wav')

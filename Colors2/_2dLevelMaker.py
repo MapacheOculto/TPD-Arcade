@@ -1,7 +1,7 @@
 # -*- coding: cp1252 -*-
 import pygame
 from pygame.locals import *
-from platform import Platform
+from platforms import Platform
 from enemigos import Turret
 from damageFields import DamageField
 from items import Items

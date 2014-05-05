@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0"?>
 <Game>
-	<Title>Colors</Title>
-	<Code>NAD</Code>
+	<Title>Colors2</Title>
+	<Code>KAK</Code>
 	<Version>100</Version>
 	<Date>21-12-2013</Date>
 	<Description>Platformer de arcade co-op de 2 jugadores</Description>
-	<MainClass name="Colors" file="./games/Colors/MAIN.py"/>
-	<CrashDump sendTo="iirubio@uc.cl" prefix="[NAD Crash]"/>
+	<MainClass name="Colors" file="./games/Colors2/Colors.py"/>
+
 	<Authors>
 		<Author name="José Rosenbluth"/>
 		<Author name="Cristian Henríquez"/>

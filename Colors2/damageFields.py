@@ -1,7 +1,7 @@
 import pygame
 from pygame import *
 from storyBoard2 import StoryBoard2
-from platform import Platform
+from platforms import Platform
 
 class DamageField(Platform):
 

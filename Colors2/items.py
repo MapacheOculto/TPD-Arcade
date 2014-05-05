@@ -1,6 +1,6 @@
 import pygame
 from pygame import *
-from platform import Platform
+from platforms import Platform
 from storyBoard2 import StoryBoard2
 
 

@@ -210,7 +210,7 @@ class level:
         textSurf2 = self.font.render("P2 HP: " , True,(0, 0, 255))
         textSurf3 = self.font.render("Puntaje: " + str(int(self.player1.score)) , True, (27, 141, 67))
         textSurf4 = self.font.render("Puntaje: " + str(int(self.player2.score)) , True, (0, 0, 255))
-        textSurf5 = self.font.render("Tiempo restante: " + str(200 - int(self.totalElapsedTime)) , True,(255, 0, 0))
+        textSurf5 = self.font.render("Tiempo restante: " + str(150 - int(self.totalElapsedTime)) , True,(255, 0, 0))
         
         screen.blit(textSurf1,  (400, 10))
         screen.blit(textSurf2,  (400, 40))

@@ -9,8 +9,8 @@ z        * *a * * * *        a                  Q                               
 z      * * * * * * * *       a    * alllla                             *                   a                                                   a
 z @    O--B  P--G  O--B      a  O--Baaaaaaa  *     *            *           *              a                                                   a
 z                            a            a  *     *        *                    *         a                                                   a
-aaaaaaaaaaaa     aaaaaaaaaaaaaaaaaaaaa    aaaaaa aaaaaaaaP-----------GaO-----------Ba      a                                                   a
-a          a     a        a     a    a    a    aaa      a             a             a*     a                                                   a
+aaaaaaaaaaaa     aaaaaaaaaaaaaaaaaaa      aaaaaa aaaaaaaaP-----------GaO-----------Ba      a                                                   a                 a
+a          a     a        a     a  aaa    a    aaa      a             a             a*     a                                                   a
 a          a  *  a        aaaaaaa    a    a             alllllllllllllallllllllllllla      a                                                   a
 a          a     a                   a    a             aaaaaaaaaaaaaaaaaaaaaaaaaaaaa     *a                                                   a
 a          a  *  a    aa  aa         a    a                      a                  Q      a                                                   a
